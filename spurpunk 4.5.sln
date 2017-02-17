@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{067E3CCE-6B84-A857-F994-48BBC1A0D843}") = "spurpunk 4.5", "Assembly-CSharp-firstpass.csproj", "{0AFC2D78-30F9-AA31-A8AD-108CAC6B57B5}"
+EndProject
+Project("{067E3CCE-6B84-A857-F994-48BBC1A0D843}") = "spurpunk 4.5", "Assembly-CSharp.csproj", "{D59FF3CB-EB78-0185-35C7-D7E246987D0C}"
+EndProject
+Project("{067E3CCE-6B84-A857-F994-48BBC1A0D843}") = "spurpunk 4.5", "Assembly-CSharp-Editor.csproj", "{F0A96097-50C4-1E58-20FB-C66DB0AB211F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AFC2D78-30F9-AA31-A8AD-108CAC6B57B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AFC2D78-30F9-AA31-A8AD-108CAC6B57B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFC2D78-30F9-AA31-A8AD-108CAC6B57B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFC2D78-30F9-AA31-A8AD-108CAC6B57B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59FF3CB-EB78-0185-35C7-D7E246987D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59FF3CB-EB78-0185-35C7-D7E246987D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59FF3CB-EB78-0185-35C7-D7E246987D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59FF3CB-EB78-0185-35C7-D7E246987D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0A96097-50C4-1E58-20FB-C66DB0AB211F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0A96097-50C4-1E58-20FB-C66DB0AB211F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0A96097-50C4-1E58-20FB-C66DB0AB211F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0A96097-50C4-1E58-20FB-C66DB0AB211F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
