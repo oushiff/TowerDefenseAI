@@ -36,6 +36,10 @@ public class GamePlay : MonoBehaviour
     public List<Enemy> activeEnemies = new List<Enemy>();
     public List<Tower> activeTowers = new List<Tower>();
 
+
+	public int monsterCount = 0;  // FFFFFFFFFFFFFFFF
+
+
     void Awake()
     {
         instance = this;
@@ -71,10 +75,18 @@ public class GamePlay : MonoBehaviour
             waveData = levelData.GetWave(waveNo);
             monstersNo = waveData.GetMonstersNo();
 
+
+
             //currentWaitTime = 0;
             for (int monsterNo = 0; monsterNo < monstersNo; monsterNo++)
             {
                 waveMonster = waveData.GetMonster(monsterNo);
+
+
+				monsterCount += waveMonster.amount;  //FFFFFFFFFFF
+				Debug.Log ("[Monster Generate] Monster: " + waveMonster.monster.name + ", Num: " + waveMonster.amount);  //FFFF
+				Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
+
 
                 // Wait until it's time to spawn the monsters
                 yield return new WaitForSeconds(waveMonster.seconds);
@@ -106,6 +118,8 @@ public class GamePlay : MonoBehaviour
             Debug.LogWarning("Monster prefab not found");
             yield break;
         }
+
+
 
         for (int counter = 0; counter < waveMonster.amount; counter++){
 
@@ -171,8 +185,21 @@ public class GamePlay : MonoBehaviour
         }
     }
     */
-    public void KillEnemy(Enemy enemy)
+    public void KillEnemy(Enemy enemy, bool doesArrive)
     {
+		
+		//FFFFFFFFFFFFFFFFFFF
+		if (doesArrive) {
+			Debug.Log ("[Monster Arrive] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+		} else {
+			Debug.Log("[Monster Dead] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+		}
+		monsterCount -= 1;//FFFFFFFFFF
+		Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
+
+
+
+
         // Notify all towers that enemy died
         for (int i = 0; i < activeTowers.Count; ++i) {
             activeTowers[i].RemoveIntruder(enemy);
@@ -187,7 +214,7 @@ public class GamePlay : MonoBehaviour
 
     public void RemoveEnemy(Enemy enemy)
     {
-        KillEnemy(enemy);
+        KillEnemy(enemy, true);
     }
 
     public void EndLevel()
