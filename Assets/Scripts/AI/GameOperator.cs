@@ -7,7 +7,7 @@ using Excel.Log;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-namespace AI
+namespace AI.Operator
 {
 	public class GameOperater: TowerButton
 	{

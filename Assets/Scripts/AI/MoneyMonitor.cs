@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AI
+namespace AI.Monitors
 {
 	public class MoneyMonitor: Monitor
 	{

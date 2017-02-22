@@ -9,7 +9,7 @@ using Application = UnityEngine.Application;
 
 // tower location, rank, attack, defend... properities
 
-namespace AI
+namespace AI.Monitors
 {
 	public class TowerMonitor : Monitor
 	{

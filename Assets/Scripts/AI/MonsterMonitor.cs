@@ -4,7 +4,7 @@
 using System.Collections;
 
 
-namespace AI
+namespace AI.Monitors
 {
 	public class MonsterMonitor : Monitor
 	{

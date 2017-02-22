@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AI
+namespace AI.Monitors
 {
 	public class MapMonitor: Monitor
 	{
