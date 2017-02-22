@@ -2,9 +2,9 @@
 
 namespace AI.Strategys
 {
-	public class HumanSimulator
+	public class MachineLearning
 	{
-		public HumanSimulator ()
+		public MachineLearning ()
 		{
 		}
 	}

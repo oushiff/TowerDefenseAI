@@ -2,9 +2,9 @@
 
 namespace AI.Strategys
 {
-	public class HumanSimulator
+	public class NeuralNetwork
 	{
-		public HumanSimulator ()
+		public NeuralNetwork ()
 		{
 		}
 	}
