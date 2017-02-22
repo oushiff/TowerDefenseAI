@@ -174,7 +174,8 @@ public class TestingAllCS : MonoBehaviour {
 		LeanTween.value( gameObject, updateValueExampleCallback, ltLogo.transform.eulerAngles.y, 270f, 1f ).setEase(LeanTweenType.easeOutElastic).setOnUpdateParam(pass).setUseEstimatedTime(useEstimatedTime);
 	}
 	
-	public void updateValueExampleCallback( float val, object hash ){
+//	public void updateValueExampleCallback( float val, object hash ){
+	public void updateValueExampleCallback( float val, float hash ){
 		// Hashtable h = hash as Hashtable;
 		// Debug.Log("message:"+h["message"]+" val:"+val);
 		Vector3 tmp = ltLogo.transform.eulerAngles;

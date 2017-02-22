@@ -11,163 +11,169 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour
 {
-    private static GameData _instance = null;
+	private static GameData _instance = null;
 
-    public static GameData instance
-    {
-        get
-        {
-            if (_instance == null){
-                _instance = (GameData) FindObjectOfType(typeof (GameData));
+	public static GameData instance {
+		get {
+			if (_instance == null) {
+				_instance = (GameData)FindObjectOfType (typeof(GameData));
 
-                if (_instance == null){
-                    GameObject newInstance = new GameObject("GameData");
-                    _instance = newInstance.AddComponent<GameData>();
-                }
-            }
+				if (_instance == null) {
+					GameObject newInstance = new GameObject ("GameData");
+					_instance = newInstance.AddComponent<GameData> ();
+				}
+			}
 
-            return _instance;
-        }
-    }
+			return _instance;
+		}
+	}
 
-    #region Game data
+	#region Game data
 
-    public enum GameProperies
-    {
-        NAME,
-        REFERENCE,
-        DAMAGE,
-        HP,
-        ARMOR,
-        RANGE,
-        RATE_OF_FIRE,
-        COST,
-        REWARD,
-        SPEED,
-        MANA,
-        EFFECT,
-        REBOOT_TIME,
-        DAMAGE_PERCENTAGE,
-        DURATION,
-        REDUCTION,
-        PROJECTILES,
-        CHANCE_PERCENTAGE
-    }
+	public enum GameProperies
+	{
+		NAME,
+		REFERENCE,
+		DAMAGE,
+		HP,
+		ARMOR,
+		RANGE,
+		RATE_OF_FIRE,
+		COST,
+		REWARD,
+		SPEED,
+		MANA,
+		EFFECT,
+		REBOOT_TIME,
+		DAMAGE_PERCENTAGE,
+		DURATION,
+		REDUCTION,
+		PROJECTILES,
+		CHANCE_PERCENTAGE
+	}
 
-    private List<MonsterData> monstersList;
-    private Dictionary<string, MonsterData.Level> monsters;
+	private List<MonsterData> monstersList;
+	private Dictionary<string, MonsterData.Level> monsters;
      
-    private List<TowerData> towersList;
-    private Dictionary<string, TowerData> towers;
+	private List<TowerData> towersList;
+	private Dictionary<string, TowerData> towers;
 
-    private LevelData level = new LevelData();
-    #endregion
+	private LevelData level = new LevelData ();
 
-    private void Awake()
-    {
-    }
+	#endregion
 
-    private void Start()
-    {
+	private void Awake ()
+	{
+	}
+
+	private void Start ()
+	{
 #if UNITY_WEBGL
         DataReader.instance.StartCoroutine(DataReader.instance.WaitMonsterData(LoadMonsterData));
         DataReader.instance.StartCoroutine(DataReader.instance.WaitTowerData(LoadTowerData));
 #else
-        LoadMonsterData();
-        LoadTowerData();
+		LoadMonsterData ();
+		LoadTowerData ();
 #endif
-        level.Load();
-    }
+		level.Load ();
+	}
 
-#region Load Data
-    private void LoadMonsterData()
-    {
-        // Initialize lists
-        if (monstersList == null){
-            monstersList = new List<MonsterData>();
-        }
-        monstersList.Clear();
+	#region Load Data
 
-        if (monsters == null)
-        {
-            monsters = new Dictionary<string, MonsterData.Level>();
-        }
-        monsters.Clear();
+	private void LoadMonsterData ()
+	{
+		// Initialize lists
+		if (monstersList == null) {
+			monstersList = new List<MonsterData> ();
+		}
+		monstersList.Clear ();
 
-        // Load all monster data
-        List<DataReader.MonsterData> inputMonsterData = DataReader.instance.monsters.monsters;
-        MonsterData lastMonster = null;
-        for (int i = 0; i < inputMonsterData.Count; i++)
-        {
-            if (lastMonster == null || (lastMonster != null && lastMonster.name != inputMonsterData[i].MonsterName)){
-                lastMonster = new MonsterData(inputMonsterData[i].MonsterName, inputMonsterData[i].air);
-                monstersList.Add(lastMonster);
-            }
+		if (monsters == null) {
+			monsters = new Dictionary<string, MonsterData.Level> ();
+		}
+		monsters.Clear ();
 
-            monsters.Add(inputMonsterData[i].levelName, lastMonster.AddMonster(inputMonsterData[i]));
-        }
-    }
+		// Load all monster data
+		List<DataReader.MonsterData> inputMonsterData = DataReader.instance.monsters.monsters;
+		MonsterData lastMonster = null;
+		for (int i = 0; i < inputMonsterData.Count; i++) {
+			if (lastMonster == null || (lastMonster != null && lastMonster.name != inputMonsterData [i].MonsterName)) {
+				lastMonster = new MonsterData (inputMonsterData [i].MonsterName, inputMonsterData [i].air);
+				monstersList.Add (lastMonster);
+			}
 
-    private void LoadTowerData()
-    {
-        // Initialize list
-        if (towers == null)
-        {
-            towers = new Dictionary<string, TowerData>();
-        }
-        towers.Clear();
+			monsters.Add (inputMonsterData [i].levelName, lastMonster.AddMonster (inputMonsterData [i]));
+		}
+	}
 
-        if (towersList == null){
-            towersList = new List<TowerData>();
-        }
-        towersList.Clear();
+	private void LoadTowerData ()
+	{
+		// Initialize list
+		if (towers == null) {
+			towers = new Dictionary<string, TowerData> ();
+		}
+		towers.Clear ();
 
-        // Load all tower data
-        List<DataReader.TowerData> inputTowerData = DataReader.instance.towers.towers;
-        TowerData newTower = null;
-        for (int i = 0; i < inputTowerData.Count; i++){
-            if (!towers.ContainsKey(inputTowerData[i].TowerName)){
-                newTower = new TowerData(inputTowerData[i].TowerName, inputTowerData[i].air);
-                towersList.Add(newTower);
-                towers.Add(inputTowerData[i].TowerName, newTower);
-            }
+		if (towersList == null) {
+			towersList = new List<TowerData> ();
+		}
+		towersList.Clear ();
 
-            towers[inputTowerData[i].TowerName].AddTower(inputTowerData[i], i);
-        }
-    }
-#endregion
+		// Load all tower data
+		List<DataReader.TowerData> inputTowerData = DataReader.instance.towers.towers;
+		TowerData newTower = null;
+		for (int i = 0; i < inputTowerData.Count; i++) {
+			if (!towers.ContainsKey (inputTowerData [i].TowerName)) {
+				newTower = new TowerData (inputTowerData [i].TowerName, inputTowerData [i].air);
+				towersList.Add (newTower);
+				towers.Add (inputTowerData [i].TowerName, newTower);
+			}
 
-#region Monsters
+			towers [inputTowerData [i].TowerName].AddTower (inputTowerData [i], i);
+		}
+	}
 
-    public MonsterData.Level GetMonster(int detailedIdx)
-    {
-        int monsterIdx = detailedIdx/3;
-        MonsterData monster = monstersList[monsterIdx];
-        if (monster != null){
-            return monster.GetLevel(detailedIdx%3);
-        }
-        return null;
-    }
-#endregion
+	#endregion
 
-    public LevelData GetCurrentLevel()
-    {
-        return level;
-    }
+	#region Monsters
 
-    public TowerData.Level GetTower(string type, int level)
-    {
-        if (towers != null && towers.ContainsKey(type)){
-            return towers[type].GetTower(level);
-        }
-        return null;
-    }
+	public MonsterData.Level GetMonster (int detailedIdx)
+	{
+		int monsterIdx = detailedIdx / 3;
+		MonsterData monster = monstersList [monsterIdx];
+		if (monster != null) {
+			return monster.GetLevel (detailedIdx % 3);
+		}
+		return null;
+	}
 
-    internal TowerData.Level GetTower(int type, int level)
-    {
-        if (towersList != null && type < towersList.Count){
-            return towersList[type].GetTower(level);
-        }
-        return null;
-    }
+	#endregion
+
+	public void Load ()
+	{
+		LoadMonsterData ();
+		LoadTowerData ();
+		level.Load ();	
+	}
+
+	public LevelData GetCurrentLevel ()
+	{
+		return level;
+	}
+
+	public TowerData.Level GetTower (string type, int level)
+	{
+		if (towers != null && towers.ContainsKey (type)) {
+			return towers [type].GetTower (level);
+		}
+		return null;
+	}
+
+	internal TowerData.Level GetTower (int type, int level)
+	{
+		if (towersList != null && type < towersList.Count) {
+			return towersList [type].GetTower (level);
+		}
+		return null;
+	}
 }
