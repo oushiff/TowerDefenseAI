@@ -1,6 +1,7 @@
 ﻿using System;
 using AI.Monitors;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace AI.DTO
 {
@@ -8,7 +9,7 @@ namespace AI.DTO
 	{
 		public int currentMoney;
 		public int startingMoney;
-		public List<int> money_sequence;
+		public ArrayList money_sequence;
 		// when money change, add a past item
 
 		private MoneyMonitor m_monitor;
@@ -17,6 +18,7 @@ namespace AI.DTO
 		{
 			this.currentMoney = m_monitor.GetCurrentMoney ();
 			this.startingMoney = m_monitor.GetStartingMoney ();
+			this.money_sequence = new ArrayList ();
 		}
 
 		public void UpdateMoneySeq (int money)
@@ -31,7 +33,7 @@ namespace AI.DTO
 
 		public void RemoveMoneySeq (int index)
 		{
-			//todo
+			this.money_sequence.RemoveAt (index);
 		}
 	}
 }
