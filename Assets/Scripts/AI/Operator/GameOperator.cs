@@ -8,15 +8,7 @@ namespace AI.Operator
 	{
 		public List<BuildTowerButton> towerButtons;
 		public Transform towersRoot;
-
-		private RectTransform uiTransform;
 		private Vector2 initialSize;
-		private CanvasGroup canvasGroup;
-		private GameObject selectedPlane;
-
-		public GameOperater ()
-		{
-		}
 
 		public Boolean BuildTower (int index, double[] pos)
 		{
@@ -61,11 +53,5 @@ namespace AI.Operator
 			return true;
 		}
 
-		public Boolean RemoveTower ()
-		{
-			//todo
-			return true;
-		}
-		
 	}
 }
