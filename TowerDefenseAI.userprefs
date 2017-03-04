@@ -1,12 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Towers/Tower.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AI/Objects/Monster.cs">
     <Files>
-      <File FileName="Assets/Scripts/AI/GameController.cs" Line="40" Column="3" />
-      <File FileName="Assets/Scripts/AI/Strategys/MachineLearning.cs" Line="3" Column="22" />
-      <File FileName="Assets/Scripts/AI/Monitors/Monitor.cs" Line="12" Column="26" />
-      <File FileName="Assets/Scripts/AI/Strategys/HumanSimulator.cs" Line="22" Column="3" />
-      <File FileName="Assets/Scripts/Towers/Tower.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI/Objects/Map.cs" Line="3" Column="12" />
+      <File FileName="Assets/Scripts/AI/Objects/Monster.cs" Line="3" Column="12" />
+      <File FileName="Assets/Scripts/AI/Objects/Tower.cs" Line="3" Column="12" />
+      <File FileName="Assets/Scripts/AI/Monitors/MoneyMonitor.cs" Line="7" Column="30" />
+      <File FileName="Assets/Scripts/AI/Objects/Money.cs" Line="27" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

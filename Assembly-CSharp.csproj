@@ -3,8 +3,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{B8204C42-1257-63D0-5BDB-FBFC54651B1D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -33,148 +34,146 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2dCS.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListenersCS.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUiCS.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpaceCS.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\OldGUIExamplesCS.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinesBezier.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingAllCS.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingEverything.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingPunch.cs" />
-    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingRigidbodyCS.cs" />
-    <Compile Include="Assets\Other\GoToPost.cs" />
-    <Compile Include="Assets\Scripts\AI\GameController.cs" />
-    <Compile Include="Assets\Scripts\AI\Monitors\MapMonitor.cs" />
-    <Compile Include="Assets\Scripts\AI\Monitors\MoneyMonitor.cs" />
-    <Compile Include="Assets\Scripts\AI\Monitors\Monitor.cs" />
-    <Compile Include="Assets\Scripts\AI\Monitors\MonsterMonitor.cs" />
-    <Compile Include="Assets\Scripts\AI\Monitors\TowerMonitor.cs" />
-    <Compile Include="Assets\Scripts\AI\Operator\GameOperator.cs" />
-    <Compile Include="Assets\Scripts\AI\Strategys\HumanSimulator.cs" />
-    <Compile Include="Assets\Scripts\AI\Strategys\MachineLearning.cs" />
-    <Compile Include="Assets\Scripts\AI\Strategys\NeuralNetwork.cs" />
-    <Compile Include="Assets\Scripts\ActiveStateToggler.cs" />
-    <Compile Include="Assets\Scripts\ApplicationManager.cs" />
-    <Compile Include="Assets\Scripts\ChangeColor.cs" />
-    <Compile Include="Assets\Scripts\Data\DataReader.cs" />
-    <Compile Include="Assets\Scripts\Data\GameData.cs" />
-    <Compile Include="Assets\Scripts\Data\LevelData.cs" />
-    <Compile Include="Assets\Scripts\Data\MonsterData.cs" />
-    <Compile Include="Assets\Scripts\Data\TowerData.cs" />
-    <Compile Include="Assets\Scripts\DragMe.cs" />
-    <Compile Include="Assets\Scripts\DragPanel.cs" />
-    <Compile Include="Assets\Scripts\DropMe.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Abilities\EnemyAbility.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Abilities\Heal.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Abilities\Shield.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Abilities\Summon.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Abilities\UndegroundTravel.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Fire\EnemyFire.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Fire\EnemyProjectile.cs" />
-    <Compile Include="Assets\Scripts\Generic\Projectile.cs" />
-    <Compile Include="Assets\Scripts\Generic\Properties.cs" />
-    <Compile Include="Assets\Scripts\Level\GamePlay.cs" />
-    <Compile Include="Assets\Scripts\Level\Grid.cs" />
-    <Compile Include="Assets\Scripts\Level\Waypoint.cs" />
-    <Compile Include="Assets\Scripts\LevelHolderScript.cs" />
-    <Compile Include="Assets\Scripts\PanelManager.cs" />
-    <Compile Include="Assets\Scripts\ResizePanel.cs" />
-    <Compile Include="Assets\Scripts\ScrollDetailTexture.cs" />
-    <Compile Include="Assets\Scripts\ShowSliderValue.cs" />
-    <Compile Include="Assets\Scripts\TiltWindow.cs" />
-    <Compile Include="Assets\Scripts\Towers\CannonTower.cs" />
-    <Compile Include="Assets\Scripts\Towers\ElectricalTower.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\CannonTowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\ElectricalTowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\GunTowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\PoisonTowerBomb.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\PoisonTowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\ScytheTowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\SplashFireArea.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\SplashTowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\TowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\Fire\TowernautTowerFire.cs" />
-    <Compile Include="Assets\Scripts\Towers\GunTower.cs" />
-    <Compile Include="Assets\Scripts\Towers\PoisonTower.cs" />
-    <Compile Include="Assets\Scripts\Towers\ScytheTower.cs" />
-    <Compile Include="Assets\Scripts\Towers\SoulTower.cs" />
-    <Compile Include="Assets\Scripts\Towers\Tower.cs" />
-    <Compile Include="Assets\Scripts\Towers\TowerStats.cs" />
-    <Compile Include="Assets\Scripts\Towers\TowernautTower.cs" />
-    <Compile Include="Assets\Scripts\UI\BuildTowerButton.cs" />
-    <Compile Include="Assets\Scripts\UI\BuildTowerUI.cs" />
-    <Compile Include="Assets\Scripts\UI\Currency.cs" />
-    <Compile Include="Assets\Scripts\UI\EndLevelUI.cs" />
-    <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\UI\LevelButtonUI.cs" />
-    <Compile Include="Assets\Scripts\UI\LevelsMenu.cs" />
-    <Compile Include="Assets\Scripts\UI\PauseLevelUI.cs" />
-    <Compile Include="Assets\Scripts\UI\SelectEnemy.cs" />
-    <Compile Include="Assets\Scripts\UI\TowerButton.cs" />
-    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
-    <Compile Include="Assets\Scripts\UI\UpgradeTowerButton.cs" />
-    <Compile Include="Assets\Scripts\UI\UpgradeTowerUI.cs" />
-    <None Include="Assets\TD_Towers.xml" />
-    <None Include="Assets\TDDesignData.xml" />
-    <None Include="Assets\Data\Cards.xml" />
-    <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
-    <None Include="Assets\Data\Level3.xml" />
-    <None Include="Assets\Data\Level5.xml" />
-    <None Include="Assets\LeanTween\ReadMe.txt" />
-    <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
-    <None Include="Assets\Data\Level4.xml" />
-    <None Include="Assets\Data\Level6.xml" />
-    <None Include="Assets\Data\Towers.xml" />
-    <None Include="Assets\Textures and Sprites\SF UI\Background\LICENSE.txt" />
-    <None Include="Assets\Data\Level1.xml" />
-    <None Include="Assets\Materials\UI-Default-No-Alpha.shader" />
-    <None Include="Assets\Data\Level2.xml" />
-    <None Include="Assets\TDDesignData_Towers.xml" />
-    <None Include="Assets\Data\Monsters.xml" />
-    <Reference Include="Assembly-UnityScript-firstpass">
-      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="Excel">
-      <HintPath>Assets\Plugins\Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Compile Include="Assets\Scripts\AI\Objects\Map.cs" />
-    <Compile Include="Assets\Scripts\AI\Objects\Monster.cs" />
-    <Compile Include="Assets\Scripts\AI\Objects\Money.cs" />
-    <Compile Include="Assets\Scripts\AI\Objects\Tower.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2dCS.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListenersCS.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUiCS.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpaceCS.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\OldGUIExamplesCS.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinesBezier.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingAllCS.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingEverything.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingPunch.cs" />
+     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingRigidbodyCS.cs" />
+     <Compile Include="Assets\Other\GoToPost.cs" />
+     <Compile Include="Assets\Scripts\AI\GameController.cs" />
+     <Compile Include="Assets\Scripts\AI\Monitors\MapMonitor.cs" />
+     <Compile Include="Assets\Scripts\AI\Monitors\MoneyMonitor.cs" />
+     <Compile Include="Assets\Scripts\AI\Monitors\Monitor.cs" />
+     <Compile Include="Assets\Scripts\AI\Monitors\MonsterMonitor.cs" />
+     <Compile Include="Assets\Scripts\AI\Monitors\TowerMonitor.cs" />
+     <Compile Include="Assets\Scripts\AI\Objects\Map.cs" />
+     <Compile Include="Assets\Scripts\AI\Objects\Money.cs" />
+     <Compile Include="Assets\Scripts\AI\Objects\Monster.cs" />
+     <Compile Include="Assets\Scripts\AI\Objects\Tower.cs" />
+     <Compile Include="Assets\Scripts\AI\Operator\GameOperator.cs" />
+     <Compile Include="Assets\Scripts\AI\Strategys\HumanSimulator.cs" />
+     <Compile Include="Assets\Scripts\AI\Strategys\MachineLearning.cs" />
+     <Compile Include="Assets\Scripts\AI\Strategys\NeuralNetwork.cs" />
+     <Compile Include="Assets\Scripts\ActiveStateToggler.cs" />
+     <Compile Include="Assets\Scripts\ApplicationManager.cs" />
+     <Compile Include="Assets\Scripts\ChangeColor.cs" />
+     <Compile Include="Assets\Scripts\Data\DataReader.cs" />
+     <Compile Include="Assets\Scripts\Data\GameData.cs" />
+     <Compile Include="Assets\Scripts\Data\LevelData.cs" />
+     <Compile Include="Assets\Scripts\Data\MonsterData.cs" />
+     <Compile Include="Assets\Scripts\Data\TowerData.cs" />
+     <Compile Include="Assets\Scripts\DragMe.cs" />
+     <Compile Include="Assets\Scripts\DragPanel.cs" />
+     <Compile Include="Assets\Scripts\DropMe.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Abilities\EnemyAbility.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Abilities\Heal.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Abilities\Shield.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Abilities\Summon.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Abilities\UndegroundTravel.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Fire\EnemyFire.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Fire\EnemyProjectile.cs" />
+     <Compile Include="Assets\Scripts\Generic\Projectile.cs" />
+     <Compile Include="Assets\Scripts\Generic\Properties.cs" />
+     <Compile Include="Assets\Scripts\Level\GamePlay.cs" />
+     <Compile Include="Assets\Scripts\Level\Grid.cs" />
+     <Compile Include="Assets\Scripts\Level\Waypoint.cs" />
+     <Compile Include="Assets\Scripts\LevelHolderScript.cs" />
+     <Compile Include="Assets\Scripts\PanelManager.cs" />
+     <Compile Include="Assets\Scripts\ResizePanel.cs" />
+     <Compile Include="Assets\Scripts\ScrollDetailTexture.cs" />
+     <Compile Include="Assets\Scripts\ShowSliderValue.cs" />
+     <Compile Include="Assets\Scripts\TiltWindow.cs" />
+     <Compile Include="Assets\Scripts\Towers\CannonTower.cs" />
+     <Compile Include="Assets\Scripts\Towers\ElectricalTower.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\CannonTowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\ElectricalTowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\GunTowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\PoisonTowerBomb.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\PoisonTowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\ScytheTowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\SplashFireArea.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\SplashTowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\TowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\Fire\TowernautTowerFire.cs" />
+     <Compile Include="Assets\Scripts\Towers\GunTower.cs" />
+     <Compile Include="Assets\Scripts\Towers\PoisonTower.cs" />
+     <Compile Include="Assets\Scripts\Towers\ScytheTower.cs" />
+     <Compile Include="Assets\Scripts\Towers\SoulTower.cs" />
+     <Compile Include="Assets\Scripts\Towers\Tower.cs" />
+     <Compile Include="Assets\Scripts\Towers\TowerStats.cs" />
+     <Compile Include="Assets\Scripts\Towers\TowernautTower.cs" />
+     <Compile Include="Assets\Scripts\UI\BuildTowerButton.cs" />
+     <Compile Include="Assets\Scripts\UI\BuildTowerUI.cs" />
+     <Compile Include="Assets\Scripts\UI\Currency.cs" />
+     <Compile Include="Assets\Scripts\UI\EndLevelUI.cs" />
+     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\UI\LevelButtonUI.cs" />
+     <Compile Include="Assets\Scripts\UI\LevelsMenu.cs" />
+     <Compile Include="Assets\Scripts\UI\PauseLevelUI.cs" />
+     <Compile Include="Assets\Scripts\UI\SelectEnemy.cs" />
+     <Compile Include="Assets\Scripts\UI\TowerButton.cs" />
+     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts\UI\UpgradeTowerButton.cs" />
+     <Compile Include="Assets\Scripts\UI\UpgradeTowerUI.cs" />
+     <None Include="Assets\TD_Towers.xml" />
+     <None Include="Assets\TDDesignData.xml" />
+     <None Include="Assets\Data\Cards.xml" />
+     <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
+     <None Include="Assets\Data\Level3.xml" />
+     <None Include="Assets\Data\Level5.xml" />
+     <None Include="Assets\LeanTween\ReadMe.txt" />
+     <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
+     <None Include="Assets\Data\Level4.xml" />
+     <None Include="Assets\Data\Level6.xml" />
+     <None Include="Assets\Data\Towers.xml" />
+     <None Include="Assets\Textures and Sprites\SF UI\Background\LICENSE.txt" />
+     <None Include="Assets\Data\Level1.xml" />
+     <None Include="Assets\Materials\UI-Default-No-Alpha.shader" />
+     <None Include="Assets\Data\Level2.xml" />
+     <None Include="Assets\TDDesignData_Towers.xml" />
+     <None Include="Assets\Data\Monsters.xml" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>/Users/work/Projects/TowerDefenseAI/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="Excel">
+ <HintPath>/Users/work/Projects/TowerDefenseAI/Assets/Plugins/Excel.dll</HintPath>
+ </Reference>
+ <Reference Include="ICSharpCode.SharpZipLib">
+ <HintPath>/Users/work/Projects/TowerDefenseAI/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{9D89384B-79FD-75F4-DB06-ECFC0FA60509}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
+      <Project>{9D89384B-79FD-75F4-DB06-ECFC0FA60509}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -184,7 +183,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Assets\Scripts\AI\Objects\" />
-  </ItemGroup>
+  
 </Project>

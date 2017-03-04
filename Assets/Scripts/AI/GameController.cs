@@ -50,6 +50,8 @@ namespace AI.Controller
 			}
 		}
 
+		// add game over todo
+
 		public void DoAnalysis ()
 		{
 			GameOperater go = new GameOperater ();
