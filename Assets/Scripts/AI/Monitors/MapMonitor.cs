@@ -7,13 +7,10 @@ namespace AI.Monitors
 {
 	public class MapMonitor: Monitor
 	{
-		private GameData gameData;
 		public List<int[]> mapGrid;
 
 		public MapMonitor ()
 		{
-			gameData = new GameData ();
-			gameData.Load ();
 			this.mapGrid = gameData.GetCurrentLevel ().grid;
 		}
 
@@ -41,6 +38,16 @@ namespace AI.Monitors
 				}
 			}
 			return res;	
+		}
+
+		public int GetMonsterCount ()
+		{
+			return gamePlay.monsterCount;
+		}
+
+		public int GetLife ()
+		{
+			return gamePlay.remainLife;
 		}
 	}
 }

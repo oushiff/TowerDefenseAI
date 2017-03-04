@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using AI.DTO;
 
 namespace AI.Operator
 {
@@ -42,6 +43,7 @@ namespace AI.Operator
 
 				// Place the tower on the grid
 				GamePlay.instance.activeTowers.Add (tower);
+
 				return true;
 			}
 			return false;

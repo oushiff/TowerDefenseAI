@@ -8,36 +8,15 @@ namespace AI
 {
 	public class Monitor : MonoBehaviour
 	{
-		// need to declare some interfaces
-		public static Monitor _instance = null;
+		public GameData gameData;
+		public GamePlay gamePlay;
+		public GameObject gameObject;
 
-		public static Monitor instance {
-			set {
-				_instance = value;
-				if (_instance != null) {
-					_instance.Initialize ();
-				}
-			}
-			get {
-				if (_instance == null) {
-					_instance = (Monitor)FindObjectOfType (typeof(Monitor));
-
-					if (_instance == null) {
-						GameObject newInstance = new GameObject ("Monitor");
-						_instance = newInstance.AddComponent <Monitor> ();
-						DontDestroyOnLoad (newInstance); 						// may change in the future
-					}
-				}
-				return _instance;
-			}
-		}
-
-		public void Initialize ()
+		public Monitor ()
 		{
-//			_instance.LoadMonsters ();
-//			_instance.LoadTowers ();
-//			_instance.LoadCards ();
+			this.gameData = GameData.instance;
+			this.gamePlay = GamePlay.instance;
+			this.gameObject = new GameObject ();
 		}
 	}
 }
-
