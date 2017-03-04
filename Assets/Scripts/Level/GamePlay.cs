@@ -38,7 +38,7 @@ public class GamePlay : MonoBehaviour
 
 
 	public int monsterCount = 0;  // FFFFFFFFFFFFFFFF
-
+	public int remainLife = 10;   //FFFFFFFFFFFF
 
     void Awake()
     {
@@ -190,6 +190,7 @@ public class GamePlay : MonoBehaviour
 		
 		//FFFFFFFFFFFFFFFFFFF
 		if (doesArrive) {
+			remainLife--;
 			Debug.Log ("[Monster Arrive] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
 		} else {
 			Debug.Log("[Monster Dead] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
