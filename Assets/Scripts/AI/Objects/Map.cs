@@ -27,11 +27,18 @@ namespace AI.DTO
 			this.tower_pos = new List<double[]> ();
 		}
 
-		public void UpdatePos (double x, double y)
+		public Boolean UpdatePos (double x, double y)
 		{
 			double[] pos = { x, y };
 			this.tower_pos.Add (pos);
-			this.vacant_pos.Remove (pos);
+			for (int i = 0; i < this.vacant_pos.Count; i++) {
+				if (vacant_pos [i] [0] == x && vacant_pos [i] [1] == y) {
+					this.vacant_pos.RemoveAt (i);
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 	}

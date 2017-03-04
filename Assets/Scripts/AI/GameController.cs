@@ -29,13 +29,19 @@ namespace AI.Controller
 		//		public List<double[]> rank;
 		//		// index of the place to build tower
 		//		public int index = 0;
-		//		public int time = 0;
+		public int time = 0;
+
+
+		Map map;
+		public Boolean flag;
 
 		void Start ()
 		{
+			map = new Map ();
+			flag = true;
 //			m_map = new MapMonitor ();
 //			m_tower = new TowerMonitor ();
-////			m_monster = new MonsterMonitor ();
+//			m_monster = new MonsterMonitor ();
 //			m_money = new MoneyMonitor ();
 //			money = m_money.GetStartingMoney ();
 //			c_roads = m_map.GetRoadsCoordinates ();
@@ -43,17 +49,11 @@ namespace AI.Controller
 
 		void Update ()
 		{
-			AI.DTO.Map map = new AI.DTO.Map ();
-			map.UpdatePos (1, 2);
-
-
-
-			//			money = m_money.GetCurrentMoney ();
-			//			int time_n = (int)Time.time;
-			//			if (money > 60 && (time_n % 5 == 0) && time_n != time) {
-			//				DoAnalysis ();
-			//				time = time_n;
-			//			}
+			if (flag) {
+				Debug.Log ("run");
+				map.UpdatePos (1, 0);
+				flag = false;
+			}
 		}
 	}
 }

@@ -10,13 +10,13 @@ namespace AI
 	{
 		public GameData gameData;
 		public GamePlay gamePlay;
-		public GameObject gameObject;
+		//		public GameObject gameObject;
 
 		public Monitor ()
 		{
 			this.gameData = GameData.instance;
 			this.gamePlay = GamePlay.instance;
-			this.gameObject = new GameObject ();
+//			this.gameObject = new GameObject ();
 		}
 	}
 }
