@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AI;
+using Monitor
 
 namespace AI.DTO
 {
@@ -12,6 +14,8 @@ namespace AI.DTO
 		// has build tower
 		List<Tower> towers;
 		int life;
+
+		MapMonitor m_monitor;
 
 		public Map ()
 		{

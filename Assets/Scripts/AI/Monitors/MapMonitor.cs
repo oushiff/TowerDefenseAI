@@ -42,18 +42,6 @@ namespace AI.Monitors
 			}
 			return res;	
 		}
-
-		public LevelData GetPlaceHaveTower ()
-		{
-			// todo
-			return null;
-		}
-
-		public LevelData GetPlaceCouldBuildTower ()
-		{
-			// todo
-			return null;
-		}
 	}
 }
 
