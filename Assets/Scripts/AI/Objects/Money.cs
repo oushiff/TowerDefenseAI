@@ -10,7 +10,6 @@ namespace AI.DTO
 		public int currentMoney;
 		public int startingMoney;
 		public ArrayList money_sequence;
-		// when money change, add a past item
 
 		private MoneyMonitor m_monitor;
 
@@ -24,11 +23,6 @@ namespace AI.DTO
 		public void UpdateMoneySeq (int money)
 		{
 			this.money_sequence.Add (money);
-		}
-
-		public void UpdateMoneySeq (int money, int index)
-		{
-			//todo
 		}
 
 		public void RemoveMoneySeq (int index)

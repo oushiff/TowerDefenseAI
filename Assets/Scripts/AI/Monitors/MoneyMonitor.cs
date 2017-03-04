@@ -6,7 +6,7 @@ namespace AI.Monitors
 	{
 		public int GetStartingMoney ()
 		{
-			return GameData.instance.GetCurrentLevel ().startingMoney;
+			return gameData.GetCurrentLevel ().startingMoney;
 		}
 
 		public int GetCurrentMoney ()

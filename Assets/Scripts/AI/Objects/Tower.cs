@@ -1,4 +1,5 @@
 ﻿using System;
+using AI.Monitors;
 
 namespace AI.DTO
 {
@@ -17,9 +18,12 @@ namespace AI.DTO
 		public double attack;
 		public double freq;
 
+		private TowerMonitor t_monitor;
+
 
 		public Tower ()
 		{
+			this.t_monitor = new TowerMonitor ();
 		}
 	}
 }

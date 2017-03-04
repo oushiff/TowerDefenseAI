@@ -51,7 +51,7 @@ namespace AI.Controller
 		{
 			if (flag) {
 				Debug.Log ("run");
-				map.UpdatePos (1, 0);
+
 				flag = false;
 			}
 		}
