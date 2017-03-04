@@ -4,18 +4,18 @@ namespace AI.DTO
 {
 	public class Tower
 	{
-		int range;
-		int[] money_level;
-		int[] current_level;
-		int armor;
-		int reboot_time;
+		public int range;
+		public int[] money_level;
+		public int[] current_level;
+		public int armor;
+		public int reboot_time;
 
 		//		int kills;
 
-		double x;
-		double y;
-		double attack;
-		double freq;
+		public double x;
+		public double y;
+		public double attack;
+		public double freq;
 
 
 		public Tower ()

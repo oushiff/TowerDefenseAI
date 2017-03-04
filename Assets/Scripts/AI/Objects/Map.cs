@@ -1,25 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using AI;
-using Monitor
+using AI.Monitors;
 
 namespace AI.DTO
 {
 	public class Map
 	{
-		List<double[]> roads;
-		List<double[]> vacant_pos;
-		// couble build tower
-		List<double[]> tower_pos;
-		// has build tower
-		List<Tower> towers;
-		int life;
+		public List<double[]> roads;
+		public List<double[]> vacant_pos;
+		public List<double[]> tower_pos;
+		public List<Tower> towers;
 
-		MapMonitor m_monitor;
+		private MapMonitor m_monitor;
 
 		public Map ()
 		{
+			m_monitor = new MapMonitor ();
+			this.roads = m_monitor.GetRoadsCoordinates ();
+			this.vacant_pos = m_monitor.GetAllCandidateSpacesAtBeginning ();
+
+			this.tower_pos = new List<double[]> ();
 		}
+
+		public int GetMonsterCount ()
+		{
+			return GamePlay.instance.monsterCount;
+		}
+
+		public int GetLife ()
+		{
+			return GamePlay.instance.remainLife;
+		}
+
+		public void UpdatePos (double[] pos)
+		{
+			this.tower_pos.Add (pos);
+			this.vacant_pos.Remove (pos);
+		}
+
 	}
 }
 
