@@ -36,6 +36,7 @@ public class SplashFireArea : MonoBehaviour {
 
 			if (enemy != null) {
 				enemiesInRange.Add (enemy.gameObject);
+                Debug.Log("lolollo:   "+enemiesInRange.Count);
 			}
 		}
 	}

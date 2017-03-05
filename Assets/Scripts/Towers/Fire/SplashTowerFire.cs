@@ -25,6 +25,7 @@ public class SplashTowerFire : TowerFire {
 				if (maxHits-- > 0)
 				{
 					List<GameObject> enemies = splashFire.enemiesInRange;
+                    Debug.Log("this is the enemy:  " + splashFire.enemiesInRange.Count);
 					if(enemies.Count > 0)
 					{
 						for( int i = 0 ; i < enemies.Count ; i++)
