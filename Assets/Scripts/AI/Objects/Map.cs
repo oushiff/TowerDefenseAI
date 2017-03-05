@@ -15,11 +15,10 @@ namespace AI.DTO
 		public int monster_count;
 		public int remain_life;
 
-		private MapMonitor m_monitor;
+		private MapMonitor m_monitor = new MapMonitor ();
 
 		public Map ()
 		{
-			m_monitor = new MapMonitor ();
 			this.roads = m_monitor.GetRoadsCoordinates ();
 			this.vacant_pos = m_monitor.GetAllCandidateSpacesAtBeginning ();
 			this.monster_count = m_monitor.GetMonsterCount ();

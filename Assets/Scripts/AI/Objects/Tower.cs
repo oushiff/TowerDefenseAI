@@ -10,20 +10,19 @@ namespace AI.DTO
 		public int[] current_level;
 		public int armor;
 		public int reboot_time;
-
-		//		int kills;
+		public int kills;
 
 		public double x;
 		public double y;
 		public double attack;
 		public double freq;
 
-		private TowerMonitor t_monitor = new TowerMonitor ();
+		public TowerMonitor t_monitor = new TowerMonitor ();
 
 
 		public Tower ()
 		{
-			this.t_monitor = new TowerMonitor ();
+			this.kills = 0;
 		}
 	}
 }
