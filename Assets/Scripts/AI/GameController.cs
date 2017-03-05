@@ -50,8 +50,10 @@ namespace AI.Controller
 		void Update ()
 		{
 			if (flag) {
-				Debug.Log ("run");
-
+//				TowerData.Level a = GameData.instance.GetTower ("Gun", 4); // 0 1 2 3 4
+				Money m = new Money ();
+				Debug.Log (m.currentMoney);
+				Debug.Log (m.startingMoney);
 				flag = false;
 			}
 		}

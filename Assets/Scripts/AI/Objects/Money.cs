@@ -11,7 +11,7 @@ namespace AI.DTO
 		public int startingMoney;
 		public ArrayList money_sequence;
 
-		private MoneyMonitor m_monitor;
+		private MoneyMonitor m_monitor = new MoneyMonitor ();
 
 		public Money ()
 		{

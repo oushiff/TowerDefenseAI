@@ -18,7 +18,7 @@ namespace AI.DTO
 		public double attack;
 		public double freq;
 
-		private TowerMonitor t_monitor;
+		private TowerMonitor t_monitor = new TowerMonitor ();
 
 
 		public Tower ()
