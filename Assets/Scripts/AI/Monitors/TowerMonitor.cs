@@ -15,6 +15,7 @@ namespace AI.Monitors
 	{
 		String[] type = { "Gun", "Cannon", "Poison", "Electrical", "Scythe",  "Towernaut" };
 
+//		TowerData tw = new TowerData("Gun")
 		public TowerMonitor ()
 		{
 			for (int i = 0; i < type.Length; i++) {

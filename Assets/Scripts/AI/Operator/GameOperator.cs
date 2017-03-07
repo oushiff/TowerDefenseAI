@@ -5,7 +5,7 @@ using AI.DTO;
 
 namespace AI.Operator
 {
-	public class GameOperater: TowerButton
+	public class GameOperator: TowerButton
 	{
 		public List<BuildTowerButton> towerButtons;
 		public Transform towersRoot;

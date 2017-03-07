@@ -70,17 +70,17 @@
      <None Include="Assets\Data\Level2.xml" />
      <None Include="Assets\TDDesignData_Towers.xml" />
      <None Include="Assets\Data\Monsters.xml" />
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
  <Reference Include="Excel">
- <HintPath>/Users/work/Projects/TowerDefenseAI/Assets/Plugins/Excel.dll</HintPath>
+ <HintPath>/Users/hongruzh/Desktop/CSCI524/TowerDefenseAI/Assets/Plugins/Excel.dll</HintPath>
  </Reference>
  <Reference Include="ICSharpCode.SharpZipLib">
- <HintPath>/Users/work/Projects/TowerDefenseAI/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+ <HintPath>/Users/hongruzh/Desktop/CSCI524/TowerDefenseAI/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

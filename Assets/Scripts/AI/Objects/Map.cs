@@ -24,7 +24,7 @@ namespace AI.DTO
 			this.vacant_pos = m_monitor.GetAllCandidateSpacesAtBeginning ();
 			this.monster_count = m_monitor.GetMonsterCount ();
 			this.remain_life = m_monitor.GetLife ();
-			this.tower_pos = new List<double[]> ();
+			this.tower_pos = m_monitor.GetAllCandidateSpacesAtBeginning ();
 		}
 
 		public Boolean UpdatePos (double x, double y)

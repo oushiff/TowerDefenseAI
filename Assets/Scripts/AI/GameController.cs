@@ -55,6 +55,8 @@ namespace AI.Controller
 				Debug.Log (m.currentMoney);
 				Debug.Log (m.startingMoney);
 				flag = false;
+				HumanSimulator h = new HumanSimulator();
+				h.humanSimulator ();
 			}
 		}
 	}
