@@ -128,8 +128,8 @@
 			<damage>15</damage>
 			<hp>20</hp>
 			<armor>4</armor>
-			<range>2</range>
-			<rateOfFire>4</rateOfFire>
+			<range>10</range>
+			<rateOfFire>2</rateOfFire>
 			<cost>70</cost>
 			<effect>4</effect>
 			<rebootTime>7</rebootTime>

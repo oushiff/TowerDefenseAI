@@ -1,0 +1,13 @@
+D:\TowerDefenseAI\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\TowerDefenseAI\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+D:\TowerDefenseAI\Temp\bin\Debug\Mono.Cecil.dll
+D:\TowerDefenseAI\Temp\bin\Debug\Unity.SerializationLogic.dll
+D:\TowerDefenseAI\Temp\bin\Debug\Unity.DataContract.dll
+D:\TowerDefenseAI\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+D:\TowerDefenseAI\Temp\bin\Debug\Unity.UNetWeaver.dll
+D:\TowerDefenseAI\Temp\bin\Debug\Unity.CecilTools.dll
+D:\TowerDefenseAI\Temp\bin\Debug\Mono.Cecil.Pdb.dll
+D:\TowerDefenseAI\Temp\bin\Debug\Mono.Cecil.Mdb.dll
+D:\TowerDefenseAI\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
+D:\TowerDefenseAI\obj\Debug\Assembly-CSharp-firstpass.dll
+D:\TowerDefenseAI\obj\Debug\Assembly-CSharp-firstpass.pdb

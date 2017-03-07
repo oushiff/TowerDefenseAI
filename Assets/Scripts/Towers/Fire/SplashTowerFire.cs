@@ -17,13 +17,12 @@ public class SplashTowerFire : TowerFire {
 		if(intruderCollider.CompareTag("Enemy"))
 		{
 			Enemy intruder = intruderCollider.GetComponent<Enemy>();
-			//if (intruder == null)
-			//	intruder = intruderCollider.transform.parent.GetComponent<Enemy>();
 
 			if (intruder != null && intruder.isValidTarget(flying))
 			{
 				if (maxHits-- > 0)
 				{
+					splashFire.enemiesInRange.Add (intruder.gameObject);
 					List<GameObject> enemies = splashFire.enemiesInRange;
 					if(enemies.Count > 0)
 					{

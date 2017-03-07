@@ -31,6 +31,7 @@ public class SplashFireArea : MonoBehaviour {
 	{
 		if (intruder.CompareTag ("Enemy")) {
 			Enemy enemy = intruder.GetComponent<Enemy> ();
+
 			if (enemy == null && intruder.transform.parent != null)
 				enemy = intruder.transform.parent.GetComponent<Enemy> ();
 

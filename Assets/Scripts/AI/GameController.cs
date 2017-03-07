@@ -51,9 +51,8 @@ namespace AI.Controller
 		{
 			if (flag) {
 //				TowerData.Level a = GameData.instance.GetTower ("Gun", 4); // 0 1 2 3 4
-				Money m = new Money ();
-				Debug.Log (m.currentMoney);
-				Debug.Log (m.startingMoney);
+				Debug.Log ("run");
+				AI.DTO.Tower t = new AI.DTO.Tower ();
 				flag = false;
 				HumanSimulator h = new HumanSimulator();
 				h.humanSimulator ();

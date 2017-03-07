@@ -9,9 +9,16 @@ namespace AI.Monitors
 	{
 		public List<int[]> mapGrid;
 
+		public int wayPointsNum;
+		public List<int[]> wayPoints;
+		public int[] startPos;
+		public int[] destinationPos;
+
 		public MapMonitor ()
 		{
 			this.mapGrid = gameData.GetCurrentLevel ().grid;
+			this.wayPointsNum = gameData.GetCurrentLevel ().waypointsNo;
+			this.wayPoints = gameData.GetCurrentLevel ().waypoints;
 		}
 
 		public List<double[]> GetRoadsCoordinates ()
@@ -40,6 +47,33 @@ namespace AI.Monitors
 			return res;	
 		}
 
+		public int[][] GetAllCornerPoints() {
+			int[][] res = new int[this.wayPointsNum + 1] []; 
+			res [0] = new int[2] { -1, -1 };
+			for (int i = 0; i < wayPoints.Count; i++) {
+				for (int j = 0; j < wayPoints [i].Length; j++) {
+					if (wayPoints [i] [j] != 0) {
+						res[wayPoints [i] [j]] = new int[2]{i, j};
+					}
+				}
+			}
+			return res;	
+		} 
+
+		public int[][] getStartDistanation() {
+			int[][] res = new int[2] []; 
+			for (int i = 0; i < mapGrid.Count; i++) {
+				for (int j = 0; j < mapGrid [i].Length; j++) {
+					if (mapGrid [i] [j] == 47) {
+						res[0] = new int[2]{i, j};
+					} else if (mapGrid [i] [j] == 14) {
+						res[1] = new int[2]{i, j};
+					}  
+				}
+			}
+			return res;	
+		}
+
 		public int GetMonsterCount ()
 		{
 			return gamePlay.monsterCount;
@@ -48,6 +82,10 @@ namespace AI.Monitors
 		public int GetLife ()
 		{
 			return gamePlay.remainLife;
+		}
+
+		public int GetWayPointNum () {
+			return wayPointsNum;
 		}
 	}
 }
