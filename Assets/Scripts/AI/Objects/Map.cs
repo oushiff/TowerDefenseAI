@@ -64,7 +64,7 @@ namespace AI.DTO
 
 		public void buildTiles() { 
 			int[] prevPos = this.startPos;
-			int[] curPos;
+			int[] curPos = null;
 			int[][] cornerPoints = m_monitor.GetAllCornerPoints ();
 			foreach (int[] pos in cornerPoints) {
 				curPos = pos;
