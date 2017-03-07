@@ -1,5 +1,6 @@
 ﻿using System;
 using AI.Monitors;
+using System.Collections.Generic;
 
 namespace AI.DTO
 {
@@ -12,10 +13,10 @@ namespace AI.DTO
 		public int reboot_time;
 		public int kills;
 
-		public double x;
-		public double y;
+		public int[] pos;  
 		public double attack;
 		public double freq;
+		public double effect;
 
 		public TowerMonitor t_monitor = new TowerMonitor ();
 
@@ -23,6 +24,20 @@ namespace AI.DTO
 		public Tower ()
 		{
 			this.kills = 0;
+		}
+
+
+		public double getMaxDamage(List<int> inRangeDistance, List<int> effectDistance) {
+			double sum = 0;
+			double dps = (double) attack / freq;
+			foreach (int distance in inRangeDistance) {
+				sum += dps * distance;
+			}
+
+			foreach (int distance in effectDistance) {
+				sum += effect * distance;
+			}
+			return sum;
 		}
 	}
 }

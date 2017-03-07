@@ -48,7 +48,8 @@ namespace AI.Monitors
 		}
 
 		public int[][] GetAllCornerPoints() {
-			int[][] res = new int[this.wayPointsNum] []; 
+			int[][] res = new int[this.wayPointsNum + 1] []; 
+			res [0] = new int[2] { -1, -1 };
 			for (int i = 0; i < wayPoints.Count; i++) {
 				for (int j = 0; j < wayPoints [i].Length; j++) {
 					if (wayPoints [i] [j] != 0) {

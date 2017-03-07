@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using AI.Monitors;
 using System.Diagnostics;
@@ -19,7 +20,7 @@ using System.Diagnostics;
 
 namespace AI.DTO
 {
-	public class Map
+	public class Map : MonoBehaviour
 	{
 		public List<double[]> roads;
 		public List<Tile> tiles;
@@ -48,11 +49,14 @@ namespace AI.DTO
 			int[][] startDestination = m_monitor.getStartDistanation ();
 			this.startPos = startDestination [0];
 			this.destinationPos = startDestination [1];
+			this.tiles = new List<Tile> ();
 			buildTiles ();
 		}
 
 
 		public void buildTilesInLine(int[] prevPos, int[] destinationPos) {
+			UnityEngine.Debug.Log ("  +++++ ");
+			UnityEngine.Debug.Log ("   "+destinationPos   );
 			int point = m_monitor.wayPoints [destinationPos [0]] [destinationPos [1]]; 
 			int dx = destinationPos [0] - prevPos [0];
 			int dy = destinationPos [1] - prevPos [1];
@@ -66,8 +70,13 @@ namespace AI.DTO
 			int[] prevPos = this.startPos;
 			int[] curPos = null;
 			int[][] cornerPoints = m_monitor.GetAllCornerPoints ();
-			foreach (int[] pos in cornerPoints) {
+
+			for (int i = 1 ; i < cornerPoints.Length; i++) {
+				int[] pos = cornerPoints[i];
+				UnityEngine.Debug.Log ("  +---!!!----++ " + cornerPoints[i].Length);
+				UnityEngine.Debug.Log ("  +-------++ ");
 				curPos = pos;
+				UnityEngine.Debug.Log ("  +-------++ " + pos.Length);
 				buildTilesInLine (prevPos, curPos);
 				prevPos = curPos;
 			}
