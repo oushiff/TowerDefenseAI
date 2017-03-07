@@ -55,9 +55,30 @@ namespace AI
 			return false;
 		}
 
-		public Boolean UpgradeTower ()
+		public Boolean UpgradeTower (int index, double[] pos)
 		{
-			//todo
+			UIManager.instance.RegisterUIClick ();
+
+			// set screen Position
+			Vector3 Position = Vector3.zero;
+			Position.x = (float)pos [0];
+			Position.y = 0.0f;
+			Position.z = (float)pos [1];
+
+			TowerData.Level selectedTower = GameData.instance.GetCurrentLevel ().towers [index];
+
+			GameObject towerObject = selectedTower.tower.GetPrefab ();
+
+			Debug.Log ("   ddddddd");
+
+			//GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
+			Tower tower = towerObject.GetComponent<Tower> ();
+
+			Debug.Log (tower);
+
+
+			tower.UpgradeTower (1);
+
 			return true;
 		}
 

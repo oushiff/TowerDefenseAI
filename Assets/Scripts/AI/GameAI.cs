@@ -55,7 +55,7 @@ namespace AI
 
 		public void DoAnalysis ()
 		{
-            
+
 			GameOperater go = new GameOperater ();
 			rank = FindBestPlaceToBuildTower (c_roads, m_map.GetAllCandidateSpacesAtBeginning ());
             pos.x = (float)rank[index][0];
@@ -72,7 +72,9 @@ namespace AI
             }
             else if(positions.Count == 9)
             {
-                if (go.UpgradeTower())
+	
+				
+				if (go.UpgradeTower(index % 4, rank[index]))
                 {
 
                 }
