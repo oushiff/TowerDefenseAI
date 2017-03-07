@@ -157,6 +157,7 @@ GameObject:
   - 4: {fileID: 28}
   - 114: {fileID: 24}
   - 114: {fileID: 30}
+  - 114: {fileID: 25}
   m_Layer: 0
   m_Name: World
   m_TagString: ExcelReader
@@ -175,6 +176,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225975c28ad99a84c80e1b33ddb5308b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &25
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 23}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479fa385f2ca8456ba8bcb201e745d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  time: 0
 --- !u!4 &28
 Transform:
   m_ObjectHideFlags: 0

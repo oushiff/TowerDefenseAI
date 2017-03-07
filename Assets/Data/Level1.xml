@@ -116,6 +116,38 @@
 				<ID>6</ID>
 			</Monster>
 		</Wave>
+    <Wave>
+      <Monster>
+        <Seconds>6</Seconds>
+        <Amount>3</Amount>
+        <ID>1</ID>
+      </Monster>
+      <Monster>
+        <Seconds>6</Seconds>
+        <Amount>6</Amount>
+        <ID>1</ID>
+      </Monster>
+      <Monster>
+        <Seconds>8</Seconds>
+        <Amount>4</Amount>
+        <ID>1</ID>
+      </Monster>
+      <Monster>
+        <Seconds>13</Seconds>
+        <Amount>2</Amount>
+        <ID>2</ID>
+      </Monster>
+      <Monster>
+        <Seconds>17</Seconds>
+        <Amount>3</Amount>
+        <ID>2</ID>
+      </Monster>
+      <Monster>
+        <Seconds>22</Seconds>
+        <Amount>5</Amount>
+        <ID>1</ID>
+      </Monster>
+    </Wave>
 		<Wave>
 			<Monster>
 				<Seconds>2</Seconds>
@@ -180,6 +212,38 @@
 				<ID>15</ID>
 			</Monster>
 		</Wave>
+    <Wave>
+      <Monster>
+        <Seconds>6</Seconds>
+        <Amount>3</Amount>
+        <ID>1</ID>
+      </Monster>
+      <Monster>
+        <Seconds>6</Seconds>
+        <Amount>6</Amount>
+        <ID>1</ID>
+      </Monster>
+      <Monster>
+        <Seconds>8</Seconds>
+        <Amount>4</Amount>
+        <ID>1</ID>
+      </Monster>
+      <Monster>
+        <Seconds>13</Seconds>
+        <Amount>2</Amount>
+        <ID>2</ID>
+      </Monster>
+      <Monster>
+        <Seconds>17</Seconds>
+        <Amount>3</Amount>
+        <ID>2</ID>
+      </Monster>
+      <Monster>
+        <Seconds>22</Seconds>
+        <Amount>5</Amount>
+        <ID>1</ID>
+      </Monster>
+    </Wave>
 		<Wave>
 			<Monster>
 				<Seconds>2</Seconds>

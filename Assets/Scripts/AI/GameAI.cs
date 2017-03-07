@@ -23,15 +23,15 @@ namespace AI
 		private ArrayList monsters;
 		private ArrayList tower;
 		private int money;
-
+        private List<Vector3> positions = new List<Vector3>();
 
 		//tmp value, need delete in the future
 		public List<double[]> rank;
 		// index of the place to build tower
 		public int index = 0;
 		public int time = 0;
-
-		void Start ()
+        public Vector3 pos = new Vector3();
+        void Start ()
 		{
 			m_map = new MapMonitor ();
 			m_tower = new TowerMonitor ();
@@ -39,8 +39,10 @@ namespace AI
 			m_money = new MoneyMonitor ();
 			money = m_money.GetStartingMoney ();
 			c_roads = m_map.GetRoadsCoordinates ();
-		}
-
+            Time.timeScale = 5;
+            
+        }
+         
 		void Update ()
 		{
 			money = m_money.GetCurrentMoney ();
@@ -53,12 +55,28 @@ namespace AI
 
 		public void DoAnalysis ()
 		{
+            
 			GameOperater go = new GameOperater ();
 			rank = FindBestPlaceToBuildTower (c_roads, m_map.GetAllCandidateSpacesAtBeginning ());
-			if (go.BuildTower (index % 4, rank [index])) {
-				index++;
-				index %= rank.Count;
-			}
+            pos.x = (float)rank[index][0];
+            pos.y = 0.0f;
+            pos.z = (float)rank[index][1];
+            if (!positions.Contains(pos)&&(positions.Count!=9))
+            {
+                if (go.BuildTower(index % 4, rank[index]))
+                {
+                    index++;
+                    index %= rank.Count;
+                    positions.Add(pos);
+                }
+            }
+            else if(positions.Count == 9)
+            {
+                if (go.UpgradeTower())
+                {
+
+                }
+            }
 		}
 
 		public Boolean DoOperation (string operation_type, double[] location)

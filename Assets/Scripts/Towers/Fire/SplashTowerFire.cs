@@ -24,6 +24,7 @@ public class SplashTowerFire : TowerFire {
 			{
 				if (maxHits-- > 0)
 				{
+                    splashFire.enemiesInRange.Add(intruder.gameObject);
 					List<GameObject> enemies = splashFire.enemiesInRange;
 					if(enemies.Count > 0)
 					{

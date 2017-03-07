@@ -1,12 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-
 // build && remove tower
 using Excel.Log;
-using System.Collections.Generic;
 using UnityEngine.UI;
-
 namespace AI
 {
 	public class GameOperater: TowerButton
@@ -18,10 +15,9 @@ namespace AI
 		private Vector2 initialSize;
 		private CanvasGroup canvasGroup;
 		private GameObject selectedPlane;
-
 		public GameOperater ()
 		{
-		}
+        }
 
 		public Boolean BuildTower (int index, double[] pos)
 		{
@@ -38,7 +34,6 @@ namespace AI
 			Position.y = 0.0f;
 			Position.z = (float)pos [1];
 
-
 			TowerData.Level selectedTower = GameData.instance.GetCurrentLevel ().towers [index];
 			// Calculate cost for new tower
 			int towerCost = (int)selectedTower.GetProperty (GameData.GameProperies.COST);
@@ -47,9 +42,9 @@ namespace AI
 
 			// If there are enough money to build the tower, deduct them
 			if (Currency.instance.UseCoins (towerCost)) {
-				// Build the tower
-				GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
-				Tower tower = towerObject.GetComponent<Tower> ();
+                // Build the tower
+                GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
+                Tower tower = towerObject.GetComponent<Tower> ();
 				tower.transform.parent = towersRoot;
 //				selectedPlane.tag = Grid.PLANE_NO_HOVER;
 
