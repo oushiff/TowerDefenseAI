@@ -200,7 +200,7 @@ public class Enemy : MonoBehaviour
                     UIManager.instance.ReleaseHealthBar(healthBar);
                     Currency.instance.GainCoins((int) properties.active.coins);
                     //GamePlay.activeEnemies.Remove(this);
-                    GamePlay.instance.KillEnemy(this);
+                    GamePlay.instance.KillEnemy(this, false);
                     notifySoulWellDied();
                     Destroy(gameObject);
                 }

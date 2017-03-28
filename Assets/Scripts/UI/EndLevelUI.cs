@@ -17,7 +17,7 @@ public class EndLevelUI : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
-    void ShowUI()
+	public void ShowUI()
     {
         UIManager.instance.RegisterUIClick();
         LeanTween.scale(gameObject, Vector3.one, 0.1f);

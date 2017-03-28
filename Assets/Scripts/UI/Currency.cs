@@ -76,4 +76,9 @@ public class Currency : MonoBehaviour
 	{
 		return coins;
 	}
+
+
+	public void ResetMoney () {
+		coins = startingCoins;
+	}
 }

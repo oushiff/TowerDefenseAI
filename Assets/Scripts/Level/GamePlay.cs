@@ -9,6 +9,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+//using AI.GameAI;
 
 public class GamePlay : MonoBehaviour
 {
@@ -35,6 +36,13 @@ public class GamePlay : MonoBehaviour
     public int generateWaves = 1;
     public List<Enemy> activeEnemies = new List<Enemy>();
     public List<Tower> activeTowers = new List<Tower>();
+
+
+	public int monsterCount = 0;  // FFFFFFFFFFFFFFFF
+	public int remainLife = 10;   //FFFFFFFFFFFF
+	public AI.GameAI gameAI;      // FFFFFFF 
+	public Currency currency;
+
 
     void Awake()
     {
@@ -75,6 +83,12 @@ public class GamePlay : MonoBehaviour
             for (int monsterNo = 0; monsterNo < monstersNo; monsterNo++)
             {
                 waveMonster = waveData.GetMonster(monsterNo);
+
+
+				monsterCount += waveMonster.amount;  //FFFFFFFFFFF
+				Debug.Log ("[Monster Generate] Monster: " + waveMonster.monster.name + ", Num: " + waveMonster.amount);  //FFFF
+				Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
+
 
                 // Wait until it's time to spawn the monsters
                 yield return new WaitForSeconds(waveMonster.seconds);
@@ -171,8 +185,19 @@ public class GamePlay : MonoBehaviour
         }
     }
     */
-    public void KillEnemy(Enemy enemy)
+	public void KillEnemy(Enemy enemy, bool doesArrive)
     {
+
+		//FFFFFFFFFFFFFFFFFFF
+		if (doesArrive) {
+			remainLife--;
+			Debug.Log ("[Monster Arrive] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+		} else {
+			Debug.Log("[Monster Dead] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+		}
+		monsterCount -= 1;//FFFFFFFFFF
+		Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
+
         // Notify all towers that enemy died
         for (int i = 0; i < activeTowers.Count; ++i) {
             activeTowers[i].RemoveIntruder(enemy);
@@ -181,21 +206,29 @@ public class GamePlay : MonoBehaviour
         // Remove enemy from active enemies
         activeEnemies.Remove (enemy);
 
-        if (finishedSpawningEnemies)
-            EndLevel();
+
+		Debug.Log (finishedSpawningEnemies);
+
+		if (finishedSpawningEnemies && monsterCount == 0)
+			EndLevel();
     }
 
     public void RemoveEnemy(Enemy enemy)
     {
-        KillEnemy(enemy);
+		KillEnemy(enemy, true);
     }
 
     public void EndLevel()
     {
-        activeEnemies.Clear();
-        activeTowers.Clear();
+        
 
-        UIManager.instance.ShowEndOfLevel();
+//        UIManager.instance.ShowEndOfLevel();
+
+
+		Debug.Log ("!!!!!!  New  Round !!!!  ");
+		ClearAllData ();
+		Start ();
+
     }
 
     public void Pause()
@@ -203,4 +236,31 @@ public class GamePlay : MonoBehaviour
         paused = !paused;
         Time.timeScale = (paused) ? 0 : 1;
     }
+
+
+
+	void ClearAllData() {
+		monsterCount = 0;  // FFFFFFFFFFFFFFFF
+		remainLife = 10;   //FFFFFFFFFFFF
+		finishedSpawningEnemies = false;
+	
+		foreach (Tower tower in activeTowers) {
+			//tower.
+			//tower.enabled = false;
+			tower.gameObject.SetActive (false);
+//			GameObject[] components = tower.GetComponentsInChildren<GameObject> ();
+//			foreach (GameObject gameObject in components) {
+//				gameObject.SetActive (false);
+//			}
+			//DestroyImmediate(tower);
+		}
+
+		activeEnemies.Clear();
+		activeTowers.Clear();
+
+		gameAI.ResetPositionsList ();
+
+		currency.ResetMoney ();
+
+	}
 }

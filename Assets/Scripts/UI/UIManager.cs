@@ -8,6 +8,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+//using EndLevelUI;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -153,5 +155,13 @@ public class UIManager : MonoBehaviour
         availableHealthBars.Add(healthBar);
     }
 
-    public void ShowEndOfLevel() {}
+    public void ShowEndOfLevel() {
+		
+
+//		EndLevelUI endUI = new EndLevelUI ();
+//		endUI.ShowUI ();
+//		endUI.EndGame ();
+
+
+	}
 }

@@ -23,7 +23,7 @@ namespace AI
 		private ArrayList monsters;
 		private ArrayList tower;
 		private int money;
-        private List<Vector3> positions = new List<Vector3>();
+        public List<Vector3> positions = new List<Vector3>();
 
 		//tmp value, need delete in the future
 		public List<double[]> rank;
@@ -55,6 +55,7 @@ namespace AI
 
 		public void DoAnalysis ()
 		{
+			Debug.Log ("PosListNum:   " + positions.Count);
 
 			GameOperater go = new GameOperater ();
 			rank = FindBestPlaceToBuildTower (c_roads, m_map.GetAllCandidateSpacesAtBeginning ());
@@ -124,6 +125,13 @@ namespace AI
 		//			return false;
 		//		}
 
+		public void ResetPositionsList() {
+			positions.Clear ();
+		}
+	
 	}
+
+
+
 }
 
