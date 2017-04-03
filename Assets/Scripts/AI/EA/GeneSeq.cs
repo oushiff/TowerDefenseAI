@@ -17,14 +17,14 @@ public class GeneSeq {
 	}
 
 	public GeneNode GetNodeByIndex(int index) {
-		if (index >= this.Size ()) {
+		if (index >= Size () || index < 0) {
 			return null;
 		}
 		return seqList [this.Size () - index - 1];
 	}
 
 	public void SetNode(int index, int[][] pos, int towerIndex) {
-		if (index >= this.Size ()) {
+		if (index >= Size () || index < 0) {
 			return;
 		}
 		seqList [this.Size () - index - 1].pos = pos; 
@@ -32,14 +32,14 @@ public class GeneSeq {
 	}
 
 	public void SetNode(int index, int[][] pos) {
-		if (index >= this.Size ()) {
+		if (index >= Size () || index < 0) {
 			return;
 		}
 		seqList [this.Size () - index - 1].pos = pos; 
 	}
 
 	public void SetNode(int index, int towerIndex) {
-		if (index >= this.Size ()) {
+		if (index >= Size () || index < 0) {
 			return;
 		}
 		seqList [this.Size () - index - 1].towerIndex = towerIndex; 
@@ -74,12 +74,16 @@ public class GeneSeq {
 		return newSeq;
 	}
 
-	public void AddNodeAfterIndex(int index) {
-		
+	public void AddNodeAfterIndex(int index, GeneNode node) {
+		if (index >= Size () || index < 0)
+			return;
+		this.seqList.Insert (Size () - index - 1, node);
 	}
 
 	public void RemoveNodeAt(int index) {
-	
+		if (index >= Size () || index < 0)
+			return;
+		this.seqList.RemoveAt (Size () - index - 1, node);
 	}
 
 }
