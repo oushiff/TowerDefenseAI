@@ -5,8 +5,11 @@ public class GeneSeq {
 	private List<GeneNode> seqList = new List<GeneNode>();
 	public int id;
 
+	public void InitRandom(List<int[][]> posList, List<int> towerIndices, int size) {
+		
+	}
 
-	public void AddNodes(List<GeneNode> nodes) {
+	public void InitByNodes(List<GeneNode> nodes) {
 		int size = nodes.Count;
 		for (int i = size - 1; i >= 0; i--) {
 			seqList.Add (nodes[i]);
@@ -42,7 +45,7 @@ public class GeneSeq {
 		seqList [this.Size () - index - 1].towerIndex = towerIndex; 
 	}
 
-	public GeneNode getNextStep() {
+	public GeneNode GetNextStep() {
 		int size = this.Size ();
 		if (size <= 0) {
 			return null;
@@ -55,4 +58,17 @@ public class GeneSeq {
 	public int Size() {
 		return seqList.Count;
 	}
+		
+	public GeneSeq CrossOverWith(GeneSeq seq, int afterIndex) {
+		
+	}
+
+	public void AddNodeAfterIndex(int index) {
+		
+	}
+
+	public void RemoveNodeAt(int index) {
+	
+	}
+
 }
