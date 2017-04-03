@@ -25,7 +25,7 @@ public class GeneSeq {
 
 	public void SetNode(int index, int[][] pos, int towerIndex) {
 		if (index >= this.Size ()) {
-			return null;
+			return;
 		}
 		seqList [this.Size () - index - 1].pos = pos; 
 		seqList [this.Size () - index - 1].towerIndex = towerIndex; 
@@ -33,14 +33,14 @@ public class GeneSeq {
 
 	public void SetNode(int index, int[][] pos) {
 		if (index >= this.Size ()) {
-			return null;
+			return;
 		}
 		seqList [this.Size () - index - 1].pos = pos; 
 	}
 
 	public void SetNode(int index, int towerIndex) {
 		if (index >= this.Size ()) {
-			return null;
+			return;
 		}
 		seqList [this.Size () - index - 1].towerIndex = towerIndex; 
 	}
@@ -60,7 +60,18 @@ public class GeneSeq {
 	}
 		
 	public GeneSeq CrossOverWith(GeneSeq seq, int afterIndex) {
-		
+		List<GeneNode> nodes = new List<GeneNode> ();
+		int i = 0;
+		for (; i <= afterIndex; i++) {
+			seq.GetNextStep ();
+			nodes.Add (this.GetNextStep ());
+		}
+		for (; i < seq.Size (); i++) {
+			nodes.Add(seq.GetNextStep());
+		}
+		GeneSeq newSeq = new GeneSeq ();
+		newSeq.InitByNodes (nodes);
+		return newSeq;
 	}
 
 	public void AddNodeAfterIndex(int index) {
