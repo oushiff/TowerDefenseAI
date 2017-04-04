@@ -4,9 +4,16 @@ using System.Collections.Generic;
 public class GeneSeq {
 	private List<GeneNode> seqList = new List<GeneNode>();
 	public int id;
+	public List<int> parentIds;
 
 	public void InitRandom(List<int[][]> posList, List<int> towerIndices, int size) {
-		
+		int posSize = posList.Count;
+		int towerIndicesSize = towerIndices.Count;
+		Random rnd = new Random();
+		for (int i = 0; i < size; i++) {
+			GeneNode node = new GeneNode (posList [rnd.Next (posSize)], towerIndices [rnd.Next (towerIndicesSize)]);
+			seqList.Add (node);
+		}
 	}
 
 	public void InitByNodes(List<GeneNode> nodes) {
