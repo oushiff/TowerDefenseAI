@@ -90,7 +90,24 @@ public class GeneSeq {
 	public void RemoveNodeAt(int index) {
 		if (index >= Size () || index < 0)
 			return;
-		this.seqList.RemoveAt (Size () - index - 1, node);
+		this.seqList.RemoveAt (Size () - index - 1);
 	}
 
+	public GeneSeq DeepCopy() {
+		return null; //-----
+	}
+
+	public List<GeneSeq> GenerateMutated(int index, int[][] pos, int towerIndex) {
+		List<GeneSeq> res = new List<GeneSeq> ();
+		GeneSeq seq1 = DeepCopy();
+		GeneSeq seq2 = DeepCopy ();
+		GeneSeq seq3 = DeepCopy ();
+//		seq1.SetNode ();
+//		seq2.AddNode ();
+//		seq3.RemoveNode ();
+		res.Add (seq1);
+		res.Add (seq2);
+		res.Add (seq3);
+		return res;
+	}
 }
