@@ -9,7 +9,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-//using AI.GameAI;
+using System.Diagnostics;
 
 public class GamePlay : MonoBehaviour
 {
@@ -86,8 +86,8 @@ public class GamePlay : MonoBehaviour
 
 
 				monsterCount += waveMonster.amount;  //FFFFFFFFFFF
-				Debug.Log ("[Monster Generate] Monster: " + waveMonster.monster.name + ", Num: " + waveMonster.amount);  //FFFF
-				Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
+				UnityEngine.Debug.Log ("[Monster Generate] Monster: " + waveMonster.monster.name + ", Num: " + waveMonster.amount);  //FFFF
+				UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
 
 
                 // Wait until it's time to spawn the monsters
@@ -117,7 +117,7 @@ public class GamePlay : MonoBehaviour
         }
 
         if (prefab == null){
-            Debug.LogWarning("Monster prefab not found");
+			UnityEngine.Debug.LogWarning("Monster prefab not found");
             yield break;
         }
 
@@ -191,12 +191,12 @@ public class GamePlay : MonoBehaviour
 		//FFFFFFFFFFFFFFFFFFF
 		if (doesArrive) {
 			remainLife--;
-			Debug.Log ("[Monster Arrive] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+			UnityEngine.Debug.Log ("[Monster Arrive] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
 		} else {
-			Debug.Log("[Monster Dead] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+			UnityEngine.Debug.Log("[Monster Dead] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
 		}
 		monsterCount -= 1;//FFFFFFFFFF
-		Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
+		UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
 
         // Notify all towers that enemy died
         for (int i = 0; i < activeTowers.Count; ++i) {
@@ -207,7 +207,7 @@ public class GamePlay : MonoBehaviour
         activeEnemies.Remove (enemy);
 
 
-		Debug.Log (finishedSpawningEnemies);
+		UnityEngine.Debug.Log (finishedSpawningEnemies);
 
 		if (finishedSpawningEnemies && monsterCount == 0)
 			EndLevel();
@@ -225,8 +225,25 @@ public class GamePlay : MonoBehaviour
 //        UIManager.instance.ShowEndOfLevel();
 
 
-		Debug.Log ("!!!!!!  New  Round !!!!  ");
+		UnityEngine.Debug.Log ("!!!!!!  New  Round !!!!  ");
+
+
+
+//		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524Temp/EvaluatorPart/ai2Eva.py");
+//		processInfo.CreateNoWindow = true;
+//		processInfo.UseShellExecute = false;
+//		var process = Process.Start(processInfo);
+//		process.WaitForExit();
+//		process.Close();
+
+
 		ClearAllData ();
+
+
+
+
+
+
 		Start ();
 
     }
@@ -240,6 +257,11 @@ public class GamePlay : MonoBehaviour
 
 
 	void ClearAllData() {
+		activeEnemies.Clear();
+
+		//yield return new WaitForSeconds(3);
+		System.Threading.Thread.Sleep(3000);
+
 		monsterCount = 0;  // FFFFFFFFFFFFFFFF
 		remainLife = 10;   //FFFFFFFFFFFF
 		finishedSpawningEnemies = false;
@@ -255,7 +277,7 @@ public class GamePlay : MonoBehaviour
 			//DestroyImmediate(tower);
 		}
 
-		activeEnemies.Clear();
+
 		activeTowers.Clear();
 
 		gameAI.ResetPositionsList ();
