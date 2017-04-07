@@ -229,12 +229,12 @@ public class GamePlay : MonoBehaviour
 
 
 
-//		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524Temp/EvaluatorPart/ai2Eva.py");
-//		processInfo.CreateNoWindow = true;
-//		processInfo.UseShellExecute = false;
-//		var process = Process.Start(processInfo);
-//		process.WaitForExit();
-//		process.Close();
+		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524Temp/EvaluatorPart/ai2Eva.py");
+		processInfo.CreateNoWindow = true;
+		processInfo.UseShellExecute = false;
+		var process = Process.Start(processInfo);
+		process.WaitForExit();
+		process.Close();
 
 
 		ClearAllData ();
