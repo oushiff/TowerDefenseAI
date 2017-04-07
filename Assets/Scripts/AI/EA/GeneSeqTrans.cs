@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AssemblyCSharp
 {
-	public class CrossOver
+	public class GeneSeqTrans
 	{
 		public 
 
@@ -39,7 +39,7 @@ namespace AssemblyCSharp
 			List<GeneSeq> listGeneSeq = new List<GeneSeq> ();
 			int length = seq.Size ();
 			Random rnd = new Random ();
-			int pos  = posList[rnd.Next (0, posSize)];
+			int[][] pos  = posList[rnd.Next (0, posSize)];
 			int tower = towerIndices[rnd.Next (0, towerSize)];
 			int index = rnd.Next (0, length);
 			for (int i = 0; i < number; i++) {		

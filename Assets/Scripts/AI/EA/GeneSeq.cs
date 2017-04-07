@@ -66,22 +66,7 @@ public class GeneSeq {
 		return seqList.Count;
 	}
 		
-	public GeneSeq CrossOverWith(GeneSeq seq, int afterIndex) {
-		List<GeneNode> nodes = new List<GeneNode> ();
-		int i = 0;
-		for (; i <= afterIndex; i++) {
-			seq.GetNextStep ();
-			nodes.Add (this.GetNextStep ());
-		}
-		for (; i < seq.Size (); i++) {
-			nodes.Add(seq.GetNextStep());
-		}
-		GeneSeq newSeq = new GeneSeq ();
-		newSeq.InitByNodes (nodes);
-		return newSeq;
-	}
-
-	public void AddNodeAfterIndex(int index, GeneNode node) {
+	public void InsertNodeAfterIndex(int index, GeneNode node) {
 		if (index >= Size () || index < 0)
 			return;
 		this.seqList.Insert (Size () - index - 1, node);
@@ -97,17 +82,5 @@ public class GeneSeq {
 		return null; //-----
 	}
 
-	public List<GeneSeq> GenerateMutated(int index, int[][] pos, int towerIndex) {
-		List<GeneSeq> res = new List<GeneSeq> ();
-		GeneSeq seq1 = DeepCopy();
-		GeneSeq seq2 = DeepCopy ();
-		GeneSeq seq3 = DeepCopy ();
-//		seq1.SetNode ();
-//		seq2.AddNode ();
-//		seq3.RemoveNode ();
-		res.Add (seq1);
-		res.Add (seq2);
-		res.Add (seq3);
-		return res;
-	}
+
 }
