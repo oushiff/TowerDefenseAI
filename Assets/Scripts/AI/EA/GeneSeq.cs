@@ -6,6 +6,21 @@ public class GeneSeq {
 	public int id;
 	public List<int> parentIds;
 
+	public GeneSeq() {}
+
+	public GeneSeq(List<GeneNode> nodes) {
+		int size = nodes.Count;
+		for (int i = size - 1; i >= 0; i--) {
+			seqList.Add (nodes[i]);
+		}
+	}
+
+	public GeneSeq(GeneSeq seq) {
+		this.seqList = seq.GetReverseNodeList();
+		this.id = seq.id;
+		this.parentIds = seq.parentIds;
+	}
+
 	public void InitRandom(List<int[][]> posList, List<int> towerIndices, int size) {
 		int posSize = posList.Count;
 		int towerIndicesSize = towerIndices.Count;
@@ -15,12 +30,10 @@ public class GeneSeq {
 			seqList.Add (node);
 		}
 	}
-
-	public void InitByNodes(List<GeneNode> nodes) {
-		int size = nodes.Count;
-		for (int i = size - 1; i >= 0; i--) {
-			seqList.Add (nodes[i]);
-		}
+		
+	// Avoid to use this function, because it will return reverse list
+	public List<GeneNode> GetReverseNodeList() {
+		return seqList;
 	}
 
 	public GeneNode GetNodeByIndex(int index) {
@@ -78,9 +91,6 @@ public class GeneSeq {
 		this.seqList.RemoveAt (Size () - index - 1);
 	}
 
-	public GeneSeq DeepCopy() {
-		return null; //-----
-	}
 
 
 }

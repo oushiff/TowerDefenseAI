@@ -27,8 +27,7 @@ namespace AssemblyCSharp
 				for (; i < seq2.Size (); i++) {
 					nodes.Add(seq2.GetNextStep());
 				}
-				GeneSeq newSeq = new GeneSeq ();
-				newSeq.InitByNodes (nodes);
+				GeneSeq newSeq = new GeneSeq (nodes);
 				listGeneSeq.Add (newSeq);
 			}
 			return listGeneSeq;
@@ -43,13 +42,13 @@ namespace AssemblyCSharp
 			int tower = towerIndices[rnd.Next (0, towerSize)];
 			int index = rnd.Next (0, length);
 			for (int i = 0; i < number; i++) {		
-				GeneSeq newSeq = seq.DeepCopy();
+				GeneSeq newSeq = new GeneSeq(seq);
 				newSeq.SetNode (index, pos, tower);
 				listGeneSeq.Add (newSeq);
-				newSeq = seq.DeepCopy();
+				newSeq = new GeneSeq(seq);
 				newSeq.InsertNodeAfterIndex (index, new GeneNode(pos, tower));
 				listGeneSeq.Add (newSeq);
-				newSeq = seq.DeepCopy();
+				newSeq = new GeneSeq(seq);
 				newSeq.RemoveNodeAt (index);
 				listGeneSeq.Add (newSeq);
 			}
