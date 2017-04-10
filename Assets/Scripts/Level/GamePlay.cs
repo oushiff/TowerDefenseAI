@@ -222,7 +222,7 @@ public class GamePlay : MonoBehaviour
     {
         
 
-//        UIManager.instance.ShowEndOfLevel();
+        UIManager.instance.ShowEndOfLevel();
 
 
 		UnityEngine.Debug.Log ("!!!!!!  New  Round !!!!  ");
@@ -257,7 +257,7 @@ public class GamePlay : MonoBehaviour
 
 
 	void ClearAllData() {
-		activeEnemies.Clear();
+		activeEnemies = new List<Enemy>();
 
 		//yield return new WaitForSeconds(3);
 		System.Threading.Thread.Sleep(3000);
@@ -278,7 +278,7 @@ public class GamePlay : MonoBehaviour
 		}
 
 
-		activeTowers.Clear();
+		activeTowers = new List<Tower>();
 
 		gameAI.ResetPositionsList ();
 

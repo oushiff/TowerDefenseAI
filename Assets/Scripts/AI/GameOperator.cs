@@ -40,13 +40,18 @@ namespace AI
 			if (towerCost == 0)
 				towerCost = 100;
 
+
+			Debug.Log ("   xxxxxx" + selectedTower.name+ "  "+ selectedTower.index);
+
 			// If there are enough money to build the tower, deduct them
 			if (Currency.instance.UseCoins (towerCost)) {
                 // Build the tower
                 GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
                 Tower tower = towerObject.GetComponent<Tower> ();
 				tower.transform.parent = towersRoot;
+
 //				selectedPlane.tag = Grid.PLANE_NO_HOVER;
+				Debug.Log ("   fffffffff" + tower.level);
 
 				// Place the tower on the grid
 				GamePlay.instance.activeTowers.Add (tower);
@@ -69,16 +74,16 @@ namespace AI
 
 			GameObject towerObject = selectedTower.tower.GetPrefab ();
 
-			Debug.Log ("   ddddddd");
+
 
 			//GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
 			Tower tower = towerObject.GetComponent<Tower> ();
 
 			Debug.Log (tower);
 
-
+			Debug.Log ("   ddddddd1" + tower.level);
 			tower.UpgradeTower (1);
-
+			Debug.Log ("   ddddddd2" + tower.level);
 			return true;
 		}
 

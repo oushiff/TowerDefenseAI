@@ -65,6 +65,15 @@ public class GeneSeq {
 		seqList [this.Size () - index - 1].towerIndex = towerIndex; 
 	}
 
+
+	public bool hasNext() {
+		if (this.Size () > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public GeneNode GetNextStep() {
 		int size = this.Size ();
 		if (size <= 0) {
