@@ -51,9 +51,12 @@ public class GamePlay : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnWaves());
-
         publicEnemies = this.enemies;
-
+        GameObject curr = GameObject.FindGameObjectWithTag("Currency");
+        GameObject ai = GameObject.FindGameObjectWithTag("ExcelReader");
+        currency =curr.GetComponent<Currency>();
+        gameAI = ai.GetComponent<AI.GameAI>();
+        UnityEngine.Debug.Log(gameAI);
     }
 
     IEnumerator SpawnWaves()
@@ -130,9 +133,10 @@ public class GamePlay : MonoBehaviour
             yield return spawnWaitTime;
         }
     }
-    /*
     void Update()
     {
+        
+        }/*
         //if its time to spawn
         if (Time.time > nextWaveTime && generateWaves == 1)
         {
@@ -229,12 +233,12 @@ public class GamePlay : MonoBehaviour
 
 
 
-		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524Temp/EvaluatorPart/ai2Eva.py");
+		/*var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524Temp/EvaluatorPart/ai2Eva.py");
 		processInfo.CreateNoWindow = true;
 		processInfo.UseShellExecute = false;
 		var process = Process.Start(processInfo);
 		process.WaitForExit();
-		process.Close();
+		process.Close();*/
 
 
 		ClearAllData ();

@@ -8,13 +8,12 @@ namespace AI
 {
 	public class GameOperater: TowerButton
 	{
-		public List<BuildTowerButton> towerButtons;
-		public Transform towersRoot;
-
-		private RectTransform uiTransform;
-		private Vector2 initialSize;
-		private CanvasGroup canvasGroup;
-		private GameObject selectedPlane;
+        public List<BuildTowerButton> towerButtons;
+        public Transform towersRoot;
+        private RectTransform uiTransform;
+        private Vector2 initialSize;
+        private CanvasGroup canvasGroup;
+        private GameObject selectedPlane;
 		public GameOperater ()
 		{
         }
@@ -49,7 +48,7 @@ namespace AI
                 GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
                 Tower tower = towerObject.GetComponent<Tower> ();
 				tower.transform.parent = towersRoot;
-
+                tower.level = 0;
 //				selectedPlane.tag = Grid.PLANE_NO_HOVER;
 				Debug.Log ("   fffffffff" + tower.level);
 
@@ -62,6 +61,8 @@ namespace AI
 
 		public Boolean UpgradeTower (int index, double[] pos)
 		{
+
+            /*
 			UIManager.instance.RegisterUIClick ();
 
 			// set screen Position
@@ -84,7 +85,11 @@ namespace AI
 			Debug.Log ("   ddddddd1" + tower.level);
 			tower.UpgradeTower (1);
 			Debug.Log ("   ddddddd2" + tower.level);
+
+
+    */
 			return true;
+
 		}
 
 		public Boolean RemoveTower ()

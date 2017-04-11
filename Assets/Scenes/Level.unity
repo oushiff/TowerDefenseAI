@@ -187,8 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479fa385f2ca8456ba8bcb201e745d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positions: []
   index: 0
   time: 0
+  pos: {x: 0, y: 0, z: 0}
 --- !u!4 &28
 Transform:
   m_ObjectHideFlags: 0
@@ -258,6 +260,10 @@ MonoBehaviour:
   generateWaves: 1
   activeEnemies: []
   activeTowers: []
+  monsterCount: 0
+  remainLife: 10
+  gameAI: {fileID: 0}
+  currency: {fileID: 0}
 --- !u!1 &28060068
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +800,10 @@ Prefab:
     - target: {fileID: 22408914, guid: b609a9cc2e92acc409bdf15d06e9b7fd, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 158746, guid: b609a9cc2e92acc409bdf15d06e9b7fd, type: 2}
+      propertyPath: m_TagString
+      value: Currency
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b609a9cc2e92acc409bdf15d06e9b7fd, type: 2}
