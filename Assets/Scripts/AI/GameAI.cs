@@ -73,12 +73,15 @@ namespace AI
             }
             else if(positions.Count == 9)
             {
-	
+
 				
 				if (go.UpgradeTower(index % 4, rank[index]))
                 {
-
+					index++;
+					index %= rank.Count;
                 }
+
+
             }
 		}
 
