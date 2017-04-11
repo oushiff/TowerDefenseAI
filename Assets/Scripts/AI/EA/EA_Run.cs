@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class EA_Run
+public class EA_Run: MonoBehaviour
 {
 	private class Tower {
 		int towerIndex;
@@ -13,21 +14,24 @@ public class EA_Run
 		}
 	}
 
-	List<int[][]> posList;
-	List<int> towerIndices;
 
+	public AI.GameOperater GO;//= GameObject.; 
+
+	List<int[]> posList;
+	List<int> towerIndices;
+	
 
 	int posSize;
 	int towerSize;
 
 
-	Dictionary<int[][], Tower> map = new Dictionary<int[][], Tower>();
+	Dictionary<int[], Tower> map = new Dictionary<int[], Tower>();
 
 
 	public List<GeneSeq> CrossOverRes(GeneSeq seq1, GeneSeq seq2, int number){
 		List<GeneSeq> listGeneSeq = new List<GeneSeq> ();
 		int length = (seq1.Size () > seq2.Size () ? seq2.Size () : seq1.Size ());
-		Random rnd = new Random();
+		System.Random rnd = new System.Random();
 		for (int i = 0; i < number; i++) {
 			int index = rnd.Next (1, length);
 			List<GeneNode> nodes = new List<GeneNode> ();
@@ -49,8 +53,8 @@ public class EA_Run
 	public List<GeneSeq> Mutate(GeneSeq seq,int number){	       
 		List<GeneSeq> listGeneSeq = new List<GeneSeq> ();
 		int length = seq.Size ();
-		Random rnd = new Random ();
-		int[][] pos  = posList[rnd.Next (0, posSize)];
+		System.Random rnd = new System.Random();
+		int[] pos  = posList[rnd.Next (0, posSize)];
 		int towerIndex = towerIndices[rnd.Next (0, towerSize)];
 		int index = rnd.Next (0, length);
 		for (int i = 0; i < number; i++) {		
@@ -74,17 +78,20 @@ public class EA_Run
 		while (seq.hasNext()) {
 			//   if money enough  
 			GeneNode node = seq.GetNextStep ();
-			int[][] pos = node.pos;
+			int[] pos = node.pos;
 			int towerIndex = node.towerIndex;
 			if (map.ContainsKey (pos)) {
 				Tower tower = map [pos];
 				// updateTower 
+				if (/*GO.UpgradeTower()*/ true) {
 				// if (true) tower.towerLevel += 1;
+				}
 
 			} else {
 				map[pos] = new Tower(towerIndex, 1);
 			}
 		}
+
 
 
 	}

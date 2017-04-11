@@ -21,7 +21,7 @@ public class GeneSeq {
 		this.parentIds = seq.parentIds;
 	}
 
-	public void InitRandom(List<int[][]> posList, List<int> towerIndices, int size) {
+	public void InitRandom(List<int[]> posList, List<int> towerIndices, int size) {
 		int posSize = posList.Count;
 		int towerIndicesSize = towerIndices.Count;
 		Random rnd = new Random();
@@ -43,7 +43,7 @@ public class GeneSeq {
 		return seqList [this.Size () - index - 1];
 	}
 
-	public void SetNode(int index, int[][] pos, int towerIndex) {
+	public void SetNode(int index, int[] pos, int towerIndex) {
 		if (index >= Size () || index < 0) {
 			return;
 		}
@@ -51,7 +51,7 @@ public class GeneSeq {
 		seqList [this.Size () - index - 1].towerIndex = towerIndex; 
 	}
 
-	public void SetNode(int index, int[][] pos) {
+	public void SetNode(int index, int[] pos) {
 		if (index >= Size () || index < 0) {
 			return;
 		}

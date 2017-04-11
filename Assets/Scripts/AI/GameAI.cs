@@ -31,6 +31,8 @@ namespace AI
 		public int index = 0;
 		public int time = 0;
         public Vector3 pos = new Vector3();
+		GameOperater go;
+
         void Start ()
 		{
 			m_map = new MapMonitor ();
@@ -39,7 +41,9 @@ namespace AI
 			m_money = new MoneyMonitor ();
 			money = m_money.GetStartingMoney ();
 			c_roads = m_map.GetRoadsCoordinates ();
-            Time.timeScale = 5;
+            Time.timeScale = 15;
+
+			go = new GameOperater ();
             
         }
          
@@ -57,7 +61,7 @@ namespace AI
 		{
 			Debug.Log ("PosListNum:   " + positions.Count);
 
-			GameOperater go = new GameOperater ();
+
 			rank = FindBestPlaceToBuildTower (c_roads, m_map.GetAllCandidateSpacesAtBeginning ());
             pos.x = (float)rank[index][0];
             pos.y = 0.0f;

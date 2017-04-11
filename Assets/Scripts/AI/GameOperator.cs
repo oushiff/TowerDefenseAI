@@ -14,6 +14,10 @@ namespace AI
         private Vector2 initialSize;
         private CanvasGroup canvasGroup;
         private GameObject selectedPlane;
+
+		private Dictionary<String, GameObject> gameObjMap = new Dictionary<String, GameObject>();
+
+
 		public GameOperater ()
 		{
         }
@@ -46,11 +50,16 @@ namespace AI
 			if (Currency.instance.UseCoins (towerCost)) {
                 // Build the tower
                 GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
-                Tower tower = towerObject.GetComponent<Tower> ();
+				String posStr = "";
+				posStr += (int)pos [0]; 
+				posStr += (int)pos [1];
+				gameObjMap [posStr] = towerObject;
+
+
+				Tower tower = towerObject.GetComponent<Tower> ();
 				tower.transform.parent = towersRoot;
                 tower.level = 0;
 //				selectedPlane.tag = Grid.PLANE_NO_HOVER;
-				Debug.Log ("   fffffffff" + tower.level);
 
 				// Place the tower on the grid
 				GamePlay.instance.activeTowers.Add (tower);
@@ -62,32 +71,32 @@ namespace AI
 		public Boolean UpgradeTower (int index, double[] pos)
 		{
 
-            /*
-			UIManager.instance.RegisterUIClick ();
+            
+			//UIManager.instance.RegisterUIClick ();
 
-			// set screen Position
-			Vector3 Position = Vector3.zero;
-			Position.x = (float)pos [0];
-			Position.y = 0.0f;
-			Position.z = (float)pos [1];
+			String posStr = "";
+			posStr += (int)pos [0]; 
+			posStr += (int)pos [1];
 
-			TowerData.Level selectedTower = GameData.instance.GetCurrentLevel ().towers [index];
+			//TowerData.Level selectedTower = GameData.instance.GetCurrentLevel ().towers [index];
 
-			GameObject towerObject = selectedTower.tower.GetPrefab ();
+			//GameObject towerObject = selectedTower.tower.GetPrefab ();
 
+		
+		
+
+			GameObject towerObject = gameObjMap [posStr];
 
 
 			//GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
 			Tower tower = towerObject.GetComponent<Tower> ();
 
-			Debug.Log (tower);
-
-			Debug.Log ("   ddddddd1" + tower.level);
+	
 			tower.UpgradeTower (1);
-			Debug.Log ("   ddddddd2" + tower.level);
+		
 
 
-    */
+    
 			return true;
 
 		}
