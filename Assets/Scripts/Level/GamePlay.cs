@@ -61,6 +61,9 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
+		Time.timeScale = 2;
+
+
         StartCoroutine(SpawnWaves());
         publicEnemies = this.enemies;
         GameObject curr = GameObject.FindGameObjectWithTag("Currency");
@@ -69,13 +72,15 @@ public class GamePlay : MonoBehaviour
 		//gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
         //UnityEngine.Debug.Log(gameAI);     // non-EA
 		ea_player = new EA_Run();     // EA_player
-		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
-		UnityEngine.Debug.Log(pool.Count);
+//		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
+//		ea_player.ExportSeqToFile(pool);     
+		ea_player.Run_EA_Loop();
 
 		if (lastWaveFileIndex == -1) {
 			System.IO.StreamReader file = 
 				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 			lastWaveFileIndex = System.Int32.Parse(file.ReadLine ());
+			file.Close ();
 		} 
 
     }
@@ -272,6 +277,7 @@ public class GamePlay : MonoBehaviour
 			System.IO.StreamReader file = 
 				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 		 	newWaveFileIndex = System.Int32.Parse(file.ReadLine ());
+			file.Close ();
 			if (newWaveFileIndex != lastWaveFileIndex) {
 				break;
 			} else {

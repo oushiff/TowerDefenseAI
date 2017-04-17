@@ -14,6 +14,16 @@ public class EA_Run //: MonoBehaviour
 //			towerLevel = level;
 //		}
 //	}
+
+//	class SeqScore {
+//		int seqIndex;
+//		int score;
+//		public SeqScore(int seqIndex, int score) {
+//			this.seqIndex = seqIndex;
+//			this.score = score;
+//		}
+//	}
+
 	private MapMonitor m_map;
 	private TowerMonitor m_tower;
 
@@ -99,7 +109,7 @@ public class EA_Run //: MonoBehaviour
 
 	public List<GeneSeq> InitSeqsRandom() {
 		List<GeneSeq> pool = new List<GeneSeq> ();
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 2; i++) {
 			GeneSeq newSeq = new GeneSeq ();
 			newSeq.InitRandom (posList, towerSize, posList.Count * 3);
 			pool.Add (newSeq);
@@ -108,14 +118,44 @@ public class EA_Run //: MonoBehaviour
 	}
 
 	public List<GeneSeq> ImportSeqsFromFile() {
-//		System.IO.StreamReader file = 
-//			new System.IO.StreamReader();
+		System.IO.StreamReader readFile = 
+			new System.IO.StreamReader("Strategy_Pool/info");
+		int fileIndex = Int32.Parse (readFile.ReadLine ());
+		readFile.Close ();
 
-		System.IO.StreamWriter file = new System.IO.StreamWriter("aaaafanfei.txt");
-		file.WriteLine("hahaahh\n");
+		fileIndex -= 1;
+		readFile = new System.IO.StreamReader("Strategy_Pool/strategy_" + fileIndex);
+		string stream = readFile.ReadToEnd();
+		readFile.Close ();
 
 		List<GeneSeq> pool = new List<GeneSeq> ();
+		string[] seqStreams = stream.Split (';');
+		foreach (string part in seqStreams) {
+			GeneSeq newSeq = new GeneSeq ();
+			string newPart = part + ";\n";
+			pool.Add(newSeq.Deserialize (newPart));
+
+		}
 		return pool;
+	}
+
+	public void ExportSeqToFile(List<GeneSeq> geneSeqs) {
+		System.IO.StreamReader readFile = 
+			new System.IO.StreamReader("Strategy_Pool/info");
+		int fileIndex = Int32.Parse (readFile.ReadLine ());
+		readFile.Close ();
+
+		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/info");
+		writeFile.WriteLine(fileIndex + 1);
+		writeFile.Close();
+
+		System.Text.StringBuilder sb = new System.Text.StringBuilder(); 
+		foreach (GeneSeq seq in geneSeqs) {
+			sb.Append(seq.Serialize());
+		}
+		writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy_" + fileIndex);
+		writeFile.WriteLine(sb.ToString());
+		writeFile.Close();
 	}
 
 	void ExecuteGeneSeq(GeneSeq seq) {
@@ -154,6 +194,28 @@ public class EA_Run //: MonoBehaviour
 
 	}
 
+
+	public int GetScore() {
+		System.Random rnd = new System.Random();
+		return rnd.Next (10);
+	}
+
+
+	public void Run_EA_Loop() {
+		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
+		int[] scores = new int[geneSeqs.Count];
+		for (int i = 0; i < geneSeqs.Count; i++) {
+			ExecuteGeneSeq (geneSeqs[i]);
+			scores[i] = GetScore ();
+		}
+
+//		int loopCount = 100;
+//		while (loopCount > 0) {
+//			loopCount--;	
+//		}
+
+
+	}
 
 
 

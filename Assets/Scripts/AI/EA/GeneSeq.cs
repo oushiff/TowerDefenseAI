@@ -110,17 +110,21 @@ public class GeneSeq {
 		return sb.ToString();
 	}
 
-	public void Deserialize(string stream) {
+	public GeneSeq Deserialize(string stream) {
 		string[] lines = stream.Split ('\n');
-		for (int i = 1; i < lines.Length - 1; i++) {
+		for (int i = 1; i < lines.Length; i++) {			
 			string line = lines [i];
 			string[] elems = line.Split (' ');
+			if (elems.Length != 3) {
+				break;
+			}
 			int[] pos = new int[2];
 			pos [0] = Int32.Parse (elems [0]);
 			pos [1] = Int32.Parse (elems [1]);
 			GeneNode node = new GeneNode (pos, Int32.Parse (elems [2]));
 			seqList.Add (node);
 		}
+		return this;
 	}
 
 

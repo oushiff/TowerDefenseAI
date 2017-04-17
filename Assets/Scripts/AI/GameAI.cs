@@ -41,7 +41,7 @@ namespace AI
 			m_money = new MoneyMonitor ();
 			money = m_money.GetStartingMoney ();
 			c_roads = m_map.GetRoadsCoordinates ();
-            Time.timeScale = 15;
+//            Time.timeScale = 15;
 
 			go = new GameOperater ();
             
