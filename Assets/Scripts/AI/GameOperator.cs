@@ -44,14 +44,15 @@ namespace AI
 				towerCost = 100;
 
 
-			Debug.Log ("   xxxxxx" + selectedTower.name+ "  "+ selectedTower.index);
+
 
 			// If there are enough money to build the tower, deduct them
 			if (Currency.instance.UseCoins (towerCost)) {
                 // Build the tower
                 GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
 				String posStr = "";
-				posStr += (int)pos [0]; 
+				posStr += (int)pos [0];
+				posStr += ",";
 				posStr += (int)pos [1];
 				gameObjMap [posStr] = towerObject;
 
@@ -63,6 +64,10 @@ namespace AI
 
 				// Place the tower on the grid
 				GamePlay.instance.activeTowers.Add (tower);
+
+				int neg_value = -towerCost;
+				Debug.Log ("{\n\t\"Type\": \"Tower\",\n\t\"TowerName\": \""+selectedTower.name+"\",\n\t\"TowerIndex\": "+selectedTower.index+",\n\t\"Level\": \"1,1\",\n\t\"Position\": \""+posStr+"\",\n\t\"Event\": \"Built\",\n\t\"Money\": "+neg_value+",\n\t\"Time\": "+(int)Time.time+"\n}, ");
+
 				return true;
 			}
 			return false;
@@ -72,6 +77,7 @@ namespace AI
 		public Boolean IsUpgradable (double[] pos) {
 			String posStr = "";
 			posStr += (int)pos [0]; 
+			posStr += ",";
 			posStr += (int)pos [1];
 			GameObject towerObject = gameObjMap [posStr];
 			Tower tower = towerObject.GetComponent<Tower> ();
@@ -85,7 +91,8 @@ namespace AI
 			//UIManager.instance.RegisterUIClick ();
 
 			String posStr = "";
-			posStr += (int)pos [0]; 
+			posStr += (int)pos [0];
+			posStr += ",";
 			posStr += (int)pos [1];
 
 			//TowerData.Level selectedTower = GameData.instance.GetCurrentLevel ().towers [index];
@@ -99,7 +106,13 @@ namespace AI
 			//GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
 			Tower tower = towerObject.GetComponent<Tower> ();
     
-			return tower.UpgradeTower (1);
+			bool succ = tower.UpgradeTower (1); 
+			if (succ) {
+				int neg_value = (int)GameData.instance.GetTower (tower.type, tower.level).GetProperty (GameData.GameProperies.COST);
+				neg_value = -neg_value;
+				Debug.Log ("{\n\t\"Type\": \"Tower\",\n\t\"TowerName\": \""+tower.type+"\",\n\t\"TowerIndex\": -1,\n\t\"Level\": \""+tower.level+",1\",\n\t\"Position\": \""+posStr+"\",\n\t\"Event\": \"Upgraded\",\n\t\"Money\": -300,\n\t\"Time\": 160\n}, ");
+			}
+			return succ;
 
 		}
 

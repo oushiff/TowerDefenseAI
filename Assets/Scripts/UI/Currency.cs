@@ -42,6 +42,7 @@ public class Currency : MonoBehaviour
 		if (startingCoins > 0)
 			coins = startingCoins;
 #endif
+		Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": "+coins+",\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"GameStart\",\n\t\"Time\": 0\n}, ");
 	}
 
 	IEnumerator GetStartingMoney ()
@@ -61,12 +62,15 @@ public class Currency : MonoBehaviour
 	public void GainCoins (int value)
 	{
 		coins += value;
+		Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": "+value+",\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"Kill Enemy\",\n\t\"Time\": "+(int)Time.time+"\n}, ");
 	}
 
 	public bool UseCoins (int value)
 	{
 		if (coins - value >= 0) {
 			coins -= value;
+			int neg_value = -value;
+			Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": "+neg_value+",\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"Built Upgrade Tower\",\n\t\"Time\": "+(int)Time.time+"\n}, ");
 			return true;
 		}
 		return false;
@@ -80,5 +84,10 @@ public class Currency : MonoBehaviour
 
 	public void ResetMoney () {
 		coins = startingCoins;
+	}
+
+
+	public void RecordEndMoneyLog() {
+		Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": 0,\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"GameEnd\",\n\t\"Time\": "+(int)Time.time+"\n}, ");
 	}
 }

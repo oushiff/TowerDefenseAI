@@ -165,6 +165,7 @@ public class EA_Run //: MonoBehaviour
 			int towerIndex = node.towerIndex;
 			String posStr = "";
 			posStr += pos [0]; 
+			posStr += ",";
 			posStr += pos [1];
 
 			double[] posDouble = new double[2];

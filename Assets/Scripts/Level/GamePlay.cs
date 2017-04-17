@@ -41,8 +41,8 @@ public class GamePlay : MonoBehaviour
 
 	public int monsterCount = 0;  
 	public int remainLife = 10;  
-	//public AI.GameAI gameAI;      // non-EA
-	public EA_Run ea_player;   // EA_player
+	public AI.GameAI gameAI;      // non-EA
+//	public EA_Run ea_player;   // EA_player
 	public Currency currency;   
 	public int lastWaveFileIndex = -1;
 	public int newWaveFileIndex;
@@ -61,7 +61,7 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
-		Time.timeScale = 2;
+		Time.timeScale = 15;
 
 
         StartCoroutine(SpawnWaves());
@@ -69,12 +69,12 @@ public class GamePlay : MonoBehaviour
         GameObject curr = GameObject.FindGameObjectWithTag("Currency");
         GameObject ai = GameObject.FindGameObjectWithTag("ExcelReader");
         currency =curr.GetComponent<Currency>();
-		//gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
-        //UnityEngine.Debug.Log(gameAI);     // non-EA
-		ea_player = new EA_Run();     // EA_player
+		gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
+
+//		ea_player = new EA_Run();     // EA_player
 //		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
 //		ea_player.ExportSeqToFile(pool);     
-		ea_player.Run_EA_Loop();
+//		ea_player.Run_EA_Loop();
 
 		if (lastWaveFileIndex == -1) {
 			System.IO.StreamReader file = 
@@ -117,7 +117,7 @@ public class GamePlay : MonoBehaviour
 
 
 				monsterCount += waveMonster.amount;  //FFFFFFFFFFF
-				UnityEngine.Debug.Log ("[Monster Generate] Monster: " + waveMonster.monster.name + ", Num: " + waveMonster.amount);  //FFFF
+				UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+waveMonster.monster.name+"\",\n\t\"MonsterIndex\": "+monsterNo+",\n\t\"Event\": \"Generated\",\n\t\"Num\": "+waveMonster.amount+",\n\t\"Distance\": 0,\n\t\"Time\": "+(int)Time.time+"\n}, ");  //FFFF
 				UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
 
 
@@ -223,9 +223,10 @@ public class GamePlay : MonoBehaviour
 		//FFFFFFFFFFFFFFFFFFF
 		if (doesArrive) {
 			remainLife--;
-			UnityEngine.Debug.Log ("[Monster Arrive] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+
+		UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Arrived\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+enemy.nextPointIndex+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
 		} else {
-			UnityEngine.Debug.Log("[Monster Dead] Monster: " + enemy.baseEnemy.name + ", Distance: " + enemy.nextPointIndex); 
+		UnityEngine.Debug.Log("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Killed\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+enemy.nextPointIndex+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
 		}
 		monsterCount -= 1;//FFFFFFFFFF
 		UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
@@ -310,7 +311,7 @@ public class GamePlay : MonoBehaviour
 
 		activeTowers = new List<Tower>();
 
-		//gameAI.ResetPositionsList ();  // non-EA
+		gameAI.ResetPositionsList ();  // non-EA
 
 		currency.ResetMoney ();
 
