@@ -1,31 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using AI;
 
 public class EA_Run: MonoBehaviour
 {
-	private class Tower {
-		int towerIndex;
-		int towerLevel;
+//	private class Tower {
+//		int towerIndex;
+//		int towerLevel;
+//
+//		public Tower(int index, int level) {
+//			towerIndex = index;
+//			towerLevel = level;
+//		}
+//	}
+	private MapMonitor m_map;
+	private TowerMonitor m_tower;
 
-		public Tower(int index, int level) {
-			towerIndex = index;
-			towerLevel = level;
-		}
-	}
-
+	public static EA_Run instance;
 
 	public AI.GameOperater GO;//= GameObject.; 
 
-	List<int[]> posList;
-	List<int> towerIndices;
-	
+	public Dictionary<String, GameObject> gameObjMap;
 
+	List<int[]> posList;
 	int posSize;
 	int towerSize;
 
 
-	Dictionary<int[], Tower> map = new Dictionary<int[], Tower>();
+
+	void Awake()
+	{
+		instance = this;
+	}
+
+	void Start()
+	{
+		m_map = new MapMonitor ();
+		m_tower = new TowerMonitor ();
+		List <double[]> tmpList = m_map.GetAllCandidateSpacesAtBeginning ();
+		foreach (double[] tmpDouble in tmpList) {
+			int[] tmpInt = new int[tmpDouble.Length];
+			int i = 0;
+			foreach (double num in tmpDouble) {
+				tmpInt [i] = (int)num;
+				i++;
+			}
+			posList.Add (tmpInt);
+		}
+		List<TowerData.Level> selectedTower = GameData.instance.GetCurrentLevel ().towers;
+		towerSize = selectedTower.Count;
+		gameObjMap = GO.gameObjMap;
+	}
+
+//	Dictionary<int[], Tower> map = new Dictionary<int[], Tower>();
 
 
 	public List<GeneSeq> CrossOverRes(GeneSeq seq1, GeneSeq seq2, int number){
@@ -55,7 +83,7 @@ public class EA_Run: MonoBehaviour
 		int length = seq.Size ();
 		System.Random rnd = new System.Random();
 		int[] pos  = posList[rnd.Next (0, posSize)];
-		int towerIndex = towerIndices[rnd.Next (0, towerSize)];
+		int towerIndex = rnd.Next (0, towerSize);
 		int index = rnd.Next (0, length);
 		for (int i = 0; i < number; i++) {		
 			GeneSeq newSeq = new GeneSeq(seq);
@@ -76,19 +104,37 @@ public class EA_Run: MonoBehaviour
 
 	void RunGeneSeq(GeneSeq seq) {
 		while (seq.hasNext()) {
-			//   if money enough  
 			GeneNode node = seq.GetNextStep ();
 			int[] pos = node.pos;
 			int towerIndex = node.towerIndex;
-			if (map.ContainsKey (pos)) {
-				Tower tower = map [pos];
-				// updateTower 
-				if (/*GO.UpgradeTower()*/ true) {
-				// if (true) tower.towerLevel += 1;
+			String posStr = "";
+			posStr += pos [0]; 
+			posStr += pos [1];
+
+			double[] posDouble = new double[2];
+			posDouble [0] = (double)pos [0];
+			posDouble [1] = (double)pos [1];
+
+			if (!gameObjMap.ContainsKey (posStr)) {
+				while (true) {
+					if (GO.BuildTower (towerIndex, posDouble)) {
+						break;
+					} else {
+						System.Threading.Thread.Sleep (3000);
+					}
 				}
 
+
 			} else {
-				map[pos] = new Tower(towerIndex, 1);
+				if (!GO.IsUpgradable(posDouble)) 
+					continue;
+				while (true) {
+					if (GO.UpgradeTower (0, posDouble)) {
+						break;
+					} else {
+						System.Threading.Thread.Sleep (3000);
+					}
+				}
 			}
 		}
 

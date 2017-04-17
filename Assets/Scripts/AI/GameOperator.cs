@@ -15,7 +15,7 @@ namespace AI
         private CanvasGroup canvasGroup;
         private GameObject selectedPlane;
 
-		private Dictionary<String, GameObject> gameObjMap = new Dictionary<String, GameObject>();
+		public Dictionary<String, GameObject> gameObjMap = new Dictionary<String, GameObject>();
 
 
 		public GameOperater ()
@@ -68,6 +68,16 @@ namespace AI
 			return false;
 		}
 
+
+		public Boolean IsUpgradable (double[] pos) {
+			String posStr = "";
+			posStr += (int)pos [0]; 
+			posStr += (int)pos [1];
+			GameObject towerObject = gameObjMap [posStr];
+			Tower tower = towerObject.GetComponent<Tower> ();
+			return tower.IsTowerUpgradable ();
+		}
+
 		public Boolean UpgradeTower (int index, double[] pos)
 		{
 
@@ -82,22 +92,14 @@ namespace AI
 
 			//GameObject towerObject = selectedTower.tower.GetPrefab ();
 
-		
-		
 
 			GameObject towerObject = gameObjMap [posStr];
 
 
 			//GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
 			Tower tower = towerObject.GetComponent<Tower> ();
-
-	
-			tower.UpgradeTower (1);
-		
-
-
     
-			return true;
+			return tower.UpgradeTower (1);
 
 		}
 

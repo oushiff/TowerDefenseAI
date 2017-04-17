@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 
+
 public class GamePlay : MonoBehaviour
 {
     public static GamePlay instance;
@@ -41,13 +42,22 @@ public class GamePlay : MonoBehaviour
 	public int monsterCount = 0;  // FFFFFFFFFFFFFFFF
 	public int remainLife = 10;   //FFFFFFFFFFFF
 	public AI.GameAI gameAI;      // FFFFFFF 
-	public Currency currency;
+	public Currency currency;   // FFFFFFFF
+	public int lastWaveFileIndex = -1;
+	public int newWaveFileIndex;
+
+	public string PRJ_ROOT = "/Users/Franz/Documents/524LoopControl/LoopControl/";
+
+	public string GetInfoPath(string targetFolderPath) {
+		return targetFolderPath + "info";
+	}
 
 
     void Awake()
     {
         instance = this;
     }
+
     void Start()
     {
         StartCoroutine(SpawnWaves());
@@ -57,7 +67,17 @@ public class GamePlay : MonoBehaviour
         currency =curr.GetComponent<Currency>();
         gameAI = ai.GetComponent<AI.GameAI>();
         UnityEngine.Debug.Log(gameAI);
+
+
+		if (lastWaveFileIndex == -1) {
+			System.IO.StreamReader file = 
+				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
+			lastWaveFileIndex = System.Int32.Parse(file.ReadLine ());
+		} 
+
     }
+			
+
 
     IEnumerator SpawnWaves()
     {
@@ -245,9 +265,16 @@ public class GamePlay : MonoBehaviour
 
 
 
-
-
-
+		while (true) {	
+			System.IO.StreamReader file = 
+				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
+		 	newWaveFileIndex = System.Int32.Parse(file.ReadLine ());
+			if (newWaveFileIndex != lastWaveFileIndex) {
+				break;
+			} else {
+				System.Threading.Thread.Sleep (3000);
+			}
+		}
 		Start ();
 
     }
@@ -264,7 +291,7 @@ public class GamePlay : MonoBehaviour
 		activeEnemies = new List<Enemy>();
 
 		//yield return new WaitForSeconds(3);
-		System.Threading.Thread.Sleep(3000);
+		
 
 		monsterCount = 0;  // FFFFFFFFFFFFFFFF
 		remainLife = 10;   //FFFFFFFFFFFF
