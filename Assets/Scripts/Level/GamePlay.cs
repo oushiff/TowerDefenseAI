@@ -39,10 +39,11 @@ public class GamePlay : MonoBehaviour
     public List<Tower> activeTowers = new List<Tower>();
 
 
-	public int monsterCount = 0;  // FFFFFFFFFFFFFFFF
-	public int remainLife = 10;   //FFFFFFFFFFFF
-	public AI.GameAI gameAI;      // FFFFFFF 
-	public Currency currency;   // FFFFFFFF
+	public int monsterCount = 0;  
+	public int remainLife = 10;  
+	//public AI.GameAI gameAI;      // non-EA
+	public EA_Run ea_player;   // EA_player
+	public Currency currency;   
 	public int lastWaveFileIndex = -1;
 	public int newWaveFileIndex;
 
@@ -65,9 +66,11 @@ public class GamePlay : MonoBehaviour
         GameObject curr = GameObject.FindGameObjectWithTag("Currency");
         GameObject ai = GameObject.FindGameObjectWithTag("ExcelReader");
         currency =curr.GetComponent<Currency>();
-        gameAI = ai.GetComponent<AI.GameAI>();
-        UnityEngine.Debug.Log(gameAI);
-
+		//gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
+        //UnityEngine.Debug.Log(gameAI);     // non-EA
+		ea_player = new EA_Run();     // EA_player
+		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
+		UnityEngine.Debug.Log(pool.Count);
 
 		if (lastWaveFileIndex == -1) {
 			System.IO.StreamReader file = 
@@ -290,28 +293,18 @@ public class GamePlay : MonoBehaviour
 	void ClearAllData() {
 		activeEnemies = new List<Enemy>();
 
-		//yield return new WaitForSeconds(3);
-		
-
-		monsterCount = 0;  // FFFFFFFFFFFFFFFF
-		remainLife = 10;   //FFFFFFFFFFFF
+		monsterCount = 0; 
+		remainLife = 10;   
 		finishedSpawningEnemies = false;
 	
 		foreach (Tower tower in activeTowers) {
-			//tower.
-			//tower.enabled = false;
 			tower.gameObject.SetActive (false);
-//			GameObject[] components = tower.GetComponentsInChildren<GameObject> ();
-//			foreach (GameObject gameObject in components) {
-//				gameObject.SetActive (false);
-//			}
-			//DestroyImmediate(tower);
 		}
 
 
 		activeTowers = new List<Tower>();
 
-		gameAI.ResetPositionsList ();
+		//gameAI.ResetPositionsList ();  // non-EA
 
 		currency.ResetMoney ();
 

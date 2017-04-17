@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AI;
 
-public class EA_Run: MonoBehaviour
+public class EA_Run //: MonoBehaviour
 {
 //	private class Tower {
 //		int towerIndex;
@@ -23,22 +23,18 @@ public class EA_Run: MonoBehaviour
 
 	public Dictionary<String, GameObject> gameObjMap;
 
-	List<int[]> posList;
+	List<int[]> posList = new List<int[]> ();
 	int posSize;
 	int towerSize;
 
 
 
-	void Awake()
-	{
-		instance = this;
-	}
-
-	void Start()
+	public EA_Run()
 	{
 		m_map = new MapMonitor ();
 		m_tower = new TowerMonitor ();
 		List <double[]> tmpList = m_map.GetAllCandidateSpacesAtBeginning ();
+
 		foreach (double[] tmpDouble in tmpList) {
 			int[] tmpInt = new int[tmpDouble.Length];
 			int i = 0;
@@ -50,6 +46,7 @@ public class EA_Run: MonoBehaviour
 		}
 		List<TowerData.Level> selectedTower = GameData.instance.GetCurrentLevel ().towers;
 		towerSize = selectedTower.Count;
+		GO = new GameOperater ();
 		gameObjMap = GO.gameObjMap;
 	}
 
@@ -100,9 +97,28 @@ public class EA_Run: MonoBehaviour
 	}
 
 
+	public List<GeneSeq> InitSeqsRandom() {
+		List<GeneSeq> pool = new List<GeneSeq> ();
+		for (int i = 0; i < 50; i++) {
+			GeneSeq newSeq = new GeneSeq ();
+			newSeq.InitRandom (posList, towerSize, posList.Count * 3);
+			pool.Add (newSeq);
+		}
+		return pool;
+	}
 
+	public List<GeneSeq> ImportSeqsFromFile() {
+//		System.IO.StreamReader file = 
+//			new System.IO.StreamReader();
 
-	void RunGeneSeq(GeneSeq seq) {
+		System.IO.StreamWriter file = new System.IO.StreamWriter("aaaafanfei.txt");
+		file.WriteLine("hahaahh\n");
+
+		List<GeneSeq> pool = new List<GeneSeq> ();
+		return pool;
+	}
+
+	void ExecuteGeneSeq(GeneSeq seq) {
 		while (seq.hasNext()) {
 			GeneNode node = seq.GetNextStep ();
 			int[] pos = node.pos;
@@ -123,8 +139,6 @@ public class EA_Run: MonoBehaviour
 						System.Threading.Thread.Sleep (3000);
 					}
 				}
-
-
 			} else {
 				if (!GO.IsUpgradable(posDouble)) 
 					continue;
@@ -137,8 +151,6 @@ public class EA_Run: MonoBehaviour
 				}
 			}
 		}
-
-
 
 	}
 
