@@ -42,7 +42,7 @@ public class Currency : MonoBehaviour
 		if (startingCoins > 0)
 			coins = startingCoins;
 #endif
-		Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": "+coins+",\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"GameStart\",\n\t\"Time\": 0\n}, ");
+		Debug.Log ("{\t\"Type\": \"Money\",\t\"MoneyGain\": "+coins+",\t\"FinalMoney\": "+coins+",\t\"Event\": \"GameStart\",\t\"Time\": 0}, ");
 	}
 
 	IEnumerator GetStartingMoney ()
@@ -62,7 +62,7 @@ public class Currency : MonoBehaviour
 	public void GainCoins (int value)
 	{
 		coins += value;
-		Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": "+value+",\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"Kill Enemy\",\n\t\"Time\": "+(int)Time.time+"\n}, ");
+		Debug.Log ("{\t\"Type\": \"Money\",\t\"MoneyGain\": "+value+",\t\"FinalMoney\": "+coins+",\t\"Event\": \"Kill Enemy\",\t\"Time\": "+(int)Time.time+"}, ");
 	}
 
 	public bool UseCoins (int value)
@@ -70,7 +70,7 @@ public class Currency : MonoBehaviour
 		if (coins - value >= 0) {
 			coins -= value;
 			int neg_value = -value;
-			Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": "+neg_value+",\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"Built Upgrade Tower\",\n\t\"Time\": "+(int)Time.time+"\n}, ");
+			Debug.Log ("{\t\"Type\": \"Money\",\t\"MoneyGain\": "+neg_value+",\t\"FinalMoney\": "+coins+",\t\"Event\": \"Built Upgrade Tower\",\t\"Time\": "+(int)Time.time+"}, ");
 			return true;
 		}
 		return false;
@@ -88,6 +88,6 @@ public class Currency : MonoBehaviour
 
 
 	public void RecordEndMoneyLog() {
-		Debug.Log ("{\n\t\"Type\": \"Money\",\n\t\"MoneyGain\": 0,\n\t\"FinalMoney\": "+coins+",\n\t\"Event\": \"GameEnd\",\n\t\"Time\": "+(int)Time.time+"\n}, ");
+		Debug.Log ("{\t\"Type\": \"Money\",\t\"MoneyGain\": 0,\t\"FinalMoney\": "+coins+",\t\"Event\": \"GameEnd\",\t\"Time\": "+(int)Time.time+"}, ");
 	}
 }

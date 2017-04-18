@@ -122,7 +122,7 @@ public class GamePlay : MonoBehaviour
 
 
 				monsterCount += waveMonster.amount;  //FFFFFFFFFFF
-				UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+waveMonster.monster.name+"\",\n\t\"MonsterIndex\": "+monsterNo+",\n\t\"Event\": \"Generated\",\n\t\"Num\": "+waveMonster.amount+",\n\t\"DistanceLeft\": "+pathMaxLen+",\n\t\"Time\": "+(int)Time.time+"\n}, ");  //FFFF
+				UnityEngine.Debug.Log ("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+waveMonster.monster.name+"\",\t\"MonsterIndex\": "+monsterNo+",\t\"Event\": \"Generated\",\t\"Num\": "+waveMonster.amount+",\t\"DistanceLeft\": "+pathMaxLen+",\t\"Time\": "+(int)Time.time+"}, ");  //FFFF
 				UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
 
 
@@ -231,9 +231,9 @@ public class GamePlay : MonoBehaviour
 
 
 			UnityEngine.Debug.Log ("ucla suckss1!!!!!!  " + enemy.wayPoints.Length);
-		UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Arrived\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
+		UnityEngine.Debug.Log ("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Arrived\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
 		} else {
-		UnityEngine.Debug.Log("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Killed\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
+		UnityEngine.Debug.Log("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Killed\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
 		}
 		monsterCount -= 1;//FFFFFFFFFF
 		UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
@@ -262,6 +262,7 @@ public class GamePlay : MonoBehaviour
     {
         
 		currency.RecordEndMoneyLog ();
+		
 
 
         UIManager.instance.ShowEndOfLevel();
