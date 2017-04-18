@@ -39,6 +39,8 @@ public class GamePlay : MonoBehaviour
     public List<Tower> activeTowers = new List<Tower>();
 
 
+
+	public int pathMaxLen;
 	public int monsterCount = 0;  
 	public int remainLife = 10;  
 	public AI.GameAI gameAI;      // non-EA
@@ -46,6 +48,9 @@ public class GamePlay : MonoBehaviour
 	public Currency currency;   
 	public int lastWaveFileIndex = -1;
 	public int newWaveFileIndex;
+
+
+
 
 	public string PRJ_ROOT = "/Users/Franz/Documents/524LoopControl/LoopControl/";
 
@@ -62,7 +67,7 @@ public class GamePlay : MonoBehaviour
     void Start()
     {
 		Time.timeScale = 15;
-
+		pathMaxLen = Grid.instance.wayPoints.Length - 1;
 
         StartCoroutine(SpawnWaves());
         publicEnemies = this.enemies;
@@ -117,7 +122,7 @@ public class GamePlay : MonoBehaviour
 
 
 				monsterCount += waveMonster.amount;  //FFFFFFFFFFF
-				UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+waveMonster.monster.name+"\",\n\t\"MonsterIndex\": "+monsterNo+",\n\t\"Event\": \"Generated\",\n\t\"Num\": "+waveMonster.amount+",\n\t\"Distance\": 0,\n\t\"Time\": "+(int)Time.time+"\n}, ");  //FFFF
+				UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+waveMonster.monster.name+"\",\n\t\"MonsterIndex\": "+monsterNo+",\n\t\"Event\": \"Generated\",\n\t\"Num\": "+waveMonster.amount+",\n\t\"DistanceLeft\": "+pathMaxLen+",\n\t\"Time\": "+(int)Time.time+"\n}, ");  //FFFF
 				UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
 
 
@@ -224,9 +229,11 @@ public class GamePlay : MonoBehaviour
 		if (doesArrive) {
 			remainLife--;
 
-		UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Arrived\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+enemy.nextPointIndex+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
+
+			UnityEngine.Debug.Log ("ucla suckss1!!!!!!  " + enemy.wayPoints.Length);
+		UnityEngine.Debug.Log ("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Arrived\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
 		} else {
-		UnityEngine.Debug.Log("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Killed\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+enemy.nextPointIndex+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
+		UnityEngine.Debug.Log("{\n\t\"Type\": \"Enemy\",\n\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\n\t\"MonsterIndex\": -1,\n\t\"Event\": \"Killed\",\n\t\"Num\": 1,\n\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\n\t\"Time\": "+(int)Time.time+"\n}, "); 
 		}
 		monsterCount -= 1;//FFFFFFFFFF
 		UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
