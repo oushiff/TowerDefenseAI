@@ -274,27 +274,38 @@ public class GamePlay : MonoBehaviour
 		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524LoopControl/LoopControl/loopControl.py");
 		processInfo.CreateNoWindow = true;
 		processInfo.UseShellExecute = false;
+		processInfo.RedirectStandardOutput = true;
+		processInfo.RedirectStandardError = true;
 		var process = Process.Start(processInfo);
 		process.WaitForExit();
+		int exitCode = process.ExitCode;
+		UnityEngine.Debug.LogWarning ("exitCode:  " + exitCode);
+		
+			string resLine = process.StandardOutput.ReadToEnd ();
+			UnityEngine.Debug.LogWarning ("shell result:  " + resLine);
+	string err = process.StandardError.ReadToEnd();
+	UnityEngine.Debug.LogWarning ("shell err:  " + err);
 		process.Close();
 
 		UnityEngine.Debug.LogWarning ("Run Script Finish!!!!");
+		
+
 		ClearAllData ();
 
 
 
-		while (true) {	
+		//while (true) {	
 			System.IO.StreamReader file = new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 		 	newWaveFileIndex = System.Int32.Parse(file.ReadLine ());
 			file.Close ();
 			if (newWaveFileIndex != lastWaveFileIndex) {
 				UnityEngine.Debug.LogWarning ("Got new wave, New Round!!!!");
-				break;
+				//break;
 			} else {
 				UnityEngine.Debug.LogWarning ("No new wave, try again.....");
 				System.Threading.Thread.Sleep (3000);
 			}
-		}
+		//}
 		Start ();
 
     }
