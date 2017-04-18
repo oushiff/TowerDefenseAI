@@ -261,6 +261,8 @@ public class GamePlay : MonoBehaviour
     public void EndLevel()
     {
         
+		currency.RecordEndMoneyLog ();
+
 
         UIManager.instance.ShowEndOfLevel();
 
