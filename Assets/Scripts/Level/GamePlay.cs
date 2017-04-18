@@ -249,6 +249,9 @@ public class GamePlay : MonoBehaviour
 
 		if (finishedSpawningEnemies && monsterCount == 0)
 			EndLevel();
+
+		if (activeEnemies.Count == 0)
+			EndLevel ();
     }
 
     public void RemoveEnemy(Enemy enemy)
@@ -268,7 +271,7 @@ public class GamePlay : MonoBehaviour
 		UnityEngine.Debug.LogWarning ("!!!!!!  End Round !!!!  ");
 
 
-		System.Threading.Thread.Sleep (3000);
+		System.Threading.Thread.Sleep (30);
 
 
 		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524LoopControl/LoopControl/loopControl.py");
@@ -303,7 +306,7 @@ public class GamePlay : MonoBehaviour
 				//break;
 			} else {
 				UnityEngine.Debug.LogWarning ("No new wave, try again.....");
-				System.Threading.Thread.Sleep (3000);
+				System.Threading.Thread.Sleep (30);
 			}
 		//}
 		Start ();
