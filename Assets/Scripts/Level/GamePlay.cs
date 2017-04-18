@@ -52,7 +52,7 @@ public class GamePlay : MonoBehaviour
 
 
 
-	public string PRJ_ROOT = "/Users/Franz/Documents/524LoopControl/LoopControl/";
+	public string PRJ_ROOT = "/Users/Franz/Documents/524LoopControl/LoopControl/pools/";
 
 	public string GetInfoPath(string targetFolderPath) {
 		return targetFolderPath + "info";
@@ -86,6 +86,7 @@ public class GamePlay : MonoBehaviour
 				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 			lastWaveFileIndex = System.Int32.Parse(file.ReadLine ());
 			file.Close ();
+			UnityEngine.Debug.Log ("lastWaveFileIndex: " + lastWaveFileIndex);
 		} 
 
     }
@@ -228,9 +229,6 @@ public class GamePlay : MonoBehaviour
 		//FFFFFFFFFFFFFFFFFFF
 		if (doesArrive) {
 			remainLife--;
-
-
-			UnityEngine.Debug.Log ("ucla suckss1!!!!!!  " + enemy.wayPoints.Length);
 		UnityEngine.Debug.Log ("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Arrived\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
 		} else {
 		UnityEngine.Debug.Log("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Killed\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
@@ -264,34 +262,36 @@ public class GamePlay : MonoBehaviour
 		currency.RecordEndMoneyLog ();
 		
 
-
         UIManager.instance.ShowEndOfLevel();
 
 
-		UnityEngine.Debug.Log ("!!!!!!  New  Round !!!!  ");
+		UnityEngine.Debug.LogWarning ("!!!!!!  End Round !!!!  ");
 
 
+		System.Threading.Thread.Sleep (3000);
 
-		/*var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524Temp/EvaluatorPart/ai2Eva.py");
+
+		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524LoopControl/LoopControl/loopControl.py");
 		processInfo.CreateNoWindow = true;
 		processInfo.UseShellExecute = false;
 		var process = Process.Start(processInfo);
 		process.WaitForExit();
-		process.Close();*/
+		process.Close();
 
-
+		UnityEngine.Debug.LogWarning ("Run Script Finish!!!!");
 		ClearAllData ();
 
 
 
 		while (true) {	
-			System.IO.StreamReader file = 
-				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
+			System.IO.StreamReader file = new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 		 	newWaveFileIndex = System.Int32.Parse(file.ReadLine ());
 			file.Close ();
 			if (newWaveFileIndex != lastWaveFileIndex) {
+				UnityEngine.Debug.LogWarning ("Got new wave, New Round!!!!");
 				break;
 			} else {
+				UnityEngine.Debug.LogWarning ("No new wave, try again.....");
 				System.Threading.Thread.Sleep (3000);
 			}
 		}
