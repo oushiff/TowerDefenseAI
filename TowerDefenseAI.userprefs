@@ -1,7 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AI/EA/EA_Run.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Level/GamePlay.cs">
     <Files>
+      <File FileName="Assets/Scripts/Level/GamePlay.cs" Line="69" Column="21" />
+      <File FileName="Assets/Data/Level1.xml" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/EA/EA_Run.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/GameAI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AI/GameOperator.cs" Line="1" Column="1" />
@@ -17,6 +19,7 @@
       <Breakpoint file="/Users/work/Projects/TowerDefenseAI/Assets/Scripts/AI/GameAI.cs" line="141" column="21" />
       <Breakpoint file="/Users/work/Projects/TowerDefenseAI/Assets/Scripts/UI/BuildTowerUI.cs" line="84" column="1" />
       <Breakpoint file="/Users/work/Projects/TowerDefenseAI/Assets/Scripts/AI/GameOperator.cs" line="52" column="1" />
+      <Breakpoint file="/home/weiliang/Projects/TowerDefenseAI/Assets/Scripts/AI/GameAI.cs" line="67" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

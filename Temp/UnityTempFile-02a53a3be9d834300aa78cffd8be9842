@@ -99,6 +99,11 @@ Assets/LeanTween/Examples/Scripts/TestingEverything.cs
 Assets/LeanTween/Examples/Scripts/TestingPunch.cs
 Assets/LeanTween/Examples/Scripts/TestingRigidbodyCS.cs
 Assets/Other/GoToPost.cs
+Assets/Scripts/AI/EA/EA_Run.cs
+Assets/Scripts/AI/EA/EmptyClass.cs
+Assets/Scripts/AI/EA/GeneNode.cs
+Assets/Scripts/AI/EA/GeneSeq.cs
+Assets/Scripts/AI/EA/RunGeneSeq.cs
 Assets/Scripts/AI/GameAI.cs
 Assets/Scripts/AI/GameOperator.cs
 Assets/Scripts/AI/MapMonitor.cs

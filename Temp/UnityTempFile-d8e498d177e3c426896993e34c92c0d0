@@ -1,13 +1,13 @@
 -debug
 -target:library
--i:UnityEngine
--i:System.Collections
--base:UnityEngine.MonoBehaviour
--nowarn:BCW0016
--nowarn:BCW0003
--method:Main
--out:Temp/Assembly-UnityScript-firstpass.dll
--x-type-inference-rule-attribute:UnityEngineInternal.TypeInferenceRuleAttribute
+-nowarn:0169
+-out:Temp/Assembly-CSharp-firstpass.dll
+-r:/mnt/opt/Unity/Editor/Data/Managed/UnityEngine.dll
+-r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+-r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+-r:Assets/Plugins/ICSharpCode.SharpZipLib.dll
+-r:Assets/Plugins/Excel.dll
+-r:/mnt/opt/Unity/Editor/Data/Managed/UnityEditor.dll
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_4
 -define:UNITY_5_3
@@ -80,13 +80,13 @@
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_LINUX
 -define:UNITY_TEAM_LICENSE
--r:/mnt/opt/Unity/Editor/Data/Managed/UnityEngine.dll
--r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
--r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
--r:Assets/Plugins/ICSharpCode.SharpZipLib.dll
--r:Assets/Plugins/Excel.dll
--r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
--r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
--r:/mnt/opt/Unity/Editor/Data/Managed/UnityEditor.dll
--i:UnityEditor
-"Assets/Standard Assets/MoneyScript.js"
+Assets/Plugins/DebugConsole.cs
+Assets/Plugins/ILeanTween.cs
+Assets/Plugins/LTDescr.cs
+Assets/Plugins/LeanAudio.cs
+Assets/Plugins/LeanTest.cs
+Assets/Plugins/LeanTween.cs
+Assets/Plugins/SimpleJSON.cs
+"Assets/Standard Assets/ExcelReader.cs"
+-r:/mnt/opt/Unity/Editor/Data/Mono/lib/mono/2.0/System.Runtime.Serialization.dll
+-r:/mnt/opt/Unity/Editor/Data/Mono/lib/mono/2.0/System.Xml.Linq.dll

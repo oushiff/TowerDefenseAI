@@ -87,8 +87,6 @@
 -r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
 -r:Assets/Plugins/ICSharpCode.SharpZipLib.dll
 -r:Assets/Plugins/Excel.dll
--r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
--r:/mnt/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
 -r:/mnt/opt/Unity/Editor/Data/Managed/UnityEditor.dll
 -i:UnityEditor
 Assets/LeanTween/Examples/Scripts/GeneralBasicJS.js

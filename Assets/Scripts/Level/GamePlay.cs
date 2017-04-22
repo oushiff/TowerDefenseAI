@@ -41,11 +41,11 @@ public class GamePlay : MonoBehaviour
 
 
 	public int pathMaxLen;
-	public int monsterCount = 0;  
-	public int remainLife = 10;  
-	public AI.GameAI gameAI;      // non-EA
-//	public EA_Run ea_player;   // EA_player
-	public Currency currency;   
+	public int monsterCount = 0;
+	public int remainLife = 10;
+	// public AI.GameAI gameAI;      // non-EA
+	public EA_Run ea_player;   // EA_player
+	public Currency currency;
 	public int lastWaveFileIndex = -1;
 	public int newWaveFileIndex;
 
@@ -66,7 +66,7 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
-		Time.timeScale = 15;
+		Time.timeScale = 5;
 		pathMaxLen = Grid.instance.wayPoints.Length - 1;
 
         StartCoroutine(SpawnWaves());
@@ -74,23 +74,23 @@ public class GamePlay : MonoBehaviour
         GameObject curr = GameObject.FindGameObjectWithTag("Currency");
         GameObject ai = GameObject.FindGameObjectWithTag("ExcelReader");
         currency =curr.GetComponent<Currency>();
-		gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
+		// gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
 
-//		ea_player = new EA_Run();     // EA_player
-//		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
-//		ea_player.ExportSeqToFile(pool);     
-//		ea_player.Run_EA_Loop();
+		ea_player = new EA_Run();     // EA_player
+		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
+		ea_player.ExportSeqToFile(pool);
+		ea_player.Run_EA_Loop();
 
 		if (lastWaveFileIndex == -1) {
-			System.IO.StreamReader file = 
+			System.IO.StreamReader file =
 				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 			lastWaveFileIndex = System.Int32.Parse(file.ReadLine ());
 			file.Close ();
 			UnityEngine.Debug.Log ("lastWaveFileIndex: " + lastWaveFileIndex);
-		} 
+		}
 
     }
-			
+
 
 
     IEnumerator SpawnWaves()
@@ -169,7 +169,7 @@ public class GamePlay : MonoBehaviour
     }
     void Update()
     {
-        
+
         }/*
         //if its time to spawn
         if (Time.time > nextWaveTime && generateWaves == 1)
@@ -229,9 +229,9 @@ public class GamePlay : MonoBehaviour
 		//FFFFFFFFFFFFFFFFFFF
 		if (doesArrive) {
 			remainLife--;
-		UnityEngine.Debug.Log ("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Arrived\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
+		UnityEngine.Debug.Log ("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Arrived\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, ");
 		} else {
-		UnityEngine.Debug.Log("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Killed\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
+		UnityEngine.Debug.Log("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Killed\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, ");
 		}
 		monsterCount -= 1;//FFFFFFFFFF
 		UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
@@ -261,9 +261,9 @@ public class GamePlay : MonoBehaviour
 
     public void EndLevel()
     {
-        
+
 		currency.RecordEndMoneyLog ();
-		
+
 
         UIManager.instance.ShowEndOfLevel();
 
@@ -273,7 +273,7 @@ public class GamePlay : MonoBehaviour
 
 		System.Threading.Thread.Sleep (30);
 
-
+/*
 		var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524LoopControl/LoopControl/loopControl.py");
 		processInfo.CreateNoWindow = true;
 		processInfo.UseShellExecute = false;
@@ -283,21 +283,21 @@ public class GamePlay : MonoBehaviour
 		process.WaitForExit();
 		int exitCode = process.ExitCode;
 		UnityEngine.Debug.LogWarning ("exitCode:  " + exitCode);
-		
+
 			string resLine = process.StandardOutput.ReadToEnd ();
 			UnityEngine.Debug.LogWarning ("shell result:  " + resLine);
 	string err = process.StandardError.ReadToEnd();
 	UnityEngine.Debug.LogWarning ("shell err:  " + err);
 		process.Close();
 
-		UnityEngine.Debug.LogWarning ("Run Script Finish!!!!");
-		
+		UnityEngine.Debug.LogWarning ("Run Script Finish!!!!");*/
+
 
 		ClearAllData ();
 
 
 
-		//while (true) {	
+		//while (true) {
 			System.IO.StreamReader file = new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 		 	newWaveFileIndex = System.Int32.Parse(file.ReadLine ());
 			file.Close ();
@@ -324,10 +324,10 @@ public class GamePlay : MonoBehaviour
 	void ClearAllData() {
 		activeEnemies = new List<Enemy>();
 
-		monsterCount = 0; 
-		remainLife = 10;   
+		monsterCount = 0;
+		remainLife = 10;
 		finishedSpawningEnemies = false;
-	
+
 		foreach (Tower tower in activeTowers) {
 			tower.gameObject.SetActive (false);
 		}
@@ -335,7 +335,7 @@ public class GamePlay : MonoBehaviour
 
 		activeTowers = new List<Tower>();
 
-		gameAI.ResetPositionsList ();  // non-EA
+//		gameAI.ResetPositionsList ();  // non-EA
 
 		currency.ResetMoney ();
 
