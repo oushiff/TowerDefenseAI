@@ -1,25 +1,114 @@
+<?xml version="1.0" ?>
 <Level>
-	<Grid rows='8' columns='12'>
+	
+	
+	
+	
+	<Grid columns="12" rows="8">
+		
+		
+		
+		
 		<row>47,40,40,3,3,14,40,40,40,40,3,15</row>
+		
+		
+		
+		
 		<row>33,15,40,15,15,15,15,15,33,40,15,15</row>
+		
+		
+		
+		
 		<row>15,15,40,6,40,40,40,15,15,40,40,40</row>
+		
+		
+		
+		
 		<row>15,15,40,33,40,6,40,33,15,15,33,40</row>
+		
+		
+		
+		
 		<row>15,15,40,15,40,6,40,15,40,40,40,40</row>
+		
+		
+		
+		
 		<row>15,3,40,40,40,40,40,15,40,15,15,15</row>
+		
+		
+		
+		
 		<row>15,15,33,15,40,33,3,15,40,33,3,15</row>
+		
+		
+		
+		
 		<row>15,15,15,15,40,40,40,40,40,33,15,15</row>
+		
+		
+	
+	
 	</Grid>
+	
+	
+	
+	
 	<Waypoints>
+		
+		
+		
+		
 		<row>0,0,1,0,0,0,0,0,0,12,0,0</row>
+		
+		
+		
+		
 		<row>0,0,0,0,0,0,0,0,0,0,0,0</row>
+		
+		
+		
+		
 		<row>0,0,0,0,5,0,4,0,0,11,0,10</row>
+		
+		
+		
+		
 		<row>0,0,0,0,0,0,0,0,0,0,0,0</row>
+		
+		
+		
+		
 		<row>0,0,0,0,0,0,0,0,8,0,0,9</row>
+		
+		
+		
+		
 		<row>0,0,2,0,0,0,3,0,0,0,0,0</row>
+		
+		
+		
+		
 		<row>0,0,0,0,0,0,0,0,0,0,0,0</row>
+		
+		
+		
+		
 		<row>0,0,0,0,6,0,0,0,7,0,0,0</row>
+		
+		
+	
+	
 	</Waypoints>
+	
+	
+	
+	
 	<Waves>
+		
+		
+		
+		
 		<Wave>
 			<Monster>
 				<Seconds>6</Seconds>
@@ -74,214 +163,54 @@
 				<ID>2</ID>
 			</Monster>
 			<Monster>
-				<Seconds>3</Seconds>
-				<Amount>7</Amount>
-				<ID>1</ID>
-			</Monster>
-			<Monster>
-				<Seconds>6</Seconds>
-				<Amount>2</Amount>
-				<ID>2</ID>
-			</Monster>
-		</Wave>
-		<Wave>
-			<Monster>
-				<Seconds>5</Seconds>
-				<Amount>2</Amount>
-				<ID>3</ID>
-			</Monster>
-			<Monster>
-				<Seconds>3</Seconds>
-				<Amount>3</Amount>
-				<ID>3</ID>
-			</Monster>
-			<Monster>
-				<Seconds>1</Seconds>
-				<Amount>1</Amount>
-				<ID>1</ID>
-			</Monster>
-			<Monster>
-				<Seconds>4</Seconds>
+				<Seconds>7</Seconds>
 				<Amount>4</Amount>
-				<ID>5</ID>
-			</Monster>
-			<Monster>
-				<Seconds>5</Seconds>
-				<Amount>4</Amount>
-				<ID>2</ID>
-			</Monster>
-			<Monster>
-				<Seconds>6</Seconds>
-				<Amount>1</Amount>
-				<ID>6</ID>
-			</Monster>
-		</Wave>
-    <Wave>
-      <Monster>
-        <Seconds>6</Seconds>
-        <Amount>3</Amount>
-        <ID>1</ID>
-      </Monster>
-      <Monster>
-        <Seconds>6</Seconds>
-        <Amount>6</Amount>
-        <ID>1</ID>
-      </Monster>
-      <Monster>
-        <Seconds>8</Seconds>
-        <Amount>4</Amount>
-        <ID>1</ID>
-      </Monster>
-      <Monster>
-        <Seconds>13</Seconds>
-        <Amount>2</Amount>
-        <ID>2</ID>
-      </Monster>
-      <Monster>
-        <Seconds>17</Seconds>
-        <Amount>3</Amount>
-        <ID>2</ID>
-      </Monster>
-      <Monster>
-        <Seconds>22</Seconds>
-        <Amount>5</Amount>
-        <ID>1</ID>
-      </Monster>
-    </Wave>
-		<Wave>
-			<Monster>
-				<Seconds>2</Seconds>
-				<Amount>2</Amount>
 				<ID>4</ID>
 			</Monster>
 			<Monster>
-				<Seconds>3</Seconds>
-				<Amount>3</Amount>
-				<ID>1</ID>
-			</Monster>
-			<Monster>
-				<Seconds>2</Seconds>
-				<Amount>2</Amount>
-				<ID>1</ID>
-			</Monster>
-			<Monster>
 				<Seconds>6</Seconds>
-				<Amount>10</Amount>
-				<ID>7</ID>
-			</Monster>
-			<Monster>
-				<Seconds>12</Seconds>
 				<Amount>2</Amount>
-				<ID>10</ID>
-			</Monster>
-			<Monster>
-				<Seconds>5</Seconds>
-				<Amount>3</Amount>
-				<ID>11</ID>
-			</Monster>
-		</Wave>
-		<Wave>
-			<Monster>
-				<Seconds>2</Seconds>
-				<Amount>2</Amount>
-				<ID>0</ID>
-			</Monster>
-			<Monster>
-				<Seconds>5</Seconds>
-				<Amount>5</Amount>
-				<ID>9</ID>
-			</Monster>
-			<Monster>
-				<Seconds>4</Seconds>
-				<Amount>4</Amount>
-				<ID>12</ID>
-			</Monster>
-			<Monster>
-				<Seconds>2</Seconds>
-				<Amount>2</Amount>
-				<ID>13</ID>
-			</Monster>
-			<Monster>
-				<Seconds>1</Seconds>
-				<Amount>4</Amount>
-				<ID>22</ID>
-			</Monster>
-			<Monster>
-				<Seconds>4</Seconds>
-				<Amount>6</Amount>
-				<ID>15</ID>
-			</Monster>
-		</Wave>
-    <Wave>
-      <Monster>
-        <Seconds>6</Seconds>
-        <Amount>3</Amount>
-        <ID>1</ID>
-      </Monster>
-      <Monster>
-        <Seconds>6</Seconds>
-        <Amount>6</Amount>
-        <ID>1</ID>
-      </Monster>
-      <Monster>
-        <Seconds>8</Seconds>
-        <Amount>4</Amount>
-        <ID>1</ID>
-      </Monster>
-      <Monster>
-        <Seconds>13</Seconds>
-        <Amount>2</Amount>
-        <ID>2</ID>
-      </Monster>
-      <Monster>
-        <Seconds>17</Seconds>
-        <Amount>3</Amount>
-        <ID>2</ID>
-      </Monster>
-      <Monster>
-        <Seconds>22</Seconds>
-        <Amount>5</Amount>
-        <ID>1</ID>
-      </Monster>
-    </Wave>
-		<Wave>
-			<Monster>
-				<Seconds>2</Seconds>
-				<Amount>2</Amount>
-				<ID>18</ID>
-			</Monster>
-			<Monster>
-				<Seconds>6</Seconds>
-				<Amount>6</Amount>
-				<ID>23</ID>
-			</Monster>
-			<Monster>
-				<Seconds>1</Seconds>
-				<Amount>6</Amount>
-				<ID>17</ID>
-			</Monster>
-			<Monster>
-				<Seconds>5</Seconds>
-				<Amount>6</Amount>
-				<ID>16</ID>
-			</Monster>
-			<Monster>
-				<Seconds>2</Seconds>
-				<Amount>1</Amount>
-				<ID>18</ID>
-			</Monster>
-			<Monster>
-				<Seconds>7</Seconds>
-				<Amount>4</Amount>
-				<ID>25</ID>
+				<ID>2</ID>
 			</Monster>
 		</Wave>
 	</Waves>
+	
+	
+	
+	
 	<Towers>
+		
+		
+		
+		
 		<Tower>Gun</Tower>
+		
+		
+		
+		
 		<Tower>Cannon</Tower>
+		
+		
+		
+		
 		<Tower>Poison</Tower>
+		
+		
+		
+		
 		<Tower>Electrical</Tower>
+		
+		
+	
+	
 	</Towers>
-	<Money>500</Money>
+	
+	
+	
+	
+	<Money>5000</Money>
+	
+	
+
+
 </Level>
