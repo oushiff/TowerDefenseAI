@@ -66,7 +66,7 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
-		Time.timeScale = 15;
+		Time.timeScale = 25;
 		pathMaxLen = Grid.instance.wayPoints.Length - 1;
 
         StartCoroutine(SpawnWaves());
@@ -252,6 +252,8 @@ public class GamePlay : MonoBehaviour
 
 		if (activeEnemies.Count == 0)
 			EndLevel ();
+
+		monsterCount = 0;
     }
 
     public void RemoveEnemy(Enemy enemy)

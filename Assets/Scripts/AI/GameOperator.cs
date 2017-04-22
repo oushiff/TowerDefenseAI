@@ -59,7 +59,7 @@ namespace AI
 
 				Tower tower = towerObject.GetComponent<Tower> ();
 				tower.transform.parent = towersRoot;
-                tower.level = 0;
+                tower.level = 1;
 //				selectedPlane.tag = Grid.PLANE_NO_HOVER;
 
 				// Place the tower on the grid
@@ -86,8 +86,10 @@ namespace AI
 
 		public Boolean UpgradeTower (int index, double[] pos)
 		{
+			if (!IsUpgradable (pos)) {
+				return false;
+			}
 
-            
 			//UIManager.instance.RegisterUIClick ();
 
 			String posStr = "";
@@ -106,6 +108,8 @@ namespace AI
 			//GameObject towerObject = Instantiate (selectedTower.tower.GetPrefab (), Position, Quaternion.identity) as GameObject;
 			Tower tower = towerObject.GetComponent<Tower> ();
     
+
+
 			bool succ = tower.UpgradeTower (1); 
 			if (succ) {
 				int neg_value = (int)GameData.instance.GetTower (tower.type, tower.level).GetProperty (GameData.GameProperies.COST);
