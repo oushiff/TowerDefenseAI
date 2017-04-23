@@ -112,12 +112,15 @@ public class GeneSeq {
 
 	public GeneSeq Deserialize(string stream) {
 		string[] lines = stream.Split ('\n');
-		for (int i = 1; i < lines.Length; i++) {			
+		for (int i = 0; i < lines.Length; i++) {			
 			string line = lines [i];
-			string[] elems = line.Split (' ');
-			if (elems.Length != 3) {
+			if (line.Trim () == "")
+				continue;
+			if (line.Trim () == ";")
 				break;
-			}
+			string[] elems = line.Split (' ');
+			if (elems.Length != 3)
+				continue;
 			int[] pos = new int[2];
 			pos [0] = Int32.Parse (elems [0]);
 			pos [1] = Int32.Parse (elems [1]);

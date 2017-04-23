@@ -25,11 +25,11 @@ public class EA_Run : MonoBehaviour
 //		}
 //	}
 
-	private MapMonitor m_map;
+	public MapMonitor m_map;
 
 	public static EA_Run instance;
 
-	public AI.GameOperater GO;//= GameObject.; 
+	public GameOperater GO;//= GameObject.; 
 
 	public Dictionary<String, GameObject> gameObjMap;
 
@@ -39,11 +39,20 @@ public class EA_Run : MonoBehaviour
 	GeneSeq curSeq;
 
 
-	void Start()
-	{
-		m_map = new MapMonitor ();
+	public void Init () {
+		//		GameObject worldObj = GameObject.FindGameObjectWithTag ("ExcelReader");
+
+		//		m_map = worldObj.GetComponent<MapMonitor>();
+		MapMonitor.Instance.init();
+		m_map = MapMonitor.instance;
+		GO = new GameOperater ();
+		//		GO = worldObj.GetComponent<EA_Operator>();
+		gameObjMap = GO.gameObjMap;
 
 		List <double[]> tmpList = m_map.GetAllCandidateSpacesAtBeginning ();
+
+		Debug.Log (tmpList.Count + "AAAAA");
+
 
 		foreach (double[] tmpDouble in tmpList) {
 			int[] tmpInt = new int[tmpDouble.Length];
@@ -56,8 +65,14 @@ public class EA_Run : MonoBehaviour
 		}
 		List<TowerData.Level> selectedTower = GameData.instance.GetCurrentLevel ().towers;
 		towerSize = selectedTower.Count;
-		GO = new GameOperater ();
-		gameObjMap = GO.gameObjMap;
+
+	}
+
+
+	void Start()
+	{
+
+
 	}
 
 //	Dictionary<int[], Tower> map = new Dictionary<int[], Tower>();
@@ -113,6 +128,8 @@ public class EA_Run : MonoBehaviour
 			GeneSeq newSeq = new GeneSeq ();
 			newSeq.InitRandom (posList, towerSize, posList.Count * 3);
 			pool.Add (newSeq);
+
+//			Debug.Log ("init seq:  " +  posList.Count + "   "+towerSize);
 		}
 		return pool;
 	}
@@ -131,8 +148,12 @@ public class EA_Run : MonoBehaviour
 		List<GeneSeq> pool = new List<GeneSeq> ();
 		string[] seqStreams = stream.Split (';');
 		foreach (string part in seqStreams) {
+			if (part.Trim () == "")
+				continue;
+			
 			GeneSeq newSeq = new GeneSeq ();
 			string newPart = part + ";\n";
+			Debug.Log ("Gene STring :   " + newPart);
 			pool.Add(newSeq.Deserialize (newPart));
 
 		}
@@ -159,9 +180,7 @@ public class EA_Run : MonoBehaviour
 	}
 
 	IEnumerator ExecuteGeneSeq() {
-		Debug.Log ("!!!!In Execute!");
 		while (curSeq.hasNext()) {
-			Debug.Log ("!!!!In Loppioooop!");
 			yield return new WaitForSeconds(1);
 			Debug.Log ("New Node!!!");
 			GeneNode node = curSeq.GetNextStep ();
@@ -209,9 +228,10 @@ public class EA_Run : MonoBehaviour
 	public void Run_EA_Loop() {
 		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
 		int[] scores = new int[geneSeqs.Count];
-		Debug.Log ("!!!!!!!!!!!!!" + scores.Length);
+
 		for (int i = 0; i < geneSeqs.Count; i++) {
 			curSeq = geneSeqs [i];
+			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
 			StartCoroutine(ExecuteGeneSeq ());
 			scores[i] = GetScore ();
 		}

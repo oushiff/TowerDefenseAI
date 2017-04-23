@@ -10,11 +10,24 @@ namespace AI
 		private GameData gameData;
 		public List<int[]> mapGrid;
 
-		public MapMonitor ()
+		public static MapMonitor instance;
+
+		public static MapMonitor Instance {
+			get { return instance ?? (instance = new GameObject("MapMonitor").AddComponent<MapMonitor>()); }
+		}
+
+		public void init()
 		{
 			gameData = new GameData ();
 			gameData.Load ();
 			this.mapGrid = gameData.GetCurrentLevel ().grid;
+		}
+
+		public MapMonitor ()
+		{
+//			gameData = new GameData ();
+//			gameData.Load ();
+//			this.mapGrid = gameData.GetCurrentLevel ().grid;
 		}
 
 		public List<double[]> GetRoadsCoordinates ()

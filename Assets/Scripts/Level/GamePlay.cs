@@ -66,7 +66,7 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
-		Time.timeScale = 8;
+		Time.timeScale = 1;
 		pathMaxLen = Grid.instance.wayPoints.Length - 1;
 
 		GameData.instance.Load ();
@@ -81,7 +81,8 @@ public class GamePlay : MonoBehaviour
 //		gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
 
 		ea_player = ea_part.GetComponent<EA_Run> ();   // EA_player
-//		ea_player = new EA_Run();     // EA_player
+
+		ea_player.Init ();
 		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
 		ea_player.ExportSeqToFile(pool);     
 		ea_player.Run_EA_Loop();
