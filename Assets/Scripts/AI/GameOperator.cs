@@ -20,6 +20,7 @@ namespace AI
 
 		public GameOperater ()
 		{
+			
         }
 
 		public Boolean BuildTower (int index, double[] pos)
@@ -114,7 +115,7 @@ namespace AI
 			if (succ) {
 				int neg_value = (int)GameData.instance.GetTower (tower.type, tower.level).GetProperty (GameData.GameProperies.COST);
 				neg_value = -neg_value;
-				Debug.Log ("{\t\"Type\": \"Tower\",\t\"TowerName\": \""+tower.type+"\",\t\"TowerIndex\": -1,\t\"Level\": \""+tower.level+",1\",\t\"Position\": \""+posStr+"\",\t\"Event\": \"Upgraded\",\t\"Money\": -300,\t\"Time\": 160}, ");
+				Debug.Log ("{\t\"Type\": \"Tower\",\t\"TowerName\": \""+tower.type+"\",\t\"TowerIndex\": -1,\t\"Level\": \""+tower.level+",1\",\t\"Position\": \""+posStr+"\",\t\"Event\": \"Upgraded\",\t\"Money\": "+neg_value+",\t\"Time\": "+(int)Time.time+"}, ");
 			}
 			return succ;
 

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using AI;
 
-public class EA_Run //: MonoBehaviour
+public class EA_Run : MonoBehaviour
 {
 //	private class Tower {
 //		int towerIndex;
@@ -25,7 +26,6 @@ public class EA_Run //: MonoBehaviour
 //	}
 
 	private MapMonitor m_map;
-	private TowerMonitor m_tower;
 
 	public static EA_Run instance;
 
@@ -34,15 +34,15 @@ public class EA_Run //: MonoBehaviour
 	public Dictionary<String, GameObject> gameObjMap;
 
 	List<int[]> posList = new List<int[]> ();
-	int posSize;
 	int towerSize;
 
+	GeneSeq curSeq;
 
 
-	public EA_Run()
+	void Start()
 	{
 		m_map = new MapMonitor ();
-		m_tower = new TowerMonitor ();
+
 		List <double[]> tmpList = m_map.GetAllCandidateSpacesAtBeginning ();
 
 		foreach (double[] tmpDouble in tmpList) {
@@ -89,7 +89,7 @@ public class EA_Run //: MonoBehaviour
 		List<GeneSeq> listGeneSeq = new List<GeneSeq> ();
 		int length = seq.Size ();
 		System.Random rnd = new System.Random();
-		int[] pos  = posList[rnd.Next (0, posSize)];
+		int[] pos  = posList[rnd.Next (0, posList.Count)];
 		int towerIndex = rnd.Next (0, towerSize);
 		int index = rnd.Next (0, length);
 		for (int i = 0; i < number; i++) {		
@@ -158,12 +158,14 @@ public class EA_Run //: MonoBehaviour
 		writeFile.Close();
 	}
 
-	void ExecuteGeneSeq(GeneSeq seq) {
-		GeneNode node = seq.GetNextStep ();
-		while (seq.hasNext()) {
-			if (((int)Time.time) % 5 != 0)
-				continue;
-			
+	IEnumerator ExecuteGeneSeq() {
+		Debug.Log ("!!!!In Execute!");
+		while (curSeq.hasNext()) {
+			Debug.Log ("!!!!In Loppioooop!");
+			yield return new WaitForSeconds(1);
+			Debug.Log ("New Node!!!");
+			GeneNode node = curSeq.GetNextStep ();
+
 			int[] pos = node.pos;
 			int towerIndex = node.towerIndex;
 			String posStr = "";
@@ -177,19 +179,21 @@ public class EA_Run //: MonoBehaviour
 
 			if (!gameObjMap.ContainsKey (posStr)) {
 				
-				if (GO.BuildTower (towerIndex, posDouble)) {
-					node = seq.GetNextStep ();
-
+				while (!GO.BuildTower (towerIndex, posDouble)) {
+					Debug.Log ("Build Tower Failed!!!!");
+					yield return new WaitForSeconds(5);
 				} 
-
+				Debug.Log ("Build Tower Succ!!!!");
 			} else {
 				if (!GO.IsUpgradable (posDouble)) {
-					node = seq.GetNextStep ();
+					Debug.Log ("Level Highest!!!!");
 					continue;
 				}
-				if (GO.UpgradeTower (0, posDouble)) {
-					node = seq.GetNextStep ();
+				while (!GO.UpgradeTower (0, posDouble)) {
+					Debug.Log ("Upgrade Tower Failed!!!!");
+					yield return new WaitForSeconds(5);
 				}
+				Debug.Log ("Upgrade Tower Succ!!!!");
 			}
 		}
 
@@ -205,8 +209,10 @@ public class EA_Run //: MonoBehaviour
 	public void Run_EA_Loop() {
 		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
 		int[] scores = new int[geneSeqs.Count];
+		Debug.Log ("!!!!!!!!!!!!!" + scores.Length);
 		for (int i = 0; i < geneSeqs.Count; i++) {
-			ExecuteGeneSeq (geneSeqs[i]);
+			curSeq = geneSeqs [i];
+			StartCoroutine(ExecuteGeneSeq ());
 			scores[i] = GetScore ();
 		}
 
