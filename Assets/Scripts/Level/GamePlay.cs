@@ -66,8 +66,10 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
-		Time.timeScale = 25;
+		Time.timeScale = 8;
 		pathMaxLen = Grid.instance.wayPoints.Length - 1;
+
+		GameData.instance.Load ();
 
         StartCoroutine(SpawnWaves());
         publicEnemies = this.enemies;
@@ -305,10 +307,20 @@ public class GamePlay : MonoBehaviour
 			file.Close ();
 			if (newWaveFileIndex != lastWaveFileIndex) {
 				UnityEngine.Debug.LogWarning ("Got new wave, New Round!!!!");
-				//break;
+		System.IO.StreamReader xmlReaderFile = new System.IO.StreamReader(PRJ_ROOT + "wave_pool/wave_"+ (newWaveFileIndex-1));
+		string xmlContent = xmlReaderFile.ReadToEnd ();
+		xmlReaderFile.Close ();
+
+//		System.IO.StreamReader xmlWriterFile = new System.IO.StreamReader("/Users/Franz/Documents/FinalTowerDefense/TowerDefenseAI/Assets/Data/Level1.xml");
+
+		System.IO.StreamWriter xmlWriterFile = new System.IO.StreamWriter("/Users/Franz/Documents/FinalTowerDefense/TowerDefenseAI/Assets/Data/Level1.xml");
+			xmlWriterFile.Write (xmlContent);
+		xmlWriterFile.Close ();
+
+			
 			} else {
 				UnityEngine.Debug.LogWarning ("No new wave, try again.....");
-				System.Threading.Thread.Sleep (30);
+//				System.Threading.Thread.Sleep (30);
 			}
 		//}
 		Start ();

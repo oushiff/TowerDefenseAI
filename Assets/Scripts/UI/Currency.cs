@@ -83,7 +83,7 @@ public class Currency : MonoBehaviour
 
 
 	public void ResetMoney () {
-		coins = startingCoins;
+		coins = GameData.instance.GetCurrentLevel ().startingMoney;
 	}
 
 

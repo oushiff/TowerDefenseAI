@@ -1,0 +1,216 @@
+<?xml version="1.0" ?>
+<Level>
+	
+	
+	
+	
+	<Grid columns="12" rows="8">
+		
+		
+		
+		
+		<row>47,40,40,3,3,14,40,40,40,40,3,15</row>
+		
+		
+		
+		
+		<row>33,15,40,15,15,15,15,15,33,40,15,15</row>
+		
+		
+		
+		
+		<row>15,15,40,6,40,40,40,15,15,40,40,40</row>
+		
+		
+		
+		
+		<row>15,15,40,33,40,6,40,33,15,15,33,40</row>
+		
+		
+		
+		
+		<row>15,15,40,15,40,6,40,15,40,40,40,40</row>
+		
+		
+		
+		
+		<row>15,3,40,40,40,40,40,15,40,15,15,15</row>
+		
+		
+		
+		
+		<row>15,15,33,15,40,33,3,15,40,33,3,15</row>
+		
+		
+		
+		
+		<row>15,15,15,15,40,40,40,40,40,33,15,15</row>
+		
+		
+	
+	
+	</Grid>
+	
+	
+	
+	
+	<Waypoints>
+		
+		
+		
+		
+		<row>0,0,1,0,0,0,0,0,0,12,0,0</row>
+		
+		
+		
+		
+		<row>0,0,0,0,0,0,0,0,0,0,0,0</row>
+		
+		
+		
+		
+		<row>0,0,0,0,5,0,4,0,0,11,0,10</row>
+		
+		
+		
+		
+		<row>0,0,0,0,0,0,0,0,0,0,0,0</row>
+		
+		
+		
+		
+		<row>0,0,0,0,0,0,0,0,8,0,0,9</row>
+		
+		
+		
+		
+		<row>0,0,2,0,0,0,3,0,0,0,0,0</row>
+		
+		
+		
+		
+		<row>0,0,0,0,0,0,0,0,0,0,0,0</row>
+		
+		
+		
+		
+		<row>0,0,0,0,6,0,0,0,7,0,0,0</row>
+		
+		
+	
+	
+	</Waypoints>
+	
+	
+	
+	
+	<Waves>
+		
+		
+		
+		
+		<Wave>
+			<Monster>
+				<Seconds>6</Seconds>
+				<Amount>1</Amount>
+				<ID>1</ID>
+			</Monster>
+			<Monster>
+				<Seconds>6</Seconds>
+				<Amount>1</Amount>
+				<ID>1</ID>
+			</Monster>
+			<Monster>
+				<Seconds>6</Seconds>
+				<Amount>1</Amount>
+				<ID>1</ID>
+			</Monster>
+			<Monster>
+				<Seconds>13</Seconds>
+				<Amount>2</Amount>
+				<ID>2</ID>
+			</Monster>
+			<Monster>
+				<Seconds>17</Seconds>
+				<Amount>2</Amount>
+				<ID>2</ID>
+			</Monster>
+			<Monster>
+				<Seconds>22</Seconds>
+				<Amount>2</Amount>
+				<ID>2</ID>
+			</Monster>
+		</Wave>
+		<Wave>
+			<Monster>
+				<Seconds>3</Seconds>
+				<Amount>3</Amount>
+				<ID>3</ID>
+			</Monster>
+			<Monster>
+				<Seconds>6</Seconds>
+				<Amount>3</Amount>
+				<ID>3</ID>
+			</Monster>
+			<Monster>
+				<Seconds>4</Seconds>
+				<Amount>3</Amount>
+				<ID>3</ID>
+			</Monster>
+			<Monster>
+				<Seconds>6</Seconds>
+				<Amount>3</Amount>
+				<ID>3</ID>
+			</Monster>
+			<Monster>
+				<Seconds>3</Seconds>
+				<Amount>3</Amount>
+				<ID>3</ID>
+			</Monster>
+			<Monster>
+				<Seconds>6</Seconds>
+				<Amount>3</Amount>
+				<ID>3</ID>
+			</Monster>
+		</Wave>
+	</Waves>
+	
+	
+	
+	
+	<Towers>
+		
+		
+		
+		
+		<Tower>Gun</Tower>
+		
+		
+		
+		
+		<Tower>Cannon</Tower>
+		
+		
+		
+		
+		<Tower>Poison</Tower>
+		
+		
+		
+		
+		<Tower>Electrical</Tower>
+		
+		
+	
+	
+	</Towers>
+	
+	
+	
+	
+	<Money>666</Money>
+	
+	
+
+
+</Level>

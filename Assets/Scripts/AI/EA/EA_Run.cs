@@ -159,8 +159,11 @@ public class EA_Run //: MonoBehaviour
 	}
 
 	void ExecuteGeneSeq(GeneSeq seq) {
+		GeneNode node = seq.GetNextStep ();
 		while (seq.hasNext()) {
-			GeneNode node = seq.GetNextStep ();
+			if (((int)Time.time) % 5 != 0)
+				continue;
+			
 			int[] pos = node.pos;
 			int towerIndex = node.towerIndex;
 			String posStr = "";
@@ -173,22 +176,19 @@ public class EA_Run //: MonoBehaviour
 			posDouble [1] = (double)pos [1];
 
 			if (!gameObjMap.ContainsKey (posStr)) {
-				while (true) {
-					if (GO.BuildTower (towerIndex, posDouble)) {
-						break;
-					} else {
-						System.Threading.Thread.Sleep (3000);
-					}
-				}
+				
+				if (GO.BuildTower (towerIndex, posDouble)) {
+					node = seq.GetNextStep ();
+
+				} 
+
 			} else {
-				if (!GO.IsUpgradable(posDouble)) 
+				if (!GO.IsUpgradable (posDouble)) {
+					node = seq.GetNextStep ();
 					continue;
-				while (true) {
-					if (GO.UpgradeTower (0, posDouble)) {
-						break;
-					} else {
-						System.Threading.Thread.Sleep (3000);
-					}
+				}
+				if (GO.UpgradeTower (0, posDouble)) {
+					node = seq.GetNextStep ();
 				}
 			}
 		}
