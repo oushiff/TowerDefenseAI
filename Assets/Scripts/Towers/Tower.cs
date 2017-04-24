@@ -251,6 +251,9 @@ public class Tower : MonoBehaviour {
         if (IsTowerUpgradable() && Currency.instance.UseCoins((int) GameData.instance.GetTower(type, upgradeToAmount).GetProperty(GameData.GameProperies.COST)))
         {
             level = upgradeToAmount;
+			if (properties == null) {
+				return false;
+			}
             properties.Reset(type, level);
             SetRange();
             return true;

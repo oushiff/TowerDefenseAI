@@ -158,6 +158,9 @@ GameObject:
   - 114: {fileID: 24}
   - 114: {fileID: 30}
   - 114: {fileID: 25}
+  - 114: {fileID: 26}
+  - 114: {fileID: 29}
+  - 114: {fileID: 27}
   m_Layer: 0
   m_Name: World
   m_TagString: ExcelReader
@@ -182,7 +185,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 23}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 479fa385f2ca8456ba8bcb201e745d41, type: 3}
   m_Name: 
@@ -191,6 +194,31 @@ MonoBehaviour:
   index: 0
   time: 0
   pos: {x: 0, y: 0, z: 0}
+--- !u!114 &26
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 23}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652f6e4f779d747428145b96dd827388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_map: {fileID: 0}
+  GO: {fileID: 0}
+--- !u!114 &27
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 23}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7679811c44c3d4e6b8f911d3d4858eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towersRoot: {fileID: 0}
 --- !u!4 &28
 Transform:
   m_ObjectHideFlags: 0
@@ -207,6 +235,17 @@ Transform:
   - {fileID: 202785648}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &29
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 23}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7120c943724480bb1a436ee43d186d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &30
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,10 +299,14 @@ MonoBehaviour:
   generateWaves: 1
   activeEnemies: []
   activeTowers: []
+  pathMaxLen: 0
   monsterCount: 0
   remainLife: 10
-  gameAI: {fileID: 0}
+  ea_player: {fileID: 0}
   currency: {fileID: 0}
+  lastWaveFileIndex: -1
+  newWaveFileIndex: 0
+  PRJ_ROOT: /Users/Franz/Documents/524LoopControl/LoopControl/pools/
 --- !u!1 &28060068
 GameObject:
   m_ObjectHideFlags: 0

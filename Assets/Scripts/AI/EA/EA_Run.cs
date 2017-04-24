@@ -185,6 +185,7 @@ public class EA_Run : MonoBehaviour
 			Debug.Log ("New Node!!!");
 			GeneNode node = curSeq.GetNextStep ();
 
+			Debug.Log (curSeq.Size() + "bbbfefewfe");
 			int[] pos = node.pos;
 			int towerIndex = node.towerIndex;
 			String posStr = "";
@@ -219,21 +220,31 @@ public class EA_Run : MonoBehaviour
 	}
 
 
-	public int GetScore() {
-		System.Random rnd = new System.Random();
-		return rnd.Next (10);
+	public double GetScore() {
+		double alpha = 0;
+		double beta = 0;
+		double theta = 0;
+		double gamma = 0;
+		double delta = 0;
+
+		Collector co = Collector.instance;
+		double res = alpha * co.spendMoney * (-1) + beta / (co.enemyLeftDistance + 1) + theta * co.enemyDeadAmount - gamma * co.enemyArrivedAmount + delta * co.upgradeTowerNum;
+		return (double)1 / ( 1 + Math.Pow(Math.E, (-1) * res));
+		//System.Random rnd = new System.Random();
+		//return rnd.Next (10);
 	}
 
 
 	public void Run_EA_Loop() {
 		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
-		int[] scores = new int[geneSeqs.Count];
-
+		double[] scores = new double[geneSeqs.Count];
+		Collector.Instance.init();
 		for (int i = 0; i < geneSeqs.Count; i++) {
 			curSeq = geneSeqs [i];
 			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
 			StartCoroutine(ExecuteGeneSeq ());
 			scores[i] = GetScore ();
+			Debug.LogWarning ("【Score】: " + scores [i]);
 		}
 
 //		int loopCount = 100;

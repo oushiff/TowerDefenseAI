@@ -68,7 +68,7 @@ namespace AI
 
 				int neg_value = -towerCost;
 				Debug.Log ("{\t\"Type\": \"Tower\",\t\"TowerName\": \""+selectedTower.name+"\",\t\"TowerIndex\": "+selectedTower.index+",\t\"Level\": \"1,1\",\t\"Position\": \""+posStr+"\",\t\"Event\": \"Built\",\t\"Money\": "+neg_value+",\t\"Time\": "+(int)Time.time+"}, ");
-
+				Collector.instance.spendMoney += neg_value;
 				return true;
 			}
 			return false;
@@ -116,6 +116,8 @@ namespace AI
 				int neg_value = (int)GameData.instance.GetTower (tower.type, tower.level).GetProperty (GameData.GameProperies.COST);
 				neg_value = -neg_value;
 				Debug.Log ("{\t\"Type\": \"Tower\",\t\"TowerName\": \""+tower.type+"\",\t\"TowerIndex\": -1,\t\"Level\": \""+tower.level+",1\",\t\"Position\": \""+posStr+"\",\t\"Event\": \"Upgraded\",\t\"Money\": "+neg_value+",\t\"Time\": "+(int)Time.time+"}, ");
+				Collector.instance.spendMoney += neg_value;
+				Collector.instance.upgradeTowerNum += 1;
 			}
 			return succ;
 

@@ -66,7 +66,7 @@ public class GamePlay : MonoBehaviour
 
     void Start()
     {
-		Time.timeScale = 1;
+		Time.timeScale = 8;
 		pathMaxLen = Grid.instance.wayPoints.Length - 1;
 
 		GameData.instance.Load ();
@@ -127,7 +127,9 @@ public class GamePlay : MonoBehaviour
             {
                 waveMonster = waveData.GetMonster(monsterNo);
 
-
+				if (waveMonster == null) 
+					continue;
+				
 				monsterCount += waveMonster.amount;  //FFFFFFFFFFF
 				UnityEngine.Debug.Log ("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+waveMonster.monster.name+"\",\t\"MonsterIndex\": "+monsterNo+",\t\"Event\": \"Generated\",\t\"Num\": "+waveMonster.amount+",\t\"DistanceLeft\": "+pathMaxLen+",\t\"Time\": "+(int)Time.time+"}, ");  //FFFF
 				UnityEngine.Debug.Log ("[Monsters Total Num] Num: " + monsterCount);  //FFFF
@@ -232,11 +234,15 @@ public class GamePlay : MonoBehaviour
 	public void KillEnemy(Enemy enemy, bool doesArrive)
     {
 
-		//FFFFFFFFFFFFFFFFFFF
+	Collector.instance.monsterCount += 1;
+	Collector.instance.enemyLeftDistance += pathMaxLen - enemy.nextPointIndex;
+	//FFFFFFFFFFFFFFFFFFF
 		if (doesArrive) {
 			remainLife--;
+		Collector.instance.enemyArrivedAmount += 1;
 		UnityEngine.Debug.Log ("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Arrived\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
 		} else {
+		Collector.instance.enemyDeadAmount += 1;
 		UnityEngine.Debug.Log("{\t\"Type\": \"Enemy\",\t\"MonsterName\": \""+enemy.baseEnemy.name+"\",\t\"MonsterIndex\": -1,\t\"Event\": \"Killed\",\t\"Num\": 1,\t\"DistanceLeft\": "+(pathMaxLen-enemy.nextPointIndex)+",\t\"Time\": "+(int)Time.time+"}, "); 
 		}
 		monsterCount -= 1;//FFFFFFFFFF
