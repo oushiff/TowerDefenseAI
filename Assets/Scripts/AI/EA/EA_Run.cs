@@ -221,14 +221,22 @@ public class EA_Run : MonoBehaviour
 
 
 	public double GetScore() {
-		double alpha = 0;
-		double beta = 0;
-		double theta = 0;
-		double gamma = 0;
-		double delta = 0;
+		double alpha = 1;
+		double beta = 1;
+		double theta = 1;
+		//double gamma = 0;
+		//double delta = 0;
+		MoneyMonitor money = new MoneyMonitor();
+		int initMoney = money.GetStartingMoney ();
+		int mapLength = MapMonitor.instance.GetRoadsCoordinates().Count;
 
 		Collector co = Collector.instance;
-		double res = alpha * co.spendMoney * (-1) + beta / (co.enemyLeftDistance + 1) + theta * co.enemyDeadAmount - gamma * co.enemyArrivedAmount + delta * co.upgradeTowerNum;
+
+
+		//double res = alpha * co.spendMoney * (-1) + beta / (co.enemyLeftDistance + 1) + theta * co.enemyDeadAmount - gamma * co.enemyArrivedAmount + delta * co.upgradeTowerNum;
+		double res = alpha * co.spendMoney / initMoney - beta * co.enemyLeftDistance / co.monsterCount / mapLength - theta * co.enemyArrivedAmount / co.monsterCount;
+		//Debug.LogWarning ("【test】: " + co.enemyArrivedAmount);
+	
 		return (double)1 / ( 1 + Math.Pow(Math.E, (-1) * res));
 		//System.Random rnd = new System.Random();
 		//return rnd.Next (10);
@@ -243,9 +251,11 @@ public class EA_Run : MonoBehaviour
 			curSeq = geneSeqs [i];
 			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
 			StartCoroutine(ExecuteGeneSeq ());
-			scores[i] = GetScore ();
-			Debug.LogWarning ("【Score】: " + scores [i]);
+			Debug.LogWarning ("【Score】: " + scores [0]);
+
 		}
+		scores[0] = GetScore ();
+
 
 //		int loopCount = 100;
 //		while (loopCount > 0) {
