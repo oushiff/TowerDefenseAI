@@ -6,24 +6,24 @@ using AI;
 
 public class EA_Run : MonoBehaviour
 {
-//	private class Tower {
-//		int towerIndex;
-//		int towerLevel;
-//
-//		public Tower(int index, int level) {
-//			towerIndex = index;
-//			towerLevel = level;
-//		}
-//	}
+	//  private class Tower {
+	//      int towerIndex;
+	//      int towerLevel;
+	//
+	//      public Tower(int index, int level) {
+	//          towerIndex = index;
+	//          towerLevel = level;
+	//      }
+	//  }
 
-//	class SeqScore {
-//		int seqIndex;
-//		int score;
-//		public SeqScore(int seqIndex, int score) {
-//			this.seqIndex = seqIndex;
-//			this.score = score;
-//		}
-//	}
+	//  class SeqScore {
+	//      int seqIndex;
+	//      int score;
+	//      public SeqScore(int seqIndex, int score) {
+	//          this.seqIndex = seqIndex;
+	//          this.score = score;
+	//      }
+	//  }
 
 	public MapMonitor m_map;
 
@@ -43,13 +43,13 @@ public class EA_Run : MonoBehaviour
 	int scoreSize = 0;
 
 	public void Init () {
-		//		GameObject worldObj = GameObject.FindGameObjectWithTag ("ExcelReader");
+		//      GameObject worldObj = GameObject.FindGameObjectWithTag ("ExcelReader");
 
-		//		m_map = worldObj.GetComponent<MapMonitor>();
+		//      m_map = worldObj.GetComponent<MapMonitor>();
 		MapMonitor.Instance.init();
 		m_map = MapMonitor.instance;
 		GO = new GameOperater ();
-		//		GO = worldObj.GetComponent<EA_Operator>();
+		//      GO = worldObj.GetComponent<EA_Operator>();
 		gameObjMap = GO.gameObjMap;
 
 		List <double[]> tmpList = m_map.GetAllCandidateSpacesAtBeginning ();
@@ -78,7 +78,7 @@ public class EA_Run : MonoBehaviour
 
 	}
 
-//	Dictionary<int[], Tower> map = new Dictionary<int[], Tower>();
+	//  Dictionary<int[], Tower> map = new Dictionary<int[], Tower>();
 
 
 	public List<GeneSeq> CrossOverRes(GeneSeq seq1, GeneSeq seq2, int number){
@@ -101,16 +101,16 @@ public class EA_Run : MonoBehaviour
 		}
 		return listGeneSeq;
 	}
-		
 
-	public List<GeneSeq> Mutate(GeneSeq seq,int number){	       
+
+	public List<GeneSeq> Mutate(GeneSeq seq,int number){           
 		List<GeneSeq> listGeneSeq = new List<GeneSeq> ();
 		int length = seq.Size ();
 		System.Random rnd = new System.Random();
 		int[] pos  = posList[rnd.Next (0, posList.Count)];
 		int towerIndex = rnd.Next (0, towerSize);
 		int index = rnd.Next (0, length);
-		for (int i = 0; i < number; i++) {		
+		for (int i = 0; i < number; i++) {      
 			GeneSeq newSeq = new GeneSeq(seq);
 			newSeq.SetNode (index, pos, towerIndex);
 			listGeneSeq.Add (newSeq);
@@ -132,7 +132,7 @@ public class EA_Run : MonoBehaviour
 			newSeq.InitRandom (posList, towerSize, posList.Count * 3);
 			pool.Add (newSeq);
 
-//			Debug.Log ("init seq:  " +  posList.Count + "   "+towerSize);
+			//          Debug.Log ("init seq:  " +  posList.Count + "   "+towerSize);
 		}
 		return pool;
 	}
@@ -153,7 +153,7 @@ public class EA_Run : MonoBehaviour
 		foreach (string part in seqStreams) {
 			if (part.Trim () == "")
 				continue;
-			
+
 			GeneSeq newSeq = new GeneSeq ();
 			string newPart = part + ";\n";
 			Debug.Log ("Gene STring :   " + newPart);
@@ -205,7 +205,7 @@ public class EA_Run : MonoBehaviour
 			posDouble [1] = (double)pos [1];
 
 			if (!gameObjMap.ContainsKey (posStr)) {
-				
+
 				while (!GO.BuildTower (towerIndex, posDouble)) {
 					Debug.Log ("Build Tower Failed!!!!");
 					yield return new WaitForSeconds(5);
@@ -225,7 +225,7 @@ public class EA_Run : MonoBehaviour
 		}
 		Debug.Log (scoreIdx + "  "  + scoreSize);
 		if (scoreIdx < scoreSize) {
-			
+
 			scores [scoreIdx] = GetScore ();
 			Debug.LogWarning ("【Score】: " + scores [scoreIdx]);
 			scoreIdx++;
@@ -267,10 +267,10 @@ public class EA_Run : MonoBehaviour
 
 		}
 
-//		int loopCount = 100;
-//		while (loopCount > 0) {
-//			loopCount--;	
-//		}
+		//      int loopCount = 100;
+		//      while (loopCount > 0) {
+		//          loopCount--;    
+		//      }
 
 
 	}
