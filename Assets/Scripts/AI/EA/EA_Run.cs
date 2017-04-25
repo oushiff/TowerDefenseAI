@@ -187,6 +187,7 @@ public class EA_Run : MonoBehaviour
 
 	IEnumerator ExecuteGeneSeq() {
 //		scoreIdx = 0;
+		Debug.LogWarning ("In ExecuteGeneSeq");
 		Collector.Instance.init();
 		while (curSeq.hasNext()) {
 			yield return new WaitForSeconds(1);
@@ -226,8 +227,13 @@ public class EA_Run : MonoBehaviour
 				Debug.Log ("Upgrade Tower Succ!!!!");
 			}
 		}
-
+		Debug.LogWarning ("Before GetScore");
 		cur_Score = GetScore ();
+		Debug.LogWarning ("【Score】: " + cur_Score);
+		doesFinishOneSeq = true;
+
+
+
 //		Debug.Log (scoreIdx + "  "  + scoreSize);
 //		if (scoreIdx < scoreSize) {
 //
@@ -236,7 +242,7 @@ public class EA_Run : MonoBehaviour
 //			scoreIdx++;
 //		}
 
-		doesFinishOneSeq = true;
+
 	}
 
 
@@ -255,8 +261,8 @@ public class EA_Run : MonoBehaviour
 		//double res = alpha * co.spendMoney * (-1) + beta / (co.enemyLeftDistance + 1) + theta * co.enemyDeadAmount - gamma * co.enemyArrivedAmount + delta * co.upgradeTowerNum;
 		double res = alpha * co.spendMoney / initMoney - beta * co.enemyLeftDistance / co.monsterCount / mapLength - theta * co.enemyArrivedAmount / co.monsterCount;
 		//Debug.LogWarning ("【test】: " + res);
-
-		return (double)1 / ( 1 + Math.Pow(Math.E, (-1) * res));
+		return res;
+		//return (double)1 / ( 1 + Math.Pow(Math.E, (-1) * res));
 		//System.Random rnd = new System.Random();
 		//return rnd.Next (10);
 	}
