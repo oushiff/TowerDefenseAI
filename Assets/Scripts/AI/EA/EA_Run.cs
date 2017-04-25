@@ -247,7 +247,7 @@ public class EA_Run : MonoBehaviour
 		Collector co = Collector.instance;
 		//double res = alpha * co.spendMoney * (-1) + beta / (co.enemyLeftDistance + 1) + theta * co.enemyDeadAmount - gamma * co.enemyArrivedAmount + delta * co.upgradeTowerNum;
 		double res = alpha * co.spendMoney / initMoney - beta * co.enemyLeftDistance / co.monsterCount / mapLength - theta * co.enemyArrivedAmount / co.monsterCount;
-		//Debug.LogWarning ("【test】: " + co.enemyArrivedAmount);
+		//Debug.LogWarning ("【test】: " + res);
 
 		return (double)1 / ( 1 + Math.Pow(Math.E, (-1) * res));
 		//System.Random rnd = new System.Random();

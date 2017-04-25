@@ -31,7 +31,7 @@ public class Collector: MonoBehaviour
 		this.enemyArrivedAmount = 0;
 		this.upgradeTowerNum = 0;
 		this.monsterCount = 0;
-		this.enemyLeftDistance = int.MaxValue; // its the sum of total enemy left distance  
+		this.enemyLeftDistance = 0; // its the sum of total enemy left distance  
 	}
 }
 
