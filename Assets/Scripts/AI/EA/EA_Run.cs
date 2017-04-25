@@ -38,6 +38,9 @@ public class EA_Run : MonoBehaviour
 
 	GeneSeq curSeq;
 
+	double[] scores;
+	int scoreIdx = 0;
+	int scoreSize = 0;
 
 	public void Init () {
 		//		GameObject worldObj = GameObject.FindGameObjectWithTag ("ExcelReader");
@@ -180,12 +183,16 @@ public class EA_Run : MonoBehaviour
 	}
 
 	IEnumerator ExecuteGeneSeq() {
+		scoreIdx = 0;
+		Collector.Instance.init();
 		while (curSeq.hasNext()) {
 			yield return new WaitForSeconds(1);
 			Debug.Log ("New Node!!!");
 			GeneNode node = curSeq.GetNextStep ();
+			if (curSeq.Size () <= 0) {
+				break;
+			}
 
-			Debug.Log (curSeq.Size() + "bbbfefewfe");
 			int[] pos = node.pos;
 			int towerIndex = node.towerIndex;
 			String posStr = "";
@@ -216,19 +223,32 @@ public class EA_Run : MonoBehaviour
 				Debug.Log ("Upgrade Tower Succ!!!!");
 			}
 		}
-
+		Debug.Log (scoreIdx + "  "  + scoreSize);
+		if (scoreIdx < scoreSize) {
+			
+			scores [scoreIdx] = GetScore ();
+			Debug.LogWarning ("【Score】: " + scores [scoreIdx]);
+			scoreIdx++;
+		}
 	}
 
 
 	public double GetScore() {
-		double alpha = 0;
-		double beta = 0;
-		double theta = 0;
-		double gamma = 0;
-		double delta = 0;
+		double alpha = 1;
+		double beta = 1;
+		double theta = 1;
+		//double gamma = 0;
+		//double delta = 0;
+		MoneyMonitor money = new MoneyMonitor();
+		int initMoney = money.GetStartingMoney ();
+		int mapLength = MapMonitor.instance.GetRoadsCoordinates().Count;
+
 
 		Collector co = Collector.instance;
-		double res = alpha * co.spendMoney * (-1) + beta / (co.enemyLeftDistance + 1) + theta * co.enemyDeadAmount - gamma * co.enemyArrivedAmount + delta * co.upgradeTowerNum;
+		//double res = alpha * co.spendMoney * (-1) + beta / (co.enemyLeftDistance + 1) + theta * co.enemyDeadAmount - gamma * co.enemyArrivedAmount + delta * co.upgradeTowerNum;
+		double res = alpha * co.spendMoney / initMoney - beta * co.enemyLeftDistance / co.monsterCount / mapLength - theta * co.enemyArrivedAmount / co.monsterCount;
+		//Debug.LogWarning ("【test】: " + co.enemyArrivedAmount);
+
 		return (double)1 / ( 1 + Math.Pow(Math.E, (-1) * res));
 		//System.Random rnd = new System.Random();
 		//return rnd.Next (10);
@@ -236,15 +256,15 @@ public class EA_Run : MonoBehaviour
 
 
 	public void Run_EA_Loop() {
+		Debug.LogWarning ("In loop !!!!!!!!!!");
 		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
-		double[] scores = new double[geneSeqs.Count];
-		Collector.Instance.init();
+		scoreSize = geneSeqs.Count;
+		scores = new double[scoreSize];
 		for (int i = 0; i < geneSeqs.Count; i++) {
 			curSeq = geneSeqs [i];
 			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
 			StartCoroutine(ExecuteGeneSeq ());
-			scores[i] = GetScore ();
-			Debug.LogWarning ("【Score】: " + scores [i]);
+
 		}
 
 //		int loopCount = 100;

@@ -80,6 +80,11 @@ namespace AI
 			posStr += (int)pos [0]; 
 			posStr += ",";
 			posStr += (int)pos [1];
+
+//			Debug.LogWarning ("gameObjMap Size" + gameObjMap.Count + "   key: " +posStr);
+			if (!gameObjMap.ContainsKey (posStr)) {
+				return false;
+			}
 			GameObject towerObject = gameObjMap [posStr];
 			Tower tower = towerObject.GetComponent<Tower> ();
 			return tower.IsTowerUpgradable ();
