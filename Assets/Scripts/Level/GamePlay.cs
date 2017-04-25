@@ -83,9 +83,9 @@ public class GamePlay : MonoBehaviour
 		ea_player = ea_part.GetComponent<EA_Run> ();   // EA_player
 
 		ea_player.Init ();
-		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
-		ea_player.ExportSeqToFile(pool);     
-		ea_player.Run_EA_Loop();
+		//List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
+		//ea_player.ExportSeqToFile(pool);     
+		ea_player.Run();
 
 		if (lastWaveFileIndex == -1) {
 			System.IO.StreamReader file = 

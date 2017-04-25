@@ -38,9 +38,12 @@ public class EA_Run : MonoBehaviour
 
 	GeneSeq curSeq;
 
-	double[] scores;
-	int scoreIdx = 0;
-	int scoreSize = 0;
+	double cur_Score;
+//	double[] scores;
+//	int scoreIdx = 0;
+//	int scoreSize = 0;
+
+	bool doesFinishOneSeq = false;
 
 	public void Init () {
 		//      GameObject worldObj = GameObject.FindGameObjectWithTag ("ExcelReader");
@@ -183,7 +186,7 @@ public class EA_Run : MonoBehaviour
 	}
 
 	IEnumerator ExecuteGeneSeq() {
-		scoreIdx = 0;
+//		scoreIdx = 0;
 		Collector.Instance.init();
 		while (curSeq.hasNext()) {
 			yield return new WaitForSeconds(1);
@@ -223,13 +226,17 @@ public class EA_Run : MonoBehaviour
 				Debug.Log ("Upgrade Tower Succ!!!!");
 			}
 		}
-		Debug.Log (scoreIdx + "  "  + scoreSize);
-		if (scoreIdx < scoreSize) {
 
-			scores [scoreIdx] = GetScore ();
-			Debug.LogWarning ("【Score】: " + scores [scoreIdx]);
-			scoreIdx++;
-		}
+		cur_Score = GetScore ();
+//		Debug.Log (scoreIdx + "  "  + scoreSize);
+//		if (scoreIdx < scoreSize) {
+//
+//			scores [scoreIdx] = GetScore ();
+//			Debug.LogWarning ("【Score】: " + scores [scoreIdx]);
+//			scoreIdx++;
+//		}
+
+		doesFinishOneSeq = true;
 	}
 
 
@@ -255,24 +262,64 @@ public class EA_Run : MonoBehaviour
 	}
 
 
-	public void Run_EA_Loop() {
+	public IEnumerator Run_EA_Loop() {
 		Debug.LogWarning ("In loop !!!!!!!!!!");
 		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
-		scoreSize = geneSeqs.Count;
-		scores = new double[scoreSize];
+		double[] scores = new double[geneSeqs.Count];
+		List<GeneSeq> resPool = new List<GeneSeq> ();
+//		scoreSize = geneSeqs.Count;
+//		scores = new double[scoreSize];
 		for (int i = 0; i < geneSeqs.Count; i++) {
+
 			curSeq = geneSeqs [i];
 			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
 			StartCoroutine(ExecuteGeneSeq ());
-
+			while (!doesFinishOneSeq) {
+				yield return new WaitForSeconds(5);
+			}
+			doesFinishOneSeq = false;
+			scores [i] = cur_Score; 
+		}
+		for (int i = 0; i < geneSeqs.Count; i++) {
+			for (int j = i + 1; j < geneSeqs.Count; j++) {
+				List<GeneSeq> children = CrossOverRes(geneSeqs[i], geneSeqs[j], 5);
+				foreach (GeneSeq child in children) {
+					curSeq = child;
+					StartCoroutine (ExecuteGeneSeq ());
+					while (!doesFinishOneSeq) {
+						yield return new WaitForSeconds (5);
+					}
+					doesFinishOneSeq = false;
+					if (cur_Score > scores [i] && cur_Score > scores [j]) {
+						resPool.Add (child);
+					} 
+				}
+			}
+		}
+		for (int i = 0; i < geneSeqs.Count; i++) {
+			
+			List<GeneSeq> children = Mutate(geneSeqs[i], 5);
+			foreach (GeneSeq child in children) {
+				curSeq = child;
+				StartCoroutine (ExecuteGeneSeq ());
+				while (!doesFinishOneSeq) {
+					yield return new WaitForSeconds (5);
+				}
+				doesFinishOneSeq = false;
+				if (cur_Score > scores [i]) {
+					resPool.Add (child);
+				} 
+			}
 		}
 
-		//      int loopCount = 100;
-		//      while (loopCount > 0) {
-		//          loopCount--;    
-		//      }
+		ExportSeqToFile(resPool);
 
 
+
+	}
+
+	public void Run(){
+		StartCoroutine(Run_EA_Loop());
 	}
 
 
