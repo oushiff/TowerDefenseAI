@@ -86,6 +86,10 @@ public class Currency : MonoBehaviour
 		coins = GameData.instance.GetCurrentLevel ().startingMoney;
 	}
 
+	public void RecordStartMoneyLog(){
+		Debug.Log ("{\t\"Type\": \"Money\",\t\"MoneyGain\": "+coins+",\t\"FinalMoney\": "+coins+",\t\"Event\": \"GameStart\",\t\"Time\": 0}, ");
+
+	}
 
 	public void RecordEndMoneyLog() {
 		Debug.Log ("{\t\"Type\": \"Money\",\t\"MoneyGain\": 0,\t\"FinalMoney\": "+coins+",\t\"Event\": \"GameEnd\",\t\"Time\": "+(int)Time.time+"}, ");
