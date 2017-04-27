@@ -256,11 +256,11 @@ public void KillEnemy(Enemy enemy, bool doesArrive)
 
 	UnityEngine.Debug.Log (finishedSpawningEnemies);
 
-	if (finishedSpawningEnemies && monsterCount == 0)
+	if (finishedSpawningEnemies && monsterCount <= 0)
 		EndLevel();
 
-	if (activeEnemies.Count == 0)
-		EndLevel ();
+//	if (activeEnemies.Count == 0)
+//		EndLevel ();
 
 	monsterCount = 0;
 }
