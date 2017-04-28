@@ -66,7 +66,7 @@ public class GamePlay : MonoBehaviour
 
 	void Start()
 	{
-		Time.timeScale = 6;
+		Time.timeScale = 16;
 		pathMaxLen = Grid.instance.wayPoints.Length - 1;
 
 		GameData.instance.Load ();

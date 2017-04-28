@@ -189,6 +189,13 @@ public class EA_Run : MonoBehaviour
 		writeFile.Close();
 	}
 
+
+	public void ExportOneSeqToFile(GeneSeq seq) {
+		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy",append: true);
+		writeFile.WriteLine(seq.Serialize());
+		writeFile.Close();
+	}
+
 	IEnumerator ExecuteGeneSeq() {
 //		scoreIdx = 0;
 		Debug.LogWarning ("In ExecuteGeneSeq");
@@ -216,7 +223,7 @@ public class EA_Run : MonoBehaviour
 
 				while (!GO.BuildTower (towerIndex, posDouble)) {
 					Debug.Log ("Build Tower Failed!!!!");
-					yield return new WaitForSeconds(5);
+					yield return new WaitForSeconds(15);
 				} 
 				Debug.Log ("Build Tower Succ!!!!");
 			} else {
@@ -226,13 +233,14 @@ public class EA_Run : MonoBehaviour
 				}
 				while (!GO.UpgradeTower (0, posDouble)) {
 					Debug.Log ("Upgrade Tower Failed!!!!");
-					yield return new WaitForSeconds(5);
+					yield return new WaitForSeconds(15);
 				}
 				Debug.Log ("Upgrade Tower Succ!!!!");
 			}
 		}
-		Debug.LogWarning ("Before GetScore");
+//		Debug.LogWarning ("Before GetScore");
 		cur_Score = GetScore ();
+		curSeq.SetSeqScore (cur_Score);
 		Debug.LogWarning ("【Score】: " + cur_Score);
 		doesFinishOneSeq = true;
 
@@ -289,6 +297,7 @@ public class EA_Run : MonoBehaviour
 			}
 			doesFinishOneSeq = false;
 			scores [i] = cur_Score; 
+			Debug.LogWarning ("【Score parent "+i+"】: " + cur_Score);
 		}
 		for (int i = 0; i < geneSeqs.Count; i++) {
 			for (int j = i + 1; j < geneSeqs.Count; j++) {
@@ -300,8 +309,10 @@ public class EA_Run : MonoBehaviour
 						yield return new WaitForSeconds (60);
 					}
 					doesFinishOneSeq = false;
+					Debug.LogError ("【Score cross "+i+" " +j+"】: " + cur_Score);
 					if (cur_Score > scores [i] && cur_Score > scores [j]) {
-						resPool.Add (child);
+//						resPool.Add (child);
+						ExportOneSeqToFile(curSeq);
 					} 
 				}
 			}
@@ -316,13 +327,15 @@ public class EA_Run : MonoBehaviour
 					yield return new WaitForSeconds (60);
 				}
 				doesFinishOneSeq = false;
+				Debug.LogError ("【Score mutate "+i+"】: " + cur_Score);
 				if (cur_Score > scores [i]) {
-					resPool.Add (child);
+//					resPool.Add (child);
+					ExportOneSeqToFile(curSeq);
 				} 
 			}
 		}
 
-		ExportSeqToFile(resPool);
+//		ExportSeqToFile(resPool);
 
 
 

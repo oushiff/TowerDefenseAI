@@ -146,4 +146,12 @@ public class GeneSeq {
 	}
 
 
+	public void SetSeqScore(double score) {
+		this.score = score;
+	}
+
+	public double GetSeqScore() {
+		return score;
+	}
+
 }
