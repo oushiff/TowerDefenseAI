@@ -43,8 +43,8 @@ public class GamePlay : MonoBehaviour
 	public int pathMaxLen;
 	public int monsterCount = 0;  
 	public int remainLife = 10;  
-		public AI.GameAI gameAI;      // non-EA
-//	public EA_Run ea_player;   // EA_player
+//		public AI.GameAI gameAI;      // non-EA
+	public EA_Run ea_player;   // EA_player
 	public Currency currency;   
 	public int lastWaveFileIndex = -1;
 	public int newWaveFileIndex;
@@ -75,17 +75,17 @@ public class GamePlay : MonoBehaviour
 		publicEnemies = this.enemies;
 		GameObject curr = GameObject.FindGameObjectWithTag("Currency");
 		GameObject ai = GameObject.FindGameObjectWithTag("ExcelReader");
-//		GameObject ea_part = GameObject.FindGameObjectWithTag ("ExcelReader");
+		GameObject ea_part = GameObject.FindGameObjectWithTag ("ExcelReader");
 
 		currency =curr.GetComponent<Currency>();
-				gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
+//				gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
 
-//		ea_player = ea_part.GetComponent<EA_Run> ();   // EA_player
-//
-//		ea_player.Init ();
-//		//List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
-//		//ea_player.ExportSeqToFile(pool);     
-//		ea_player.Run();
+		ea_player = ea_part.GetComponent<EA_Run> ();   // EA_player
+
+		ea_player.Init ();
+//		List<GeneSeq> pool = ea_player.InitSeqsRandom();     // EA_player  init_random
+//		ea_player.ExportSeqToFile(pool);     
+		ea_player.Run();
 
 		if (lastWaveFileIndex == -1) {
 			System.IO.StreamReader file = 
@@ -231,8 +231,8 @@ IEnumerator SpawnEnemies_bck()
 public void KillEnemy(Enemy enemy, bool doesArrive)
 {
 
-	Collector.instance.monsterCount += 1;
-	Collector.instance.enemyLeftDistance += pathMaxLen - enemy.nextPointIndex;
+	Collector.Instance.monsterCount += 1;
+	Collector.Instance.enemyLeftDistance += pathMaxLen - enemy.nextPointIndex;
 	//FFFFFFFFFFFFFFFFFFF
 	if (doesArrive) {
 		remainLife--;
@@ -357,7 +357,7 @@ void ClearAllData() {
 
 	activeTowers = new List<Tower>();
 
-			gameAI.ResetPositionsList ();  // non-EA
+//			gameAI.ResetPositionsList ();  // non-EA
 
 	currency.ResetMoney ();
 

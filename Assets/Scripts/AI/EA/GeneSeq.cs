@@ -3,12 +3,19 @@ using System.Collections.Generic;
 
 public class GeneSeq {
 	private List<GeneNode> seqList = new List<GeneNode>();
-//	public int id;
+	public string id;
+	public double score;
 //	public List<int> parentIds;
 
-	public GeneSeq() {}
+	public GeneSeq() {
+		id = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+		score = 0;
+	}
 
 	public GeneSeq(List<GeneNode> nodes) {
+		id = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+		score = 0;
+
 		int size = nodes.Count;
 		for (int i = size - 1; i >= 0; i--) {
 			seqList.Add (nodes[i]);
@@ -16,6 +23,9 @@ public class GeneSeq {
 	}
 
 	public GeneSeq(GeneSeq seq) {
+		id = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+		score = 0;
+
 		this.seqList = seq.GetReverseNodeList();
 //		this.id = seq.id;
 //		this.parentIds = seq.parentIds;
@@ -102,7 +112,7 @@ public class GeneSeq {
 	public string Serialize() {
 		System.Text.StringBuilder sb = new System.Text.StringBuilder();
 		int count = seqList.Count;
-		sb.Append (count + "\n");
+		sb.Append (id + " " + score + " "+ count+"\n");
 		for (int i = count - 1; i >= 0; i--) {
 			sb.Append (seqList [i].pos [0] + " " + seqList [i].pos [1] + " " + seqList [i].towerIndex + "\n");
 		}
@@ -111,6 +121,8 @@ public class GeneSeq {
 	}
 
 	public GeneSeq Deserialize(string stream) {
+		id = null;
+		score = -1;
 		string[] lines = stream.Split ('\n');
 		for (int i = 0; i < lines.Length; i++) {			
 			string line = lines [i];
@@ -119,8 +131,11 @@ public class GeneSeq {
 			if (line.Trim () == ";")
 				break;
 			string[] elems = line.Split (' ');
-			if (elems.Length != 3)
+			if (id == null) {
+				id = elems [0];
+				score = Double.Parse(elems [1]);
 				continue;
+			}
 			int[] pos = new int[2];
 			pos [0] = Int32.Parse (elems [0]);
 			pos [1] = Int32.Parse (elems [1]);

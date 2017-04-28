@@ -141,13 +141,17 @@ public class EA_Run : MonoBehaviour
 	}
 
 	public List<GeneSeq> ImportSeqsFromFile() {
-		System.IO.StreamReader readFile = 
-			new System.IO.StreamReader("Strategy_Pool/info");
-		int fileIndex = Int32.Parse (readFile.ReadLine ());
-		readFile.Close ();
+//		System.IO.StreamReader readFile = 
+//			new System.IO.StreamReader("Strategy_Pool/info");
+//		int fileIndex = Int32.Parse (readFile.ReadLine ());
+//		readFile.Close ();
 
-		fileIndex -= 1;
-		readFile = new System.IO.StreamReader("Strategy_Pool/strategy_" + fileIndex);
+//		fileIndex -= 1;
+//		readFile = new System.IO.StreamReader("Strategy_Pool/strategy_" + fileIndex);
+//		string stream = readFile.ReadToEnd();
+//		readFile.Close ();
+
+		System.IO.StreamReader readFile = new System.IO.StreamReader("Strategy_Pool/strategy");
 		string stream = readFile.ReadToEnd();
 		readFile.Close ();
 
@@ -167,20 +171,20 @@ public class EA_Run : MonoBehaviour
 	}
 
 	public void ExportSeqToFile(List<GeneSeq> geneSeqs) {
-		System.IO.StreamReader readFile = 
-			new System.IO.StreamReader("Strategy_Pool/info");
-		int fileIndex = Int32.Parse (readFile.ReadLine ());
-		readFile.Close ();
+//		System.IO.StreamReader readFile = 
+//			new System.IO.StreamReader("Strategy_Pool/info");
+//		int fileIndex = Int32.Parse (readFile.ReadLine ());
+//		readFile.Close ();
 
-		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/info");
-		writeFile.WriteLine(fileIndex + 1);
-		writeFile.Close();
+//		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/info");
+//		writeFile.WriteLine(fileIndex + 1);
+//		writeFile.Close();
 
 		System.Text.StringBuilder sb = new System.Text.StringBuilder(); 
 		foreach (GeneSeq seq in geneSeqs) {
 			sb.Append(seq.Serialize());
 		}
-		writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy_" + fileIndex);
+		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy",append: true);
 		writeFile.WriteLine(sb.ToString());
 		writeFile.Close();
 	}
