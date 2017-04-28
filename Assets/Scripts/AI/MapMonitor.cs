@@ -25,9 +25,9 @@ namespace AI
 
 		public MapMonitor ()
 		{
-//			gameData = new GameData ();
-//			gameData.Load ();
-//			this.mapGrid = gameData.GetCurrentLevel ().grid;
+			gameData = new GameData ();
+			gameData.Load ();
+			this.mapGrid = gameData.GetCurrentLevel ().grid;
 		}
 
 		public List<double[]> GetRoadsCoordinates ()

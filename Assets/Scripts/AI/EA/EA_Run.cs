@@ -281,7 +281,7 @@ public class EA_Run : MonoBehaviour
 			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
 			StartCoroutine(ExecuteGeneSeq ());
 			while (!doesFinishOneSeq) {
-				yield return new WaitForSeconds(5);
+				yield return new WaitForSeconds(60);
 			}
 			doesFinishOneSeq = false;
 			scores [i] = cur_Score; 
@@ -293,7 +293,7 @@ public class EA_Run : MonoBehaviour
 					curSeq = child;
 					StartCoroutine (ExecuteGeneSeq ());
 					while (!doesFinishOneSeq) {
-						yield return new WaitForSeconds (5);
+						yield return new WaitForSeconds (60);
 					}
 					doesFinishOneSeq = false;
 					if (cur_Score > scores [i] && cur_Score > scores [j]) {
@@ -309,7 +309,7 @@ public class EA_Run : MonoBehaviour
 				curSeq = child;
 				StartCoroutine (ExecuteGeneSeq ());
 				while (!doesFinishOneSeq) {
-					yield return new WaitForSeconds (5);
+					yield return new WaitForSeconds (60);
 				}
 				doesFinishOneSeq = false;
 				if (cur_Score > scores [i]) {

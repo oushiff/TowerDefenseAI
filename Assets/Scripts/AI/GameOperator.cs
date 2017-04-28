@@ -68,7 +68,7 @@ namespace AI
 
 				int neg_value = -towerCost;
 				Debug.Log ("{\t\"Type\": \"Tower\",\t\"TowerName\": \""+selectedTower.name+"\",\t\"TowerIndex\": "+selectedTower.index+",\t\"Level\": \"1,1\",\t\"Position\": \""+posStr+"\",\t\"Event\": \"Built\",\t\"Money\": "+neg_value+",\t\"Time\": "+(int)Time.time+"}, ");
-				Collector.instance.spendMoney += neg_value;
+				Collector.Instance.spendMoney += neg_value;
 				return true;
 			}
 			return false;

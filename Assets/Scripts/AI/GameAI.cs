@@ -12,11 +12,11 @@ namespace AI
 	[System.Serializable]
 	public class GameAI: MonoBehaviour
 	{
-		private MapMonitor m_map;
+		public MapMonitor m_map;
 		//means map monitor
-		private TowerMonitor m_tower;
+		public TowerMonitor m_tower;
 		//		private MonsterMonitor m_monster;
-		private MoneyMonitor m_money;
+		public MoneyMonitor m_money;
 
 		private List<double[]> c_roads;
 		// double List<double x, double y> the coordinates

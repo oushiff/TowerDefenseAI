@@ -52,7 +52,7 @@ public class GamePlay : MonoBehaviour
 
 
 
-	public string PRJ_ROOT = "/Users/hongruzh/Desktop/CSCI524/tempSave524/pools/";
+	public string PRJ_ROOT = "/Users/Franz/Documents/524LoopControl/LoopControl/pools/";
 
 	public string GetInfoPath(string targetFolderPath) {
 		return targetFolderPath + "info";
@@ -75,7 +75,7 @@ public class GamePlay : MonoBehaviour
 		publicEnemies = this.enemies;
 		GameObject curr = GameObject.FindGameObjectWithTag("Currency");
 		GameObject ai = GameObject.FindGameObjectWithTag("ExcelReader");
-		GameObject ea_part = GameObject.FindGameObjectWithTag ("ExcelReader");
+//		GameObject ea_part = GameObject.FindGameObjectWithTag ("ExcelReader");
 
 		currency =curr.GetComponent<Currency>();
 				gameAI = ai.GetComponent<AI.GameAI>();   // non-EA
@@ -89,7 +89,7 @@ public class GamePlay : MonoBehaviour
 
 		if (lastWaveFileIndex == -1) {
 			System.IO.StreamReader file = 
-				new System.IO.StreamReader(GetInfoPath("/Users/hongruzh/Desktop/CSCI524/tempSave524/pools/"+ "wave_pool/"));
+				new System.IO.StreamReader(GetInfoPath(PRJ_ROOT + "wave_pool/"));
 			lastWaveFileIndex = System.Int32.Parse(file.ReadLine ());
 			file.Close ();
 			UnityEngine.Debug.Log ("lastWaveFileIndex: " + lastWaveFileIndex);
@@ -285,7 +285,7 @@ public void EndLevel()
 	System.Threading.Thread.Sleep (30);
 
 
-	var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/hongruzh/Desktop/CSCI524/tempSave524/loopControl.py");
+	var processInfo = new ProcessStartInfo ("/usr/bin/python", "/Users/Franz/Documents/524LoopControl/LoopControl/loopControl.py");
 	processInfo.CreateNoWindow = true;
 	processInfo.UseShellExecute = false;
 	processInfo.RedirectStandardOutput = true;
@@ -309,18 +309,18 @@ public void EndLevel()
 
 
 	//while (true) {	
-	System.IO.StreamReader file = new System.IO.StreamReader(GetInfoPath("/Users/hongruzh/Desktop/CSCI524/tempSave524/pools/"+ "wave_pool/"));
+	System.IO.StreamReader file = new System.IO.StreamReader(GetInfoPath(PRJ_ROOT+ "wave_pool/"));
 	newWaveFileIndex = System.Int32.Parse(file.ReadLine ());
 	file.Close ();
 	if (newWaveFileIndex != lastWaveFileIndex) {
 		UnityEngine.Debug.LogWarning ("Got new wave, New Round!!!!");
-		System.IO.StreamReader xmlReaderFile = new System.IO.StreamReader("/Users/hongruzh/Desktop/CSCI524/tempSave524/pools/"+ "wave_pool/wave_"+ (newWaveFileIndex-1));
+		System.IO.StreamReader xmlReaderFile = new System.IO.StreamReader(PRJ_ROOT + "wave_pool/wave_"+ (newWaveFileIndex-1));
 		string xmlContent = xmlReaderFile.ReadToEnd ();
 		xmlReaderFile.Close ();
 
 		//		System.IO.StreamReader xmlWriterFile = new System.IO.StreamReader("/Users/Franz/Documents/FinalTowerDefense/TowerDefenseAI/Assets/Data/Level1.xml");
 
-		System.IO.StreamWriter xmlWriterFile = new System.IO.StreamWriter("/Users/hongruzh/Desktop/CSCI524/TowerDefenseAI/Assets/Data/Level1.xml");
+		System.IO.StreamWriter xmlWriterFile = new System.IO.StreamWriter("Assets/Data/Level1.xml");
 		xmlWriterFile.Write (xmlContent);
 		xmlWriterFile.Close ();
 
