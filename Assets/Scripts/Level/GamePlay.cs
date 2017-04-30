@@ -162,7 +162,7 @@ public class GamePlay : MonoBehaviour
 		}
 
 		if (prefab == null){
-			UnityEngine.Debug.LogWarning("Monster prefab not found");
+//			UnityEngine.Debug.LogWarning("Monster prefab not found");
 			yield break;
 		}
 
@@ -330,10 +330,15 @@ public void EndLevel()
 		//				System.Threading.Thread.Sleep (30);
 	}
 	//}
+
+
+
 	Start ();
 		currency.RecordStartMoneyLog ();
 
 }
+
+
 
 public void Pause()
 {
@@ -362,4 +367,7 @@ void ClearAllData() {
 	currency.ResetMoney ();
 
 }
+
+
+
 }

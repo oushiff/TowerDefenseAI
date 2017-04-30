@@ -57,7 +57,7 @@ public class EA_Run : MonoBehaviour
 
 		List <double[]> tmpList = m_map.GetAllCandidateSpacesAtBeginning ();
 
-		Debug.Log (tmpList.Count + "AAAAA");
+//		Debug.Log (tmpList.Count + "AAAAA");
 
 
 		foreach (double[] tmpDouble in tmpList) {
@@ -163,7 +163,7 @@ public class EA_Run : MonoBehaviour
 
 			GeneSeq newSeq = new GeneSeq ();
 			string newPart = part + ";\n";
-			Debug.Log ("Gene STring :   " + newPart);
+//			Debug.Log ("Gene STring :   " + newPart);
 			pool.Add(newSeq.Deserialize (newPart));
 
 		}
@@ -184,13 +184,13 @@ public class EA_Run : MonoBehaviour
 		foreach (GeneSeq seq in geneSeqs) {
 			sb.Append(seq.Serialize());
 		}
-		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy",append: true);
+		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy");
 		writeFile.WriteLine(sb.ToString());
 		writeFile.Close();
 	}
 
 
-	public void ExportOneSeqToFile(GeneSeq seq) {
+	public void AppendOneSeqToFile(GeneSeq seq) {
 		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy",append: true);
 		writeFile.WriteLine(seq.Serialize());
 		writeFile.Close();
@@ -198,12 +198,12 @@ public class EA_Run : MonoBehaviour
 
 	IEnumerator ExecuteGeneSeq() {
 //		scoreIdx = 0;
-		Debug.LogWarning ("In ExecuteGeneSeq");
+//		Debug.LogWarning ("In ExecuteGeneSeq");
 		Collector.Instance.init();
 		int size = curSeq.Size ();
 		for (int  i = 0; i < size; i++) {
 			yield return new WaitForSeconds(1);
-			Debug.Log ("New Node!!!");
+//			Debug.Log ("New Node!!!");
 			GeneNode node = curSeq.GetNodeByIndex (i);
 //			if (curSeq.Size () <= 0) {
 //				break;
@@ -223,26 +223,26 @@ public class EA_Run : MonoBehaviour
 			if (!gameObjMap.ContainsKey (posStr)) {
 
 				while (!GO.BuildTower (towerIndex, posDouble)) {
-					Debug.Log ("Build Tower Failed!!!!");
+//					Debug.Log ("Build Tower Failed!!!!");
 					yield return new WaitForSeconds(15);
 				} 
-				Debug.Log ("Build Tower Succ!!!!");
+//				Debug.Log ("Build Tower Succ!!!!");
 			} else {
 				if (!GO.IsUpgradable (posDouble)) {
-					Debug.Log ("Level Highest!!!!");
+//					Debug.Log ("Level Highest!!!!");
 					continue;
 				}
 				while (!GO.UpgradeTower (0, posDouble)) {
-					Debug.Log ("Upgrade Tower Failed!!!!");
+//					Debug.Log ("Upgrade Tower Failed!!!!");
 					yield return new WaitForSeconds(15);
 				}
-				Debug.Log ("Upgrade Tower Succ!!!!");
+//				Debug.Log ("Upgrade Tower Succ!!!!");
 			}
 		}
 //		Debug.LogWarning ("Before GetScore");
 		cur_Score = GetScore ();
 		curSeq.SetSeqScore (cur_Score);
-		Debug.LogWarning ("【Score】: " + cur_Score);
+//		Debug.LogWarning ("【Score】: " + cur_Score);
 		doesFinishOneSeq = true;
 
 
@@ -282,7 +282,8 @@ public class EA_Run : MonoBehaviour
 
 
 	public IEnumerator Run_EA_Loop() {
-		Debug.LogWarning ("In loop !!!!!!!!!!");
+//		Debug.LogWarning ("In loop !!!!!!!!!!");
+		FilterGoodStrategy ();
 		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
 		double[] scores = new double[geneSeqs.Count];
 		List<GeneSeq> resPool = new List<GeneSeq> ();
@@ -291,17 +292,17 @@ public class EA_Run : MonoBehaviour
 		for (int i = 0; i < geneSeqs.Count; i++) {
 
 			curSeq = geneSeqs [i];
-			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
+//			Debug.Log ("!!!!!!!!!!!!!" + curSeq.Size());
 			StartCoroutine(ExecuteGeneSeq ());
 			while (!doesFinishOneSeq) {
 				yield return new WaitForSeconds(60);
 			}
 			doesFinishOneSeq = false;
 			scores [i] = cur_Score; 
-			Debug.LogWarning ("【Score parent "+i+"】: " + cur_Score);
-			Debug.LogError ("seqCount  " + geneSeqs[0].Serialize() + "  +++++\n"+geneSeqs[1].Serialize());
+//			Debug.LogWarning ("【Score parent "+i+"】: " + cur_Score);
+//			Debug.LogError ("seqCount  " + geneSeqs[0].Serialize() + "  +++++\n"+geneSeqs[1].Serialize());
 		}
-		Debug.LogError ("seqCount  " + geneSeqs[0].Serialize() + "  ++++++\n"+geneSeqs[1].Serialize());
+//		Debug.LogError ("seqCount  " + geneSeqs[0].Serialize() + "  ++++++\n"+geneSeqs[1].Serialize());
 		for (int i = 0; i < geneSeqs.Count; i++) {
 			for (int j = i + 1; j < geneSeqs.Count; j++) {
 				List<GeneSeq> children = CrossOverRes(geneSeqs[i], geneSeqs[j], 5);
@@ -312,10 +313,10 @@ public class EA_Run : MonoBehaviour
 						yield return new WaitForSeconds (60);
 					}
 					doesFinishOneSeq = false;
-					Debug.LogError ("【Score cross "+i+" " +j+"】: " + cur_Score);
+//					Debug.LogError ("【Score cross "+i+" " +j+"】: " + cur_Score);
 					if (cur_Score > scores [i] && cur_Score > scores [j]) {
 //						resPool.Add (child);
-						ExportOneSeqToFile(curSeq);
+						AppendOneSeqToFile(curSeq);
 					} 
 				}
 			}
@@ -330,10 +331,10 @@ public class EA_Run : MonoBehaviour
 					yield return new WaitForSeconds (60);
 				}
 				doesFinishOneSeq = false;
-				Debug.LogError ("【Score mutate "+i+"】: " + cur_Score);
+//				Debug.LogError ("【Score mutate "+i+"】: " + cur_Score);
 				if (cur_Score > scores [i]) {
 //					resPool.Add (child);
-					ExportOneSeqToFile(curSeq);
+					AppendOneSeqToFile(curSeq);
 				} 
 			}
 		}
@@ -348,7 +349,15 @@ public class EA_Run : MonoBehaviour
 		StartCoroutine(Run_EA_Loop());
 	}
 
-
+	public void FilterGoodStrategy() {
+		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
+		if (geneSeqs.Count > 6) {
+//			List<GeneSeq> SortedList = geneSeqs.OrderBy(o=>o.score).ToList();
+//			geneSeqs.Sort((x, y) => Double.Compare(x.score, y.score));
+			geneSeqs.Sort((x, y) => (int)(x.score - y.score));
+		}
+		ExportSeqToFile (geneSeqs);
+	}
 
 }
 
