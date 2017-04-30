@@ -93,11 +93,11 @@ public class EA_Run : MonoBehaviour
 			List<GeneNode> nodes = new List<GeneNode> ();
 			int j = 0;
 			for (; j <= index; j++) {
-				seq2.GetNextStep ();
-				nodes.Add (seq2.GetNextStep ());
+				
+				nodes.Add (seq1.GetNodeByIndex(j));
 			}
-			for (; i < seq2.Size (); i++) {
-				nodes.Add(seq2.GetNextStep());
+			for (; j < seq2.Size (); j++) {
+				nodes.Add(seq2.GetNodeByIndex(j));
 			}
 			GeneSeq newSeq = new GeneSeq (nodes);
 			listGeneSeq.Add (newSeq);
@@ -200,14 +200,15 @@ public class EA_Run : MonoBehaviour
 //		scoreIdx = 0;
 		Debug.LogWarning ("In ExecuteGeneSeq");
 		Collector.Instance.init();
-		while (curSeq.hasNext()) {
+		int size = curSeq.Size ();
+		for (int  i = 0; i < size; i++) {
 			yield return new WaitForSeconds(1);
 			Debug.Log ("New Node!!!");
-			GeneNode node = curSeq.GetNextStep ();
-			if (curSeq.Size () <= 0) {
-				break;
-			}
-
+			GeneNode node = curSeq.GetNodeByIndex (i);
+//			if (curSeq.Size () <= 0) {
+//				break;
+//			}
+//
 			int[] pos = node.pos;
 			int towerIndex = node.towerIndex;
 			String posStr = "";
@@ -298,7 +299,9 @@ public class EA_Run : MonoBehaviour
 			doesFinishOneSeq = false;
 			scores [i] = cur_Score; 
 			Debug.LogWarning ("【Score parent "+i+"】: " + cur_Score);
+			Debug.LogError ("seqCount  " + geneSeqs[0].Serialize() + "  +++++\n"+geneSeqs[1].Serialize());
 		}
+		Debug.LogError ("seqCount  " + geneSeqs[0].Serialize() + "  ++++++\n"+geneSeqs[1].Serialize());
 		for (int i = 0; i < geneSeqs.Count; i++) {
 			for (int j = i + 1; j < geneSeqs.Count; j++) {
 				List<GeneSeq> children = CrossOverRes(geneSeqs[i], geneSeqs[j], 5);

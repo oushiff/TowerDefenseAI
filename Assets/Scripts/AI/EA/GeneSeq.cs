@@ -75,23 +75,23 @@ public class GeneSeq {
 	}
 
 
-	public bool hasNext() {
-		if (this.Size () > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public GeneNode GetNextStep() {
-		int size = this.Size ();
-		if (size <= 0) {
-			return null;
-		} 
-		GeneNode node = seqList [size - 1];
-		seqList.RemoveAt(size - 1);
-		return node;
-	}
+//	public bool hasNext() {
+//		if (this.Size () > 0) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
+//
+//	public GeneNode PollNextStep() {
+//		int size = this.Size ();
+//		if (size <= 0) {
+//			return null;
+//		} 
+//		GeneNode node = seqList [size - 1];
+//		seqList.RemoveAt(size - 1);
+//		return node;
+//	}
 
 	public int Size() {
 		return seqList.Count;
