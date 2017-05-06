@@ -42,7 +42,12 @@ public class GeneSeq {
 		
 	// Avoid to use this function, because it will return reverse list
 	public List<GeneNode> GetReverseNodeList() {
-		return seqList;
+		List<GeneNode> res = new List<GeneNode> ();
+		foreach (GeneNode node in seqList) {
+			GeneNode newNode = new GeneNode (node.pos, node.towerIndex);
+			res.Add (newNode);
+		} 
+		return res;
 	}
 
 	public GeneNode GetNodeByIndex(int index) {

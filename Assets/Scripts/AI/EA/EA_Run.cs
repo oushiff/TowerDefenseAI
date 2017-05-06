@@ -184,7 +184,7 @@ public class EA_Run : MonoBehaviour
 		foreach (GeneSeq seq in geneSeqs) {
 			sb.Append(seq.Serialize());
 		}
-		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy");
+		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/strategy",append: false);
 		writeFile.WriteLine(sb.ToString());
 		writeFile.Close();
 	}
@@ -313,10 +313,14 @@ public class EA_Run : MonoBehaviour
 						yield return new WaitForSeconds (60);
 					}
 					doesFinishOneSeq = false;
-//					Debug.LogError ("【Score cross "+i+" " +j+"】: " + cur_Score);
+					Debug.LogError ("【Score cross "+i+" " +j+"】: " + cur_Score);
 					if (cur_Score > scores [i] && cur_Score > scores [j]) {
 //						resPool.Add (child);
 						AppendOneSeqToFile(curSeq);
+						ScoreRecord (cur_Score);
+
+						FilterGoodStrategy ();
+
 					} 
 				}
 			}
@@ -331,10 +335,12 @@ public class EA_Run : MonoBehaviour
 					yield return new WaitForSeconds (60);
 				}
 				doesFinishOneSeq = false;
-//				Debug.LogError ("【Score mutate "+i+"】: " + cur_Score);
+				Debug.LogError ("【Score mutate "+i+"】: " + cur_Score);
 				if (cur_Score > scores [i]) {
 //					resPool.Add (child);
 					AppendOneSeqToFile(curSeq);
+					ScoreRecord (cur_Score);
+					FilterGoodStrategy ();
 				} 
 			}
 		}
@@ -349,15 +355,51 @@ public class EA_Run : MonoBehaviour
 		StartCoroutine(Run_EA_Loop());
 	}
 
-	public void FilterGoodStrategy() {
-		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
-		if (geneSeqs.Count > 6) {
-//			List<GeneSeq> SortedList = geneSeqs.OrderBy(o=>o.score).ToList();
-//			geneSeqs.Sort((x, y) => Double.Compare(x.score, y.score));
-			geneSeqs.Sort((x, y) => (int)(x.score - y.score));
+	class SeqComparer: IComparer<GeneSeq> {
+		public int Compare(GeneSeq seq1, GeneSeq seq2) {
+			if (seq1.score - seq2.score > 0)
+				return -1;
+			else if (seq1.score == seq2.score)
+				return 0;
+			else
+				return 1;
 		}
-		ExportSeqToFile (geneSeqs);
 	}
 
+	public void FilterGoodStrategy() {
+		List<GeneSeq> geneSeqs = ImportSeqsFromFile ();
+		List<GeneSeq> res = new List<GeneSeq> ();
+		string stream = "";
+		foreach (GeneSeq seq in geneSeqs) {
+			stream += seq.Serialize ();
+			stream += "\n--------\n";
+		}
+		Debug.LogError ("before: " + stream);
+
+		geneSeqs.Sort(new SeqComparer());
+
+		stream = "";
+		foreach (GeneSeq seq in geneSeqs) {
+			stream += seq.Serialize ();
+			stream += "\n--------\n";
+		}
+		Debug.LogError ("After: " + stream);
+
+		for (int i = 0; i < geneSeqs.Count && i < 3; i++) {
+//			Debug.LogError (geneSeqs [i].score + "\n");
+			res.Add (geneSeqs [i]);
+		}
+
+		ExportSeqToFile (res);
+
+
+	}
+
+
+	public void ScoreRecord(double cur_Score){
+		System.IO.StreamWriter writeFile = new System.IO.StreamWriter("Strategy_Pool/scores",append: true);
+		writeFile.WriteLine(cur_Score + "\n");
+		writeFile.Close();
+	}
 }
 
