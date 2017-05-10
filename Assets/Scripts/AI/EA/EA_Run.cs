@@ -313,7 +313,7 @@ public class EA_Run : MonoBehaviour
 						yield return new WaitForSeconds (60);
 					}
 					doesFinishOneSeq = false;
-					Debug.LogError ("【Score cross "+i+" " +j+"】: " + cur_Score);
+//					Debug.LogError ("【Score cross "+i+" " +j+"】: " + cur_Score);
 					if (cur_Score > scores [i] && cur_Score > scores [j]) {
 //						resPool.Add (child);
 						AppendOneSeqToFile(curSeq);
@@ -335,7 +335,7 @@ public class EA_Run : MonoBehaviour
 					yield return new WaitForSeconds (60);
 				}
 				doesFinishOneSeq = false;
-				Debug.LogError ("【Score mutate "+i+"】: " + cur_Score);
+//				Debug.LogError ("【Score mutate "+i+"】: " + cur_Score);
 				if (cur_Score > scores [i]) {
 //					resPool.Add (child);
 					AppendOneSeqToFile(curSeq);
@@ -374,7 +374,7 @@ public class EA_Run : MonoBehaviour
 			stream += seq.Serialize ();
 			stream += "\n--------\n";
 		}
-		Debug.LogError ("before: " + stream);
+//		Debug.LogError ("before: " + stream);
 
 		geneSeqs.Sort(new SeqComparer());
 
@@ -383,7 +383,7 @@ public class EA_Run : MonoBehaviour
 			stream += seq.Serialize ();
 			stream += "\n--------\n";
 		}
-		Debug.LogError ("After: " + stream);
+//		Debug.LogError ("After: " + stream);
 
 		for (int i = 0; i < geneSeqs.Count && i < 3; i++) {
 //			Debug.LogError (geneSeqs [i].score + "\n");
